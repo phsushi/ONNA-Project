@@ -1,0 +1,10 @@
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\prjDESK_ONNA.exe.config
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\prjDESK_ONNA.exe
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\prjDESK_ONNA.pdb
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.csproj.AssemblyReference.cache
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.Properties.Resources.resources
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.csproj.GenerateResource.cache
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.csproj.CoreCompileInputs.cache
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.exe
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.pdb
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.Menu.resources
