@@ -16,5 +16,10 @@ namespace prjDESK_ONNA
         {
             InitializeComponent();
         }
+
+        private void moderacaoBtn2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
