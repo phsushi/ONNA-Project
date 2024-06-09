@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjDESK_ONNA.paginas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,14 @@ namespace prjDESK_ONNA
         private void moderacaoBtn2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void moderacaoBtn3_Click(object sender, EventArgs e)
+        {
+
+            Art_Gerenc c = new Art_Gerenc();
+            c.Show();
+            this.Hide();
         }
     }
 }

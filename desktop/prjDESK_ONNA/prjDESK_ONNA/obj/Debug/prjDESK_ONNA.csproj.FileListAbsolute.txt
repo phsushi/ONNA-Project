@@ -8,3 +8,6 @@ C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_
 C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.exe
 C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.pdb
 C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.Menu.resources
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Art_Gerenc.resources
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Art_Exclusao.resources
+C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Art_Insert.resources
