@@ -28,30 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DtaConsulta = new System.Windows.Forms.DataGridView();
+            this.TxtPesquisa = new System.Windows.Forms.TextBox();
             this.moderacaoBtn5 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn1 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn2 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn3 = new prjDESK_ONNA.ModeracaoBtn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.BtnExcluir = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
+            this.LblResumo = new System.Windows.Forms.Label();
+            this.LblLink = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // DtaConsulta
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(514, -1);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(270, 536);
-            this.dataGridView1.TabIndex = 0;
+            this.DtaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtaConsulta.Location = new System.Drawing.Point(514, -1);
+            this.DtaConsulta.Name = "DtaConsulta";
+            this.DtaConsulta.Size = new System.Drawing.Size(270, 536);
+            this.DtaConsulta.TabIndex = 0;
             // 
-            // textBox1
+            // TxtPesquisa
             // 
-            this.textBox1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Italic);
-            this.textBox1.Location = new System.Drawing.Point(157, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(316, 33);
-            this.textBox1.TabIndex = 1;
+            this.TxtPesquisa.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Italic);
+            this.TxtPesquisa.Location = new System.Drawing.Point(157, 19);
+            this.TxtPesquisa.Name = "TxtPesquisa";
+            this.TxtPesquisa.Size = new System.Drawing.Size(316, 33);
+            this.TxtPesquisa.TabIndex = 1;
             // 
             // moderacaoBtn5
             // 
@@ -71,62 +75,83 @@
             this.moderacaoBtn5.TextColor = System.Drawing.Color.White;
             this.moderacaoBtn5.UseVisualStyleBackColor = false;
             // 
-            // moderacaoBtn1
+            // BtnExcluir
             // 
-            this.moderacaoBtn1.BackColor = System.Drawing.Color.White;
-            this.moderacaoBtn1.BackgroudColor = System.Drawing.Color.White;
-            this.moderacaoBtn1.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn1.CurvaturaBorda = 40;
-            this.moderacaoBtn1.Enabled = false;
-            this.moderacaoBtn1.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn1.ForeColor = System.Drawing.Color.White;
-            this.moderacaoBtn1.Location = new System.Drawing.Point(28, 68);
-            this.moderacaoBtn1.Name = "moderacaoBtn1";
-            this.moderacaoBtn1.Size = new System.Drawing.Size(445, 374);
-            this.moderacaoBtn1.TabIndex = 10;
-            this.moderacaoBtn1.TamanhoBorda = 0;
-            this.moderacaoBtn1.TextColor = System.Drawing.Color.White;
-            this.moderacaoBtn1.UseVisualStyleBackColor = false;
+            this.BtnExcluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnExcluir.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnExcluir.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnExcluir.CurvaturaBorda = 20;
+            this.BtnExcluir.FlatAppearance.BorderSize = 0;
+            this.BtnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExcluir.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.BtnExcluir.ForeColor = System.Drawing.Color.Black;
+            this.BtnExcluir.Location = new System.Drawing.Point(154, 352);
+            this.BtnExcluir.Name = "BtnExcluir";
+            this.BtnExcluir.Size = new System.Drawing.Size(115, 40);
+            this.BtnExcluir.TabIndex = 11;
+            this.BtnExcluir.TamanhoBorda = 0;
+            this.BtnExcluir.Text = "Excluir";
+            this.BtnExcluir.TextColor = System.Drawing.Color.Black;
+            this.BtnExcluir.UseVisualStyleBackColor = false;
             // 
-            // moderacaoBtn2
+            // BtnVoltar
             // 
-            this.moderacaoBtn2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn2.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn2.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn2.CurvaturaBorda = 20;
-            this.moderacaoBtn2.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn2.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.moderacaoBtn2.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn2.Location = new System.Drawing.Point(186, 448);
-            this.moderacaoBtn2.Name = "moderacaoBtn2";
-            this.moderacaoBtn2.Size = new System.Drawing.Size(115, 40);
-            this.moderacaoBtn2.TabIndex = 11;
-            this.moderacaoBtn2.TamanhoBorda = 0;
-            this.moderacaoBtn2.Text = "Excluir";
-            this.moderacaoBtn2.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn2.UseVisualStyleBackColor = false;
+            this.BtnVoltar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnVoltar.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnVoltar.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnVoltar.CurvaturaBorda = 20;
+            this.BtnVoltar.FlatAppearance.BorderSize = 0;
+            this.BtnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVoltar.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.BtnVoltar.ForeColor = System.Drawing.Color.Black;
+            this.BtnVoltar.Location = new System.Drawing.Point(28, 483);
+            this.BtnVoltar.Name = "BtnVoltar";
+            this.BtnVoltar.Size = new System.Drawing.Size(100, 40);
+            this.BtnVoltar.TabIndex = 12;
+            this.BtnVoltar.TamanhoBorda = 0;
+            this.BtnVoltar.Text = "voltar";
+            this.BtnVoltar.TextColor = System.Drawing.Color.Black;
+            this.BtnVoltar.UseVisualStyleBackColor = false;
+            this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
             // 
-            // moderacaoBtn3
+            // panel1
             // 
-            this.moderacaoBtn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn3.CurvaturaBorda = 20;
-            this.moderacaoBtn3.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn3.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.moderacaoBtn3.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.Location = new System.Drawing.Point(28, 483);
-            this.moderacaoBtn3.Name = "moderacaoBtn3";
-            this.moderacaoBtn3.Size = new System.Drawing.Size(100, 40);
-            this.moderacaoBtn3.TabIndex = 12;
-            this.moderacaoBtn3.TamanhoBorda = 0;
-            this.moderacaoBtn3.Text = "voltar";
-            this.moderacaoBtn3.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.UseVisualStyleBackColor = false;
-            this.moderacaoBtn3.Click += new System.EventHandler(this.moderacaoBtn3_Click);
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.LblLink);
+            this.panel1.Controls.Add(this.LblResumo);
+            this.panel1.Controls.Add(this.LblTitulo);
+            this.panel1.Controls.Add(this.BtnExcluir);
+            this.panel1.Location = new System.Drawing.Point(28, 68);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(445, 409);
+            this.panel1.TabIndex = 13;
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.LblTitulo.Location = new System.Drawing.Point(16, 11);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(414, 44);
+            this.LblTitulo.TabIndex = 12;
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblResumo
+            // 
+            this.LblResumo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.LblResumo.Location = new System.Drawing.Point(16, 64);
+            this.LblResumo.Name = "LblResumo";
+            this.LblResumo.Size = new System.Drawing.Size(414, 239);
+            this.LblResumo.TabIndex = 13;
+            this.LblResumo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblLink
+            // 
+            this.LblLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.LblLink.Location = new System.Drawing.Point(16, 314);
+            this.LblLink.Name = "LblLink";
+            this.LblLink.Size = new System.Drawing.Size(414, 35);
+            this.LblLink.TabIndex = 14;
+            this.LblLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Art_Exclusao
             // 
@@ -134,19 +159,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
-            this.Controls.Add(this.moderacaoBtn3);
-            this.Controls.Add(this.moderacaoBtn2);
-            this.Controls.Add(this.moderacaoBtn1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.BtnVoltar);
             this.Controls.Add(this.moderacaoBtn5);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.TxtPesquisa);
+            this.Controls.Add(this.DtaConsulta);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "Art_Exclusao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exclusão de Artigos";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Art_Exclusao_Closed);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,11 +179,14 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView DtaConsulta;
+        private System.Windows.Forms.TextBox TxtPesquisa;
         private ModeracaoBtn moderacaoBtn5;
-        private ModeracaoBtn moderacaoBtn1;
-        private ModeracaoBtn moderacaoBtn2;
-        private ModeracaoBtn moderacaoBtn3;
+        private ModeracaoBtn BtnExcluir;
+        private ModeracaoBtn BtnVoltar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label LblLink;
+        private System.Windows.Forms.Label LblResumo;
+        private System.Windows.Forms.Label LblTitulo;
     }
 }

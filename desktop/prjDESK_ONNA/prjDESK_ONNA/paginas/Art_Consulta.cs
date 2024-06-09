@@ -10,19 +10,21 @@ using System.Windows.Forms;
 
 namespace prjDESK_ONNA.paginas
 {
-    public partial class Art_Exclusao : Form
+    public partial class Art_Consulta : Form
     {
-        public Art_Exclusao()
+        public Art_Consulta()
         {
             InitializeComponent();
         }
 
-      
-
-        private void Art_Exclusao_Closed(object sender, FormClosedEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            Art_Alterar a= new Art_Alterar();
+            a.Show();
+            this.Close();
         }
+
+     
 
         private void BtnVoltar_Click(object sender, EventArgs e)
         {

@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.RdoCuidado = new System.Windows.Forms.RadioButton();
+            this.RdoMater = new System.Windows.Forms.RadioButton();
+            this.RdoGest = new System.Windows.Forms.RadioButton();
+            this.RdoEngra = new System.Windows.Forms.RadioButton();
+            this.RdoMens = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.moderacaoBtn1 = new prjDESK_ONNA.ModeracaoBtn();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BtnInserir = new prjDESK_ONNA.ModeracaoBtn();
+            this.TxtLink = new System.Windows.Forms.TextBox();
+            this.TxtResumo = new System.Windows.Forms.RichTextBox();
+            this.TxtTitulo = new System.Windows.Forms.TextBox();
             this.moderacaoBtn5 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn3 = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -49,81 +50,80 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.panel1.Controls.Add(this.radioButton5);
-            this.panel1.Controls.Add(this.radioButton4);
-            this.panel1.Controls.Add(this.radioButton3);
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.RdoCuidado);
+            this.panel1.Controls.Add(this.RdoMater);
+            this.panel1.Controls.Add(this.RdoGest);
+            this.panel1.Controls.Add(this.RdoEngra);
+            this.panel1.Controls.Add(this.RdoMens);
             this.panel1.Location = new System.Drawing.Point(535, 143);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(237, 251);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // radioButton5
+            // RdoCuidado
             // 
-            this.radioButton5.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton5.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.radioButton5.Location = new System.Drawing.Point(30, 183);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(204, 34);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "cuidados com o corpo";
-            this.radioButton5.UseVisualStyleBackColor = false;
+            this.RdoCuidado.BackColor = System.Drawing.Color.Transparent;
+            this.RdoCuidado.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.RdoCuidado.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.RdoCuidado.Location = new System.Drawing.Point(30, 183);
+            this.RdoCuidado.Name = "RdoCuidado";
+            this.RdoCuidado.Size = new System.Drawing.Size(204, 34);
+            this.RdoCuidado.TabIndex = 4;
+            this.RdoCuidado.TabStop = true;
+            this.RdoCuidado.Text = "cuidados com o corpo";
+            this.RdoCuidado.UseVisualStyleBackColor = false;
             // 
-            // radioButton4
+            // RdoMater
             // 
-            this.radioButton4.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton4.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.radioButton4.Location = new System.Drawing.Point(30, 143);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(151, 34);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "maternidade";
-            this.radioButton4.UseVisualStyleBackColor = false;
+            this.RdoMater.BackColor = System.Drawing.Color.Transparent;
+            this.RdoMater.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.RdoMater.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.RdoMater.Location = new System.Drawing.Point(30, 143);
+            this.RdoMater.Name = "RdoMater";
+            this.RdoMater.Size = new System.Drawing.Size(151, 34);
+            this.RdoMater.TabIndex = 3;
+            this.RdoMater.TabStop = true;
+            this.RdoMater.Text = "maternidade";
+            this.RdoMater.UseVisualStyleBackColor = false;
             // 
-            // radioButton3
+            // RdoGest
             // 
-            this.radioButton3.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton3.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.radioButton3.Location = new System.Drawing.Point(30, 103);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(151, 34);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "gestação";
-            this.radioButton3.UseVisualStyleBackColor = false;
+            this.RdoGest.BackColor = System.Drawing.Color.Transparent;
+            this.RdoGest.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.RdoGest.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.RdoGest.Location = new System.Drawing.Point(30, 103);
+            this.RdoGest.Name = "RdoGest";
+            this.RdoGest.Size = new System.Drawing.Size(151, 34);
+            this.RdoGest.TabIndex = 2;
+            this.RdoGest.TabStop = true;
+            this.RdoGest.Text = "gestação";
+            this.RdoGest.UseVisualStyleBackColor = false;
             // 
-            // radioButton2
+            // RdoEngra
             // 
-            this.radioButton2.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton2.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.radioButton2.Location = new System.Drawing.Point(30, 63);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(151, 34);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "engravidar";
-            this.radioButton2.UseVisualStyleBackColor = false;
+            this.RdoEngra.BackColor = System.Drawing.Color.Transparent;
+            this.RdoEngra.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.RdoEngra.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.RdoEngra.Location = new System.Drawing.Point(30, 63);
+            this.RdoEngra.Name = "RdoEngra";
+            this.RdoEngra.Size = new System.Drawing.Size(151, 34);
+            this.RdoEngra.TabIndex = 1;
+            this.RdoEngra.TabStop = true;
+            this.RdoEngra.Text = "engravidar";
+            this.RdoEngra.UseVisualStyleBackColor = false;
             // 
-            // radioButton1
+            // RdoMens
             // 
-            this.radioButton1.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.radioButton1.Location = new System.Drawing.Point(30, 23);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(151, 34);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "menstruação";
-            this.radioButton1.UseVisualStyleBackColor = false;
+            this.RdoMens.BackColor = System.Drawing.Color.Transparent;
+            this.RdoMens.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.RdoMens.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.RdoMens.Location = new System.Drawing.Point(30, 23);
+            this.RdoMens.Name = "RdoMens";
+            this.RdoMens.Size = new System.Drawing.Size(151, 34);
+            this.RdoMens.TabIndex = 0;
+            this.RdoMens.TabStop = true;
+            this.RdoMens.Text = "menstruação";
+            this.RdoMens.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -140,60 +140,60 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.panel2.Controls.Add(this.moderacaoBtn1);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.richTextBox1);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.BtnInserir);
+            this.panel2.Controls.Add(this.TxtLink);
+            this.panel2.Controls.Add(this.TxtResumo);
+            this.panel2.Controls.Add(this.TxtTitulo);
             this.panel2.Location = new System.Drawing.Point(12, 68);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(512, 380);
             this.panel2.TabIndex = 3;
             // 
-            // moderacaoBtn1
+            // BtnInserir
             // 
-            this.moderacaoBtn1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn1.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn1.CurvaturaBorda = 20;
-            this.moderacaoBtn1.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.moderacaoBtn1.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn1.Location = new System.Drawing.Point(174, 328);
-            this.moderacaoBtn1.Name = "moderacaoBtn1";
-            this.moderacaoBtn1.Size = new System.Drawing.Size(124, 40);
-            this.moderacaoBtn1.TabIndex = 5;
-            this.moderacaoBtn1.TamanhoBorda = 0;
-            this.moderacaoBtn1.Text = "Inserir";
-            this.moderacaoBtn1.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn1.UseVisualStyleBackColor = false;
-            this.moderacaoBtn1.Click += new System.EventHandler(this.moderacaoBtn1_Click);
+            this.BtnInserir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnInserir.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnInserir.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnInserir.CurvaturaBorda = 20;
+            this.BtnInserir.FlatAppearance.BorderSize = 0;
+            this.BtnInserir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnInserir.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.BtnInserir.ForeColor = System.Drawing.Color.Black;
+            this.BtnInserir.Location = new System.Drawing.Point(174, 328);
+            this.BtnInserir.Name = "BtnInserir";
+            this.BtnInserir.Size = new System.Drawing.Size(124, 40);
+            this.BtnInserir.TabIndex = 5;
+            this.BtnInserir.TamanhoBorda = 0;
+            this.BtnInserir.Text = "Inserir";
+            this.BtnInserir.TextColor = System.Drawing.Color.Black;
+            this.BtnInserir.UseVisualStyleBackColor = false;
+            this.BtnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
-            // textBox3
+            // TxtLink
             // 
-            this.textBox3.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(12, 273);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(482, 36);
-            this.textBox3.TabIndex = 4;
+            this.TxtLink.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtLink.Location = new System.Drawing.Point(12, 273);
+            this.TxtLink.Name = "TxtLink";
+            this.TxtLink.Size = new System.Drawing.Size(482, 36);
+            this.TxtLink.TabIndex = 4;
             // 
-            // richTextBox1
+            // TxtResumo
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(12, 65);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
-            this.richTextBox1.Size = new System.Drawing.Size(482, 202);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.TxtResumo.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtResumo.Location = new System.Drawing.Point(12, 65);
+            this.TxtResumo.Name = "TxtResumo";
+            this.TxtResumo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
+            this.TxtResumo.Size = new System.Drawing.Size(482, 202);
+            this.TxtResumo.TabIndex = 2;
+            this.TxtResumo.Text = "";
             // 
-            // textBox1
+            // TxtTitulo
             // 
-            this.textBox1.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(482, 44);
-            this.textBox1.TabIndex = 0;
+            this.TxtTitulo.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTitulo.Location = new System.Drawing.Point(12, 15);
+            this.TxtTitulo.Name = "TxtTitulo";
+            this.TxtTitulo.Size = new System.Drawing.Size(482, 44);
+            this.TxtTitulo.TabIndex = 0;
             // 
             // moderacaoBtn5
             // 
@@ -213,25 +213,37 @@
             this.moderacaoBtn5.TextColor = System.Drawing.Color.White;
             this.moderacaoBtn5.UseVisualStyleBackColor = false;
             // 
-            // moderacaoBtn3
+            // BtnVoltar
             // 
-            this.moderacaoBtn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn3.CurvaturaBorda = 20;
-            this.moderacaoBtn3.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn3.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
-            this.moderacaoBtn3.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.Location = new System.Drawing.Point(12, 483);
-            this.moderacaoBtn3.Name = "moderacaoBtn3";
-            this.moderacaoBtn3.Size = new System.Drawing.Size(100, 40);
-            this.moderacaoBtn3.TabIndex = 13;
-            this.moderacaoBtn3.TamanhoBorda = 0;
-            this.moderacaoBtn3.Text = "voltar";
-            this.moderacaoBtn3.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.UseVisualStyleBackColor = false;
-            this.moderacaoBtn3.Click += new System.EventHandler(this.moderacaoBtn3_Click);
+            this.BtnVoltar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnVoltar.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnVoltar.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnVoltar.CurvaturaBorda = 20;
+            this.BtnVoltar.FlatAppearance.BorderSize = 0;
+            this.BtnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVoltar.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.BtnVoltar.ForeColor = System.Drawing.Color.Black;
+            this.BtnVoltar.Location = new System.Drawing.Point(12, 483);
+            this.BtnVoltar.Name = "BtnVoltar";
+            this.BtnVoltar.Size = new System.Drawing.Size(100, 40);
+            this.BtnVoltar.TabIndex = 13;
+            this.BtnVoltar.TamanhoBorda = 0;
+            this.BtnVoltar.Text = "voltar";
+            this.BtnVoltar.TextColor = System.Drawing.Color.Black;
+            this.BtnVoltar.UseVisualStyleBackColor = false;
+            this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(535, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(237, 56);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Gênero do artigo";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Art_Insert
             // 
@@ -239,7 +251,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
-            this.Controls.Add(this.moderacaoBtn3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.BtnVoltar);
             this.Controls.Add(this.moderacaoBtn5);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label2);
@@ -249,7 +262,6 @@
             this.Name = "Art_Insert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Art_Insert";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Art_Insert_Closed);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -260,18 +272,19 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton RdoMens;
+        private System.Windows.Forms.RadioButton RdoCuidado;
+        private System.Windows.Forms.RadioButton RdoMater;
+        private System.Windows.Forms.RadioButton RdoGest;
+        private System.Windows.Forms.RadioButton RdoEngra;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private ModeracaoBtn moderacaoBtn1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox TxtTitulo;
+        private System.Windows.Forms.RichTextBox TxtResumo;
+        private ModeracaoBtn BtnInserir;
+        private System.Windows.Forms.TextBox TxtLink;
         private ModeracaoBtn moderacaoBtn5;
-        private ModeracaoBtn moderacaoBtn3;
+        private ModeracaoBtn BtnVoltar;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -31,10 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.moderacaoBtn5 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn4 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn3 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn2 = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnJanelaAlter = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnJanelaExcluir = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnJanelaInsercao = new prjDESK_ONNA.ModeracaoBtn();
             this.moderacaoBtn1 = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
             this.SuspendLayout();
             // 
             // label1
@@ -80,64 +81,65 @@
             this.moderacaoBtn5.TextColor = System.Drawing.Color.White;
             this.moderacaoBtn5.UseVisualStyleBackColor = false;
             // 
-            // moderacaoBtn4
+            // BtnJanelaAlter
             // 
-            this.moderacaoBtn4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn4.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn4.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn4.CurvaturaBorda = 40;
-            this.moderacaoBtn4.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn4.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moderacaoBtn4.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn4.Location = new System.Drawing.Point(474, 305);
-            this.moderacaoBtn4.Name = "moderacaoBtn4";
-            this.moderacaoBtn4.Size = new System.Drawing.Size(170, 64);
-            this.moderacaoBtn4.TabIndex = 7;
-            this.moderacaoBtn4.TamanhoBorda = 0;
-            this.moderacaoBtn4.Text = "Alteração";
-            this.moderacaoBtn4.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn4.UseVisualStyleBackColor = false;
+            this.BtnJanelaAlter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnJanelaAlter.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnJanelaAlter.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnJanelaAlter.CurvaturaBorda = 40;
+            this.BtnJanelaAlter.FlatAppearance.BorderSize = 0;
+            this.BtnJanelaAlter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnJanelaAlter.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnJanelaAlter.ForeColor = System.Drawing.Color.Black;
+            this.BtnJanelaAlter.Location = new System.Drawing.Point(474, 305);
+            this.BtnJanelaAlter.Name = "BtnJanelaAlter";
+            this.BtnJanelaAlter.Size = new System.Drawing.Size(170, 64);
+            this.BtnJanelaAlter.TabIndex = 7;
+            this.BtnJanelaAlter.TamanhoBorda = 0;
+            this.BtnJanelaAlter.Text = "Alteração";
+            this.BtnJanelaAlter.TextColor = System.Drawing.Color.Black;
+            this.BtnJanelaAlter.UseVisualStyleBackColor = false;
+            this.BtnJanelaAlter.Click += new System.EventHandler(this.BtnJanelaAlter_Click);
             // 
-            // moderacaoBtn3
+            // BtnJanelaExcluir
             // 
-            this.moderacaoBtn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn3.CurvaturaBorda = 40;
-            this.moderacaoBtn3.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn3.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moderacaoBtn3.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.Location = new System.Drawing.Point(292, 305);
-            this.moderacaoBtn3.Name = "moderacaoBtn3";
-            this.moderacaoBtn3.Size = new System.Drawing.Size(170, 64);
-            this.moderacaoBtn3.TabIndex = 6;
-            this.moderacaoBtn3.TamanhoBorda = 0;
-            this.moderacaoBtn3.Text = "Exclusão";
-            this.moderacaoBtn3.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.UseVisualStyleBackColor = false;
-            this.moderacaoBtn3.Click += new System.EventHandler(this.moderacaoBtn3_Click);
+            this.BtnJanelaExcluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnJanelaExcluir.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnJanelaExcluir.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnJanelaExcluir.CurvaturaBorda = 40;
+            this.BtnJanelaExcluir.FlatAppearance.BorderSize = 0;
+            this.BtnJanelaExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnJanelaExcluir.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnJanelaExcluir.ForeColor = System.Drawing.Color.Black;
+            this.BtnJanelaExcluir.Location = new System.Drawing.Point(292, 305);
+            this.BtnJanelaExcluir.Name = "BtnJanelaExcluir";
+            this.BtnJanelaExcluir.Size = new System.Drawing.Size(170, 64);
+            this.BtnJanelaExcluir.TabIndex = 6;
+            this.BtnJanelaExcluir.TamanhoBorda = 0;
+            this.BtnJanelaExcluir.Text = "Exclusão";
+            this.BtnJanelaExcluir.TextColor = System.Drawing.Color.Black;
+            this.BtnJanelaExcluir.UseVisualStyleBackColor = false;
+            this.BtnJanelaExcluir.Click += new System.EventHandler(this.BtnJanelaExcluir_Click);
             // 
-            // moderacaoBtn2
+            // BtnJanelaInsercao
             // 
-            this.moderacaoBtn2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn2.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn2.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn2.CurvaturaBorda = 40;
-            this.moderacaoBtn2.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn2.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moderacaoBtn2.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn2.Location = new System.Drawing.Point(110, 305);
-            this.moderacaoBtn2.Name = "moderacaoBtn2";
-            this.moderacaoBtn2.Size = new System.Drawing.Size(170, 64);
-            this.moderacaoBtn2.TabIndex = 5;
-            this.moderacaoBtn2.TamanhoBorda = 0;
-            this.moderacaoBtn2.Text = "Inserção";
-            this.moderacaoBtn2.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn2.UseVisualStyleBackColor = false;
-            this.moderacaoBtn2.Click += new System.EventHandler(this.moderacaoBtn2_Click);
+            this.BtnJanelaInsercao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnJanelaInsercao.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnJanelaInsercao.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnJanelaInsercao.CurvaturaBorda = 40;
+            this.BtnJanelaInsercao.FlatAppearance.BorderSize = 0;
+            this.BtnJanelaInsercao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnJanelaInsercao.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnJanelaInsercao.ForeColor = System.Drawing.Color.Black;
+            this.BtnJanelaInsercao.Location = new System.Drawing.Point(110, 305);
+            this.BtnJanelaInsercao.Name = "BtnJanelaInsercao";
+            this.BtnJanelaInsercao.Size = new System.Drawing.Size(170, 64);
+            this.BtnJanelaInsercao.TabIndex = 5;
+            this.BtnJanelaInsercao.TamanhoBorda = 0;
+            this.BtnJanelaInsercao.Text = "Inserção";
+            this.BtnJanelaInsercao.TextColor = System.Drawing.Color.Black;
+            this.BtnJanelaInsercao.UseVisualStyleBackColor = false;
+            this.BtnJanelaInsercao.Click += new System.EventHandler(this.BtnInsercao_Click);
             // 
             // moderacaoBtn1
             // 
@@ -160,16 +162,37 @@
             this.moderacaoBtn1.TextColor = System.Drawing.Color.White;
             this.moderacaoBtn1.UseVisualStyleBackColor = false;
             // 
+            // BtnVoltar
+            // 
+            this.BtnVoltar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnVoltar.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnVoltar.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnVoltar.CurvaturaBorda = 20;
+            this.BtnVoltar.FlatAppearance.BorderSize = 0;
+            this.BtnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVoltar.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
+            this.BtnVoltar.ForeColor = System.Drawing.Color.Black;
+            this.BtnVoltar.Location = new System.Drawing.Point(41, 473);
+            this.BtnVoltar.Name = "BtnVoltar";
+            this.BtnVoltar.Size = new System.Drawing.Size(100, 40);
+            this.BtnVoltar.TabIndex = 13;
+            this.BtnVoltar.TamanhoBorda = 0;
+            this.BtnVoltar.Text = "voltar";
+            this.BtnVoltar.TextColor = System.Drawing.Color.Black;
+            this.BtnVoltar.UseVisualStyleBackColor = false;
+            this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
+            // 
             // Art_Gerenc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.BtnVoltar);
             this.Controls.Add(this.moderacaoBtn5);
-            this.Controls.Add(this.moderacaoBtn4);
-            this.Controls.Add(this.moderacaoBtn3);
-            this.Controls.Add(this.moderacaoBtn2);
+            this.Controls.Add(this.BtnJanelaAlter);
+            this.Controls.Add(this.BtnJanelaExcluir);
+            this.Controls.Add(this.BtnJanelaInsercao);
             this.Controls.Add(this.moderacaoBtn1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -189,9 +212,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private ModeracaoBtn moderacaoBtn1;
-        private ModeracaoBtn moderacaoBtn2;
-        private ModeracaoBtn moderacaoBtn3;
-        private ModeracaoBtn moderacaoBtn4;
+        private ModeracaoBtn BtnJanelaInsercao;
+        private ModeracaoBtn BtnJanelaExcluir;
+        private ModeracaoBtn BtnJanelaAlter;
         private ModeracaoBtn moderacaoBtn5;
+        private ModeracaoBtn BtnVoltar;
     }
 }

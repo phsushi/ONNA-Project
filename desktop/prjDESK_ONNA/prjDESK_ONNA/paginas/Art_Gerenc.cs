@@ -23,23 +23,38 @@ namespace prjDESK_ONNA.paginas
 
         }
 
-        private void moderacaoBtn3_Click(object sender, EventArgs e)
+        private void Art_Gerenc_Closed(object sender, FormClosedEventArgs e)
         {
-            Art_Exclusao c=new Art_Exclusao();
+            
+        }
+
+    
+        private void BtnJanelaAlter_Click(object sender, EventArgs e)
+        {
+            Art_Consulta c = new Art_Consulta();
             c.Show();
             this.Close();
         }
 
-        private void moderacaoBtn2_Click(object sender, EventArgs e)
+        private void BtnJanelaExcluir_Click(object sender, EventArgs e)
         {
-            Art_Insert a =new Art_Insert();
-            a.Show();
-            this.Close();   
+            Art_Exclusao c = new Art_Exclusao();
+            c.Show();
+            this.Close();
         }
 
-        private void Art_Gerenc_Closed(object sender, FormClosedEventArgs e)
+        private void BtnInsercao_Click(object sender, EventArgs e)
         {
-            
+            Art_Insert a = new Art_Insert();
+            a.Show();
+            this.Close();
+        }
+
+        private void BtnVoltar_Click(object sender, EventArgs e)
+        {
+            Menu a = new Menu();
+            a.Show();
+            this.Close();
         }
     }
 }

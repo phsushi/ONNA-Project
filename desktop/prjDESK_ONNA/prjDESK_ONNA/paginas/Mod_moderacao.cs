@@ -10,23 +10,18 @@ using System.Windows.Forms;
 
 namespace prjDESK_ONNA.paginas
 {
-    public partial class Art_Insert : Form
+    public partial class Mod_moderacao : Form
     {
-        public Art_Insert()
+        public Mod_moderacao()
         {
             InitializeComponent();
         }
 
         private void BtnVoltar_Click(object sender, EventArgs e)
         {
-            Art_Gerenc art = new Art_Gerenc();
-            art.Show();
+            Menu a =new Menu();
+            a.Show();
             this.Close();
-        }
-
-        private void BtnInserir_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

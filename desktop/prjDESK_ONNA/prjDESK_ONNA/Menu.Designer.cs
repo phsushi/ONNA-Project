@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.moderacaoBtn3 = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn2 = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnArt = new prjDESK_ONNA.ModeracaoBtn();
+            this.BtnMod = new prjDESK_ONNA.ModeracaoBtn();
             this.moderacaoBtn1 = new prjDESK_ONNA.ModeracaoBtn();
             this.SuspendLayout();
             // 
@@ -47,47 +47,47 @@
             this.label1.Text = "Sistema de Gerenciamento ONNA";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // moderacaoBtn3
+            // BtnArt
             // 
-            this.moderacaoBtn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn3.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn3.CurvaturaBorda = 40;
-            this.moderacaoBtn3.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn3.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moderacaoBtn3.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.Location = new System.Drawing.Point(214, 311);
-            this.moderacaoBtn3.Name = "moderacaoBtn3";
-            this.moderacaoBtn3.Size = new System.Drawing.Size(350, 57);
-            this.moderacaoBtn3.TabIndex = 3;
-            this.moderacaoBtn3.TamanhoBorda = 0;
-            this.moderacaoBtn3.Text = "Artigos";
-            this.moderacaoBtn3.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.moderacaoBtn3.UseVisualStyleBackColor = false;
-            this.moderacaoBtn3.Click += new System.EventHandler(this.moderacaoBtn3_Click);
+            this.BtnArt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnArt.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.BtnArt.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnArt.CurvaturaBorda = 40;
+            this.BtnArt.FlatAppearance.BorderSize = 0;
+            this.BtnArt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnArt.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnArt.ForeColor = System.Drawing.Color.Black;
+            this.BtnArt.Location = new System.Drawing.Point(214, 311);
+            this.BtnArt.Name = "BtnArt";
+            this.BtnArt.Size = new System.Drawing.Size(350, 57);
+            this.BtnArt.TabIndex = 3;
+            this.BtnArt.TamanhoBorda = 0;
+            this.BtnArt.Text = "Artigos";
+            this.BtnArt.TextColor = System.Drawing.Color.Black;
+            this.BtnArt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnArt.UseVisualStyleBackColor = false;
+            this.BtnArt.Click += new System.EventHandler(this.BtnArt_Click);
             // 
-            // moderacaoBtn2
+            // BtnMod
             // 
-            this.moderacaoBtn2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.moderacaoBtn2.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.moderacaoBtn2.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn2.CurvaturaBorda = 40;
-            this.moderacaoBtn2.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn2.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moderacaoBtn2.ForeColor = System.Drawing.Color.Black;
-            this.moderacaoBtn2.Location = new System.Drawing.Point(214, 205);
-            this.moderacaoBtn2.Name = "moderacaoBtn2";
-            this.moderacaoBtn2.Size = new System.Drawing.Size(350, 57);
-            this.moderacaoBtn2.TabIndex = 2;
-            this.moderacaoBtn2.TamanhoBorda = 0;
-            this.moderacaoBtn2.Text = "Moderação";
-            this.moderacaoBtn2.TextColor = System.Drawing.Color.Black;
-            this.moderacaoBtn2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.moderacaoBtn2.UseVisualStyleBackColor = false;
-            this.moderacaoBtn2.Click += new System.EventHandler(this.moderacaoBtn2_Click);
+            this.BtnMod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.BtnMod.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.BtnMod.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.BtnMod.CurvaturaBorda = 40;
+            this.BtnMod.FlatAppearance.BorderSize = 0;
+            this.BtnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMod.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnMod.ForeColor = System.Drawing.Color.Black;
+            this.BtnMod.Location = new System.Drawing.Point(214, 205);
+            this.BtnMod.Name = "BtnMod";
+            this.BtnMod.Size = new System.Drawing.Size(350, 57);
+            this.BtnMod.TabIndex = 2;
+            this.BtnMod.TamanhoBorda = 0;
+            this.BtnMod.Text = "Moderação";
+            this.BtnMod.TextColor = System.Drawing.Color.Black;
+            this.BtnMod.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnMod.UseVisualStyleBackColor = false;
+            this.BtnMod.Click += new System.EventHandler(this.BtnMod_Click);
             // 
             // moderacaoBtn1
             // 
@@ -116,8 +116,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
-            this.Controls.Add(this.moderacaoBtn3);
-            this.Controls.Add(this.moderacaoBtn2);
+            this.Controls.Add(this.BtnArt);
+            this.Controls.Add(this.BtnMod);
             this.Controls.Add(this.moderacaoBtn1);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.Black;
@@ -135,8 +135,8 @@
 
         private System.Windows.Forms.Label label1;
         private ModeracaoBtn moderacaoBtn1;
-        private ModeracaoBtn moderacaoBtn2;
-        private ModeracaoBtn moderacaoBtn3;
+        private ModeracaoBtn BtnMod;
+        private ModeracaoBtn BtnArt;
     }
 }
 

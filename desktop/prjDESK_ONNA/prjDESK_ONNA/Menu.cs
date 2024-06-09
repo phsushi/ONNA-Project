@@ -16,16 +16,17 @@ namespace prjDESK_ONNA
         public Menu()
         {
             InitializeComponent();
+        }         
+
+        private void BtnMod_Click(object sender, EventArgs e)
+        {
+            Mod_moderacao a = new Mod_moderacao();
+            a.Show();
+            this.Hide();
         }
 
-        private void moderacaoBtn2_Click(object sender, EventArgs e)
+        private void BtnArt_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void moderacaoBtn3_Click(object sender, EventArgs e)
-        {
-
             Art_Gerenc c = new Art_Gerenc();
             c.Show();
             this.Hide();
