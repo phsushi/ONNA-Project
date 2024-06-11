@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
-import { useFonts, YanoneKaffeesatz_400Regular, YanoneKaffeesatz_700Bold } from '@expo-google-fonts/yanone-kaffeesatz';
+import { useFonts, YanoneKaffeesatz_400Regular } from '@expo-google-fonts/yanone-kaffeesatz';
 import { OpenSans_400Regular } from '@expo-google-fonts/open-sans';
-import { Link } from 'expo-router'
+import { Link } from 'expo-router';
 
 export default function SignUp(){
   const [fontsLoaded] = useFonts({
     YanoneKaffeesatz_400Regular,
-    YanoneKaffeesatz_700Bold,
     OpenSans_400Regular
   })
 
@@ -20,23 +19,20 @@ export default function SignUp(){
         source={require("../assets//img/researcher-gif.gif")}
       />
       <View style={styles.span}>
-      <Text style={styles.email}>Nome Completo</Text>
+        <Text style={styles.email}>Nome Completo</Text>
         <TextInput style={styles.txtEmail}
-            placeholder='Bombs Ricardinho'
+            placeholder='Bombom Ricardinho'
             keyboardType='text'
         />
-        <Text style={styles.email}>Email</Text>
-        <TextInput style={styles.txtEmail}
+        <Text style={styles.password}>Email</Text>
+        <TextInput style={styles.txtPassword}
             placeholder='ricardinho@gmail.com'
             keyboardType='text'
         />
-        <Text style={styles.password}>Senha</Text>
-        <TextInput style={styles.txtPassword}
-            placeholder='************'
-            keyboardType='text'
-        />
         <TouchableOpacity style={styles.btnMain}>
+          <Link href={"/password"}>
             <Text style={styles.signIn}>Continuar</Text>
+          </Link>
       </TouchableOpacity>
       <Text style={styles.or}>Ou</Text>
       <View style={styles.images}>
@@ -71,12 +67,13 @@ const styles = StyleSheet.create({
   },
   span:{
     width: "100%",
-    height: "72.5%",
+    height: "68.75%",
     backgroundColor: "#FFFFFF",
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopRightRadius: 37.5,
-    borderTopLeftRadius: 37.5
+    borderTopRightRadius: 50,
+    borderTopLeftRadius: 50,
+    marginTop: 25
   },
   email:{
     width: "72.5%",
@@ -116,18 +113,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     marginBottom: 6.25
   },
-  recoverPassword:{
-    width: "72.5%",
-    color: "#000000",
-    fontSize: 15.625,
-    textAlign: 'left',
-    fontFamily: "OpenSans_400Regular"
-  },
-  spanRecoverPassword:{
-    color: "#3E8914",
-    fontSize: 15.625,
-    fontFamily: "OpenSans_400Regular"
-  },
   btnMain:{
     width: "75%",
     height: 50,
@@ -139,7 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 25
   },
   signIn:{
-    color: "#000000",
+    color: "#FFFFFF",
     fontSize: 25,
     fontFamily: "YanoneKaffeesatz_400Regular"
   },

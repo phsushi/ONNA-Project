@@ -11,6 +11,8 @@ export default function Layout(){
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="login" options={{ title: "", headerStyle: { backgroundColor: "#E8FCCF" } }} />
             <Stack.Screen name="signUp" options={{ title: "", headerStyle: { backgroundColor: "#E8FCCF" }  }} />
+            <Stack.Screen name="password" options={{ title: "", headerStyle: { backgroundColor: "#E8FCCF" }  }} />
+            <Stack.Screen name="recoveryPassword" options={{ title: "", headerStyle: { backgroundColor: "#E8FCCF" }  }} />
         </Stack>
     )
 }
