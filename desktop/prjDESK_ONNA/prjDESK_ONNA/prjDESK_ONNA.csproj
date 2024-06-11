@@ -47,6 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\LabelEstilizado.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="classes\PanelEstilizado.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="demonstracaoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>demonstracaoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +136,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="demonstracaoDataSet.xsc">
+      <DependentUpon>demonstracaoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="demonstracaoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>demonstracaoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="demonstracaoDataSet.xss">
+      <DependentUpon>demonstracaoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\balanca1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VERDADEIROARTIGO.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

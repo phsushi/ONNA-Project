@@ -28,16 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TxtPesquisaCons = new System.Windows.Forms.TextBox();
             this.DtaConsulta = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.link = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
-            this.moderacaoBtn5 = new prjDESK_ONNA.ModeracaoBtn();
+            this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
+            this.demonstracaoDataSet = new prjDESK_ONNA.demonstracaoDataSet();
+            this.tblArtigoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblArtigoTableAdapter = new prjDESK_ONNA.demonstracaoDataSetTableAdapters.tblArtigoTableAdapter();
+            this.idArtigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tituloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resumoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.linkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.generoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.demonstracaoDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblArtigoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtPesquisaCons
@@ -50,51 +56,24 @@
             // 
             // DtaConsulta
             // 
-            this.DtaConsulta.AllowUserToOrderColumns = true;
+            this.DtaConsulta.AllowUserToAddRows = false;
+            this.DtaConsulta.AllowUserToDeleteRows = false;
+            this.DtaConsulta.AutoGenerateColumns = false;
             this.DtaConsulta.BackgroundColor = System.Drawing.Color.White;
             this.DtaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DtaConsulta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.titulo,
-            this.resumo,
-            this.link,
-            this.genero});
+            this.idArtigoDataGridViewTextBoxColumn,
+            this.tituloDataGridViewTextBoxColumn,
+            this.resumoDataGridViewTextBoxColumn,
+            this.linkDataGridViewTextBoxColumn,
+            this.generoDataGridViewTextBoxColumn});
+            this.DtaConsulta.DataSource = this.tblArtigoBindingSource;
             this.DtaConsulta.Location = new System.Drawing.Point(39, 78);
             this.DtaConsulta.Name = "DtaConsulta";
+            this.DtaConsulta.ReadOnly = true;
             this.DtaConsulta.Size = new System.Drawing.Size(710, 399);
             this.DtaConsulta.TabIndex = 3;
             this.DtaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // titulo
-            // 
-            this.titulo.HeaderText = "titulo";
-            this.titulo.Name = "titulo";
-            this.titulo.ReadOnly = true;
-            // 
-            // resumo
-            // 
-            this.resumo.HeaderText = "resumo";
-            this.resumo.Name = "resumo";
-            this.resumo.ReadOnly = true;
-            // 
-            // link
-            // 
-            this.link.HeaderText = "link";
-            this.link.Name = "link";
-            this.link.ReadOnly = true;
-            // 
-            // genero
-            // 
-            this.genero.HeaderText = "genero";
-            this.genero.Name = "genero";
-            this.genero.ReadOnly = true;
             // 
             // BtnVoltar
             // 
@@ -116,23 +95,70 @@
             this.BtnVoltar.UseVisualStyleBackColor = false;
             this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
             // 
-            // moderacaoBtn5
+            // panelEstilizado1
             // 
-            this.moderacaoBtn5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn5.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn5.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn5.CurvaturaBorda = 40;
-            this.moderacaoBtn5.Enabled = false;
-            this.moderacaoBtn5.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn5.ForeColor = System.Drawing.Color.White;
-            this.moderacaoBtn5.Location = new System.Drawing.Point(12, 12);
-            this.moderacaoBtn5.Name = "moderacaoBtn5";
-            this.moderacaoBtn5.Size = new System.Drawing.Size(50, 50);
-            this.moderacaoBtn5.TabIndex = 10;
-            this.moderacaoBtn5.TamanhoBorda = 0;
-            this.moderacaoBtn5.TextColor = System.Drawing.Color.White;
-            this.moderacaoBtn5.UseVisualStyleBackColor = false;
+            this.panelEstilizado1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.VERDADEIROARTIGO;
+            this.panelEstilizado1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado1.CurvaturaBorda = 39;
+            this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado1.Location = new System.Drawing.Point(12, 12);
+            this.panelEstilizado1.Name = "panelEstilizado1";
+            this.panelEstilizado1.Size = new System.Drawing.Size(51, 42);
+            this.panelEstilizado1.TabIndex = 18;
+            this.panelEstilizado1.TamanhoBorda = 0;
+            this.panelEstilizado1.TextColor = System.Drawing.Color.White;
+            // 
+            // demonstracaoDataSet
+            // 
+            this.demonstracaoDataSet.DataSetName = "demonstracaoDataSet";
+            this.demonstracaoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblArtigoBindingSource
+            // 
+            this.tblArtigoBindingSource.DataMember = "tblArtigo";
+            this.tblArtigoBindingSource.DataSource = this.demonstracaoDataSet;
+            // 
+            // tblArtigoTableAdapter
+            // 
+            this.tblArtigoTableAdapter.ClearBeforeFill = true;
+            // 
+            // idArtigoDataGridViewTextBoxColumn
+            // 
+            this.idArtigoDataGridViewTextBoxColumn.DataPropertyName = "idArtigo";
+            this.idArtigoDataGridViewTextBoxColumn.HeaderText = "idArtigo";
+            this.idArtigoDataGridViewTextBoxColumn.Name = "idArtigoDataGridViewTextBoxColumn";
+            this.idArtigoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tituloDataGridViewTextBoxColumn
+            // 
+            this.tituloDataGridViewTextBoxColumn.DataPropertyName = "titulo";
+            this.tituloDataGridViewTextBoxColumn.HeaderText = "titulo";
+            this.tituloDataGridViewTextBoxColumn.Name = "tituloDataGridViewTextBoxColumn";
+            this.tituloDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // resumoDataGridViewTextBoxColumn
+            // 
+            this.resumoDataGridViewTextBoxColumn.DataPropertyName = "resumo";
+            this.resumoDataGridViewTextBoxColumn.HeaderText = "resumo";
+            this.resumoDataGridViewTextBoxColumn.Name = "resumoDataGridViewTextBoxColumn";
+            this.resumoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // linkDataGridViewTextBoxColumn
+            // 
+            this.linkDataGridViewTextBoxColumn.DataPropertyName = "link";
+            this.linkDataGridViewTextBoxColumn.HeaderText = "link";
+            this.linkDataGridViewTextBoxColumn.Name = "linkDataGridViewTextBoxColumn";
+            this.linkDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // generoDataGridViewTextBoxColumn
+            // 
+            this.generoDataGridViewTextBoxColumn.DataPropertyName = "genero";
+            this.generoDataGridViewTextBoxColumn.HeaderText = "genero";
+            this.generoDataGridViewTextBoxColumn.Name = "generoDataGridViewTextBoxColumn";
+            this.generoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Art_Consulta
             // 
@@ -140,15 +166,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.panelEstilizado1);
             this.Controls.Add(this.BtnVoltar);
-            this.Controls.Add(this.moderacaoBtn5);
             this.Controls.Add(this.DtaConsulta);
             this.Controls.Add(this.TxtPesquisaCons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Art_Consulta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Art_Consulta";
+            this.Load += new System.EventHandler(this.Art_Consulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.demonstracaoDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblArtigoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,12 +187,15 @@
 
         private System.Windows.Forms.TextBox TxtPesquisaCons;
         private System.Windows.Forms.DataGridView DtaConsulta;
-        private ModeracaoBtn moderacaoBtn5;
         private ModeracaoBtn BtnVoltar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titulo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn resumo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn link;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genero;
+        private classes.PanelEstilizado panelEstilizado1;
+        private demonstracaoDataSet demonstracaoDataSet;
+        private System.Windows.Forms.BindingSource tblArtigoBindingSource;
+        private demonstracaoDataSetTableAdapters.tblArtigoTableAdapter tblArtigoTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idArtigoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tituloDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn resumoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn linkDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn generoDataGridViewTextBoxColumn;
     }
 }

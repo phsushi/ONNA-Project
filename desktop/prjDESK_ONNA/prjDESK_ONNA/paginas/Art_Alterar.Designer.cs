@@ -40,7 +40,7 @@
             this.RdoMater = new System.Windows.Forms.RadioButton();
             this.TxtResumoAlter = new System.Windows.Forms.RichTextBox();
             this.TxtTituloAlter = new System.Windows.Forms.TextBox();
-            this.moderacaoBtn5 = new prjDESK_ONNA.ModeracaoBtn();
+            this.panelEstilizado2 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -54,9 +54,9 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.TxtResumoAlter);
             this.panel1.Controls.Add(this.TxtTituloAlter);
-            this.panel1.Location = new System.Drawing.Point(57, 83);
+            this.panel1.Location = new System.Drawing.Point(32, 72);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(691, 408);
+            this.panel1.Size = new System.Drawing.Size(716, 419);
             this.panel1.TabIndex = 0;
             // 
             // BtnCancelar
@@ -205,23 +205,21 @@
             this.TxtTituloAlter.Size = new System.Drawing.Size(381, 44);
             this.TxtTituloAlter.TabIndex = 12;
             // 
-            // moderacaoBtn5
+            // panelEstilizado2
             // 
-            this.moderacaoBtn5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn5.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn5.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn5.CurvaturaBorda = 40;
-            this.moderacaoBtn5.Enabled = false;
-            this.moderacaoBtn5.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn5.ForeColor = System.Drawing.Color.White;
-            this.moderacaoBtn5.Location = new System.Drawing.Point(12, 12);
-            this.moderacaoBtn5.Name = "moderacaoBtn5";
-            this.moderacaoBtn5.Size = new System.Drawing.Size(50, 50);
-            this.moderacaoBtn5.TabIndex = 11;
-            this.moderacaoBtn5.TamanhoBorda = 0;
-            this.moderacaoBtn5.TextColor = System.Drawing.Color.White;
-            this.moderacaoBtn5.UseVisualStyleBackColor = false;
+            this.panelEstilizado2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado2.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado2.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.VERDADEIROARTIGO;
+            this.panelEstilizado2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelEstilizado2.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado2.CurvaturaBorda = 39;
+            this.panelEstilizado2.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado2.Location = new System.Drawing.Point(12, 12);
+            this.panelEstilizado2.Name = "panelEstilizado2";
+            this.panelEstilizado2.Size = new System.Drawing.Size(51, 42);
+            this.panelEstilizado2.TabIndex = 19;
+            this.panelEstilizado2.TamanhoBorda = 0;
+            this.panelEstilizado2.TextColor = System.Drawing.Color.White;
             // 
             // Art_Alterar
             // 
@@ -229,7 +227,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
-            this.Controls.Add(this.moderacaoBtn5);
+            this.Controls.Add(this.panelEstilizado2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Art_Alterar";
@@ -245,7 +243,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private ModeracaoBtn moderacaoBtn5;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton RdoCuidado;
         private System.Windows.Forms.RadioButton RdoMater;
@@ -257,5 +254,6 @@
         private System.Windows.Forms.TextBox TxtTituloAlter;
         private ModeracaoBtn BtnCancelar;
         private ModeracaoBtn BtnAlterar;
+        private classes.PanelEstilizado panelEstilizado2;
     }
 }

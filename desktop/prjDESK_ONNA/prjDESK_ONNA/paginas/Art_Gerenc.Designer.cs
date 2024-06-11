@@ -30,12 +30,12 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.moderacaoBtn5 = new prjDESK_ONNA.ModeracaoBtn();
             this.BtnJanelaAlter = new prjDESK_ONNA.ModeracaoBtn();
             this.BtnJanelaExcluir = new prjDESK_ONNA.ModeracaoBtn();
             this.BtnJanelaInsercao = new prjDESK_ONNA.ModeracaoBtn();
             this.moderacaoBtn1 = new prjDESK_ONNA.ModeracaoBtn();
             this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
+            this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.SuspendLayout();
             // 
             // label1
@@ -62,24 +62,6 @@
             this.label3.Text = "Escolha uma das abas abaixo referêntes a sua função em relação aos artigos dispon" +
     "ibilizados no site web ONNA";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // moderacaoBtn5
-            // 
-            this.moderacaoBtn5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn5.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.moderacaoBtn5.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.moderacaoBtn5.CurvaturaBorda = 40;
-            this.moderacaoBtn5.Enabled = false;
-            this.moderacaoBtn5.FlatAppearance.BorderSize = 0;
-            this.moderacaoBtn5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moderacaoBtn5.ForeColor = System.Drawing.Color.White;
-            this.moderacaoBtn5.Location = new System.Drawing.Point(12, 12);
-            this.moderacaoBtn5.Name = "moderacaoBtn5";
-            this.moderacaoBtn5.Size = new System.Drawing.Size(50, 50);
-            this.moderacaoBtn5.TabIndex = 8;
-            this.moderacaoBtn5.TamanhoBorda = 0;
-            this.moderacaoBtn5.TextColor = System.Drawing.Color.White;
-            this.moderacaoBtn5.UseVisualStyleBackColor = false;
             // 
             // BtnJanelaAlter
             // 
@@ -182,14 +164,30 @@
             this.BtnVoltar.UseVisualStyleBackColor = false;
             this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
             // 
+            // panelEstilizado1
+            // 
+            this.panelEstilizado1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.VERDADEIROARTIGO;
+            this.panelEstilizado1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado1.CurvaturaBorda = 39;
+            this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado1.Location = new System.Drawing.Point(12, 12);
+            this.panelEstilizado1.Name = "panelEstilizado1";
+            this.panelEstilizado1.Size = new System.Drawing.Size(51, 42);
+            this.panelEstilizado1.TabIndex = 18;
+            this.panelEstilizado1.TamanhoBorda = 0;
+            this.panelEstilizado1.TextColor = System.Drawing.Color.White;
+            // 
             // Art_Gerenc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.panelEstilizado1);
             this.Controls.Add(this.BtnVoltar);
-            this.Controls.Add(this.moderacaoBtn5);
             this.Controls.Add(this.BtnJanelaAlter);
             this.Controls.Add(this.BtnJanelaExcluir);
             this.Controls.Add(this.BtnJanelaInsercao);
@@ -215,7 +213,7 @@
         private ModeracaoBtn BtnJanelaInsercao;
         private ModeracaoBtn BtnJanelaExcluir;
         private ModeracaoBtn BtnJanelaAlter;
-        private ModeracaoBtn moderacaoBtn5;
         private ModeracaoBtn BtnVoltar;
+        private classes.PanelEstilizado panelEstilizado1;
     }
 }

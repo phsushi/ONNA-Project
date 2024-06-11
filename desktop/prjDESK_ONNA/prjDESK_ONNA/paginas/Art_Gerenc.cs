@@ -56,5 +56,10 @@ namespace prjDESK_ONNA.paginas
             a.Show();
             this.Close();
         }
+
+        private void moderacaoBtn5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

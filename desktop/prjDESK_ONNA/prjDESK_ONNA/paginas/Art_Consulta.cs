@@ -32,5 +32,12 @@ namespace prjDESK_ONNA.paginas
             a.Show();
             this.Close();
         }
+
+        private void Art_Consulta_Load(object sender, EventArgs e)
+        {
+            // TODO: esta linha de código carrega dados na tabela 'demonstracaoDataSet.tblArtigo'. Você pode movê-la ou removê-la conforme necessário.
+            this.tblArtigoTableAdapter.Fill(this.demonstracaoDataSet.tblArtigo);
+
+        }
     }
 }
