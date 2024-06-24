@@ -40,6 +40,7 @@
             this.BtnIgnorar = new prjDESK_ONNA.ModeracaoBtn();
             this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
             this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -201,12 +202,25 @@
             this.panelEstilizado1.TamanhoBorda = 0;
             this.panelEstilizado1.TextColor = System.Drawing.Color.White;
             // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 27.75F, System.Drawing.FontStyle.Italic);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(102, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(331, 56);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Moderação";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Mod_moderacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panelEstilizado1);
             this.Controls.Add(this.BtnVoltar);
             this.Controls.Add(this.BtnIgnorar);
@@ -237,5 +251,6 @@
         private System.Windows.Forms.Label LblObservacao;
         private System.Windows.Forms.Label LblComentario;
         private classes.PanelEstilizado panelEstilizado1;
+        private System.Windows.Forms.Label label2;
     }
 }

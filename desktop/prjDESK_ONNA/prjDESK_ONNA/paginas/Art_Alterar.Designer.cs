@@ -41,6 +41,7 @@
             this.TxtResumoAlter = new System.Windows.Forms.RichTextBox();
             this.TxtTituloAlter = new System.Windows.Forms.TextBox();
             this.panelEstilizado2 = new prjDESK_ONNA.classes.PanelEstilizado();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -117,7 +118,7 @@
             this.panel2.Controls.Add(this.RdoMater);
             this.panel2.Location = new System.Drawing.Point(422, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(269, 408);
+            this.panel2.Size = new System.Drawing.Size(291, 416);
             this.panel2.TabIndex = 0;
             // 
             // RdoCuidado
@@ -130,7 +131,7 @@
             this.RdoCuidado.Size = new System.Drawing.Size(214, 67);
             this.RdoCuidado.TabIndex = 9;
             this.RdoCuidado.TabStop = true;
-            this.RdoCuidado.Text = "cuidados com o corpo";
+            this.RdoCuidado.Text = "Cuidados com o corpo";
             this.RdoCuidado.UseVisualStyleBackColor = false;
             this.RdoCuidado.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
@@ -144,7 +145,7 @@
             this.RdoMens.Size = new System.Drawing.Size(204, 60);
             this.RdoMens.TabIndex = 5;
             this.RdoMens.TabStop = true;
-            this.RdoMens.Text = "menstruação";
+            this.RdoMens.Text = "Menstruação";
             this.RdoMens.UseVisualStyleBackColor = false;
             // 
             // RdoEngra
@@ -157,7 +158,7 @@
             this.RdoEngra.Size = new System.Drawing.Size(214, 60);
             this.RdoEngra.TabIndex = 6;
             this.RdoEngra.TabStop = true;
-            this.RdoEngra.Text = "engravidar";
+            this.RdoEngra.Text = "Engravidar";
             this.RdoEngra.UseVisualStyleBackColor = false;
             // 
             // RdoGest
@@ -170,7 +171,7 @@
             this.RdoGest.Size = new System.Drawing.Size(214, 60);
             this.RdoGest.TabIndex = 7;
             this.RdoGest.TabStop = true;
-            this.RdoGest.Text = "gestação";
+            this.RdoGest.Text = "Gestação";
             this.RdoGest.UseVisualStyleBackColor = false;
             // 
             // RdoMater
@@ -183,7 +184,7 @@
             this.RdoMater.Size = new System.Drawing.Size(214, 60);
             this.RdoMater.TabIndex = 8;
             this.RdoMater.TabStop = true;
-            this.RdoMater.Text = "maternidade";
+            this.RdoMater.Text = "Maternidade";
             this.RdoMater.UseVisualStyleBackColor = false;
             // 
             // TxtResumoAlter
@@ -221,12 +222,25 @@
             this.panelEstilizado2.TamanhoBorda = 0;
             this.panelEstilizado2.TextColor = System.Drawing.Color.White;
             // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 27.75F, System.Drawing.FontStyle.Italic);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(197, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(383, 56);
+            this.label2.TabIndex = 10;
+            this.label2.Text = " Alterações de Artigos";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Art_Alterar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panelEstilizado2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -255,5 +269,6 @@
         private ModeracaoBtn BtnCancelar;
         private ModeracaoBtn BtnAlterar;
         private classes.PanelEstilizado panelEstilizado2;
+        private System.Windows.Forms.Label label2;
     }
 }

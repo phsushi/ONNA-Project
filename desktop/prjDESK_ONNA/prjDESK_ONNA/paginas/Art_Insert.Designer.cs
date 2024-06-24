@@ -57,7 +57,7 @@
             this.RdoCuidado.Size = new System.Drawing.Size(204, 34);
             this.RdoCuidado.TabIndex = 4;
             this.RdoCuidado.TabStop = true;
-            this.RdoCuidado.Text = "cuidados com o corpo";
+            this.RdoCuidado.Text = "Cuidados com o corpo";
             this.RdoCuidado.UseVisualStyleBackColor = false;
             // 
             // RdoMater
@@ -70,7 +70,7 @@
             this.RdoMater.Size = new System.Drawing.Size(151, 34);
             this.RdoMater.TabIndex = 3;
             this.RdoMater.TabStop = true;
-            this.RdoMater.Text = "maternidade";
+            this.RdoMater.Text = "Maternidade";
             this.RdoMater.UseVisualStyleBackColor = false;
             // 
             // RdoGest
@@ -83,7 +83,7 @@
             this.RdoGest.Size = new System.Drawing.Size(151, 34);
             this.RdoGest.TabIndex = 2;
             this.RdoGest.TabStop = true;
-            this.RdoGest.Text = "gestação";
+            this.RdoGest.Text = "Gestação";
             this.RdoGest.UseVisualStyleBackColor = false;
             // 
             // RdoEngra
@@ -96,7 +96,7 @@
             this.RdoEngra.Size = new System.Drawing.Size(151, 34);
             this.RdoEngra.TabIndex = 1;
             this.RdoEngra.TabStop = true;
-            this.RdoEngra.Text = "engravidar";
+            this.RdoEngra.Text = "Engravidar";
             this.RdoEngra.UseVisualStyleBackColor = false;
             // 
             // RdoMens
@@ -109,7 +109,7 @@
             this.RdoMens.Size = new System.Drawing.Size(151, 34);
             this.RdoMens.TabIndex = 0;
             this.RdoMens.TabStop = true;
-            this.RdoMens.Text = "menstruação";
+            this.RdoMens.Text = "Menstruação";
             this.RdoMens.UseVisualStyleBackColor = false;
             // 
             // label2
@@ -213,7 +213,7 @@
             this.BtnInserir.Size = new System.Drawing.Size(124, 40);
             this.BtnInserir.TabIndex = 5;
             this.BtnInserir.TamanhoBorda = 0;
-            this.BtnInserir.Text = "Inserir";
+            this.BtnInserir.Text = "inserir";
             this.BtnInserir.TextColor = System.Drawing.Color.Black;
             this.BtnInserir.UseVisualStyleBackColor = false;
             this.BtnInserir.Click += new System.EventHandler(this.BtnInserir_Click);

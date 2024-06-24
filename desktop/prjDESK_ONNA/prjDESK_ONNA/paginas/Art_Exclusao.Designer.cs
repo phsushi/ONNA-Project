@@ -52,9 +52,9 @@
             // TxtPesquisa
             // 
             this.TxtPesquisa.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Italic);
-            this.TxtPesquisa.Location = new System.Drawing.Point(157, 19);
+            this.TxtPesquisa.Location = new System.Drawing.Point(119, 19);
             this.TxtPesquisa.Name = "TxtPesquisa";
-            this.TxtPesquisa.Size = new System.Drawing.Size(316, 33);
+            this.TxtPesquisa.Size = new System.Drawing.Size(354, 33);
             this.TxtPesquisa.TabIndex = 1;
             // 
             // BtnExcluir

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjDESK_ONNA.paginas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace prjDESK_ONNA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menu());
+            Application.Run(new Login());
         }
     }
 }
