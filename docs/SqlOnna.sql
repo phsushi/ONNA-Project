@@ -1,5 +1,5 @@
 
--- InserÁıes iniciais
+-- Inser√ß√µes iniciais
 
 use master
 drop database ONNA
@@ -18,7 +18,7 @@ nome varchar(100) not null,
 status_Ban bit,
 dataNasc date not null,
 avatar varbinary(max),
-tipo_Usuario bit not null-- Valor [0] ser· perfil pessoal; valor [1] ser· perfil profissional
+tipo_Usuario bit not null-- Valor [0] ser√° perfil pessoal; valor [1] ser√° perfil profissional
 )
 
 
@@ -26,7 +26,7 @@ tipo_Usuario bit not null-- Valor [0] ser· perfil pessoal; valor [1] ser· perfil
 
 go
 create table tblContato(
-idContato varchar(120) primary key, -- Assumir· o valor do email do usu·rio
+idContato varchar(120) primary key, -- Assumir√° o valor do email do usu√°rio
 email varchar(120) foreign key references tblTipo_Usuario(email) not null,
 ultima_Mensagem varchar(50)
 )
@@ -102,13 +102,13 @@ email varchar(120) foreign key references tblTipo_Usuario(email) not null,
 crm char(8) not null,
 crp char(8) not null,
 formacao varchar(80) not null,
-hora_Inicial time, -- InÌcio do intervalo de disponibilidade para chat
+hora_Inicial time, -- In√≠cio do intervalo de disponibilidade para chat
 hora_Final time -- Fim do intervalo de disponibilidade para chat
 )
 
 go
 create table tblGenero(
-idGenero int primary key, -- Cada inteiro ir· se referir a um dos gÍneros j· definidos (maternidade, sexual etc.)
+idGenero int primary key, -- Cada inteiro ir√° se referir a um dos g√™neros j√° definidos (maternidade, sexual etc.)
 genero varchar(40) not null
 )
 
@@ -173,7 +173,7 @@ hora_Envio time not null
 
 go
 create table tblTipo_Denuncia(
-idTipo_Denuncia int primary key, -- Cada inteiro ir· se referir a um dos tipos j· definidos (ofensa, discriminaÁ„o etc.)
+idTipo_Denuncia int primary key, -- Cada inteiro ir√° se referir a um dos tipos j√° definidos (ofensa, discrimina√ß√£o etc.)
 tipo varchar(40) not null
 )
 
@@ -188,7 +188,6 @@ idTipo_Denuncia int foreign key references tblTipo_Denuncia(idTipo_Denuncia) not
 -- Desktop
 
 go
-
 create table tblAdmin(
 idAdmin int primary key identity,
 login varbinary(max) not null,
