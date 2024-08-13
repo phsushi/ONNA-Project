@@ -17,7 +17,7 @@ senha varbinary(max) not null,
 nome varchar(100) not null,
 status_Ban bit,
 dataNasc date not null,
-avatar varbinary(max) not null, -- Serão imagens pré-selecionadas por nossa equipe
+avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
 tipo_Usuario bit not null-- Valor [0] será perfil pessoal; valor [1] será perfil profissional
 )
 
