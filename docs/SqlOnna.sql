@@ -43,8 +43,7 @@ create table tblConversa_Privada(
 idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
 idContato int foreign key references tblContato(idContato) not null,
 mensagem varbinary not null,
-data_Envio date not null,
-hora_Envio time not null
+data_Hora date not null
 )
 
 
@@ -139,8 +138,7 @@ idForum int foreign key references tblForum(idForum) not null,
 status_Ban boolean default 0,
 mensagem varbinary not null,
 imagem varbinary(max),
-data_Envio date not null,
-hora_Envio time not null,
+data_Hora date not null,
 gostei int,
 desgostei int
 )
@@ -152,8 +150,7 @@ idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not nu
 idPostagem int foreign key references tblPostagem(idPostagem) not null,
 status_Ban boolean default 0,
 mensagem varbinary not null,
-data_Envio date not null,
-hora_Envio time not null,
+data_Hora date not null,
 gostei int,
 desgostei int
 )
@@ -165,8 +162,7 @@ idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not nu
 idPostagem int foreign key references tblPostagem(idPostagem),
 idResposta_Postagem int foreign key references tblResposta_Postagem(idResposta_Postagem),
 descricao varbinary,
-data_Envio date not null,
-hora_Envio time not null 
+data_Hora date not null
 )
 
 go
