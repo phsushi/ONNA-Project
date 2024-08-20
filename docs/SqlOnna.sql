@@ -12,13 +12,14 @@ use ONNA
 -- Tabela central
 
 create table tblTipo_Usuario(
-email varchar(120) primary key,
+idTipo_Usuario int primary key identity,
+email varchar(120) unique,
 senha varbinary(max) not null,	
 nome varchar(100) not null,
-status_Ban bool,
+status_Ban boolean default 0,
 dataNasc date not null,
 avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
-tipo_Usuario bool not null-- Valor [false] será perfil pessoal; valor [true] será perfil profissional
+tipo_Usuario boolean not null -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
 )
 
 
@@ -26,21 +27,21 @@ tipo_Usuario bool not null-- Valor [false] será perfil pessoal; valor [true] se
 
 go
 create table tblContato(
-idContato varchar(120) primary key, -- Assumirá o exato mesmo valor do email do usuário
-email varchar(120) foreign key references tblTipo_Usuario(email) not null,
+idContato int primary key identity,
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
 ultima_Mensagem varchar(50)
 )
 
 go
 create table tblColecao_Contato(
-email varchar(120) foreign key references tblTipo_Usuario(email) not null,
-idContato varchar(120) foreign key references tblContato(idContato)
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
+idContato int foreign key references tblContato(idContato)
 )
 
 go
 create table tblConversa_Privada(
-email varchar(120) foreign key references tblTipo_Usuario(email) not null,
-idContato varchar(120) foreign key references tblContato(idContato) not null,
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
+idContato int foreign key references tblContato(idContato) not null,
 mensagem varbinary not null,
 data_Envio date not null,
 hora_Envio time not null
@@ -51,14 +52,14 @@ hora_Envio time not null
 
 go
 create table tblPerfil_Pessoal(
-idUsuario varchar(120) primary key, -- Assumirá o exato mesmo valor do email do usuário
-email varchar(120) foreign key references tblTipo_Usuario(email) not null
+idUsuario int primary key identity,
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
 )
 
 go
 create table tblAjuda(
 idAjuda int primary key identity,
-idUsuario varchar(120) foreign key references tblPerfil_Pessoal(idUsuario) not null,
+idUsuario int foreign key references tblPerfil_Pessoal(idUsuario) not null,
 titulo varchar(50) not null,
 mensagem varbinary not null,
 data_Hora datetime not null
@@ -67,14 +68,14 @@ data_Hora datetime not null
 go
 create table tblNotificacao(
 idNotificacao int primary key identity,
-idUsuario varchar(120) foreign key references tblPerfil_Pessoal(idUsuario) not null,
-mensagem varbinary
+idUsuario int foreign key references tblPerfil_Pessoal(idUsuario) not null,
+mensagem varbinary not null
 )
 
 go
 create table tblCalendario_Personalizado(
 idCalendario int primary key identity,
-idUsuario varchar(120) foreign key references tblPerfil_Pessoal(idUsuario) not null,
+idUsuario int foreign key references tblPerfil_Pessoal(idUsuario) not null,
 dia_Marcado date not null,
 periodo int not null
 )
@@ -87,10 +88,10 @@ humor int not null
 
 go
 create table tblRelatorio_Humor(
-idUsuario varchar(120) foreign key(idUsuario) references tblPerfil_Pessoal(idUsuario) not null,
+idUsuario int foreign key references tblPerfil_Pessoal(idUsuario) not null,
 idHumor int foreign key references tblHumor(idHumor) not null,
 media_Humor decimal not null,
-data_Relatorio DATE not null
+data_Relatorio date not null
 
 )
 
@@ -99,8 +100,8 @@ data_Relatorio DATE not null
 
 go
 create table tblPerfil_Profissional(
-idProfissional varchar(120) primary key, -- Assumirá o exato mesmo valor do email do usuário
-email varchar(120) foreign key references tblTipo_Usuario(email) not null,
+idProfissional int primary key identity,
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
 crm char(8),
 crp char(8),
 area_Formacao varchar(80) not null
@@ -114,7 +115,7 @@ dia_Semana date not null -- Dia da semana que se repetirá periodicamente ao lon
 
 go
 create table tblDisponibilidade(
-idProfissional varchar(120) foreign key references tblPerfil_Profissional(idProfissional) not null,
+idProfissional int foreign key references tblPerfil_Profissional(idProfissional) not null,
 idDia_Semana int foreign key references tblDia_Semana(idDia_Semana) not null,
 hora_Inicial time not null, -- Início do intervalo de disponibilidade para chat
 hora_Final time not null -- Fim do intervalo de disponibilidade para chat
@@ -133,9 +134,9 @@ descricao varbinary
 go
 create table tblPostagem(
 idPostagem int primary key identity,
-email varchar(120) foreign key references tblTipo_Usuario(email) not null,
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
 idForum int foreign key references tblForum(idForum) not null,
-status_Ban bool,
+status_Ban boolean default 0,
 mensagem varbinary not null,
 imagem varbinary(max),
 data_Envio date not null,
@@ -147,9 +148,9 @@ desgostei int
 go
 create table tblResposta_Postagem(
 idResposta_Postagem int primary key identity,
-email varchar(120) foreign key references tblTipo_Usuario(email) not null,
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
 idPostagem int foreign key references tblPostagem(idPostagem) not null,
-status_Ban bool,
+status_Ban boolean default 0,
 mensagem varbinary not null,
 data_Envio date not null,
 hora_Envio time not null,
@@ -160,7 +161,7 @@ desgostei int
 go
 create table tblDenuncia(
 idDenuncia int primary key identity,
-email varchar(120) foreign key references tblTipo_Usuario(email) not null,
+idTipo_Usuario int foreign key references tblTipo_Usuario(idTipo_Usuario) not null,
 idPostagem int foreign key references tblPostagem(idPostagem),
 idResposta_Postagem int foreign key references tblResposta_Postagem(idResposta_Postagem),
 descricao varbinary,
