@@ -15,10 +15,10 @@ create table tblTipo_Usuario(
 email varchar(120) primary key,
 senha varbinary(max) not null,	
 nome varchar(100) not null,
-status_Ban bit,
+status_Ban bool,
 dataNasc date not null,
 avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
-tipo_Usuario bit not null-- Valor [0] será perfil pessoal; valor [1] será perfil profissional
+tipo_Usuario bool not null-- Valor [false] será perfil pessoal; valor [true] será perfil profissional
 )
 
 
@@ -135,7 +135,7 @@ create table tblPostagem(
 idPostagem int primary key identity,
 email varchar(120) foreign key references tblTipo_Usuario(email) not null,
 idForum int foreign key references tblForum(idForum) not null,
-status_Ban bit,
+status_Ban bool,
 mensagem varbinary not null,
 imagem varbinary(max),
 data_Envio date not null,
@@ -149,7 +149,7 @@ create table tblResposta_Postagem(
 idResposta_Postagem int primary key identity,
 email varchar(120) foreign key references tblTipo_Usuario(email) not null,
 idPostagem int foreign key references tblPostagem(idPostagem) not null,
-status_Ban bit,
+status_Ban bool,
 mensagem varbinary not null,
 data_Envio date not null,
 hora_Envio time not null,
