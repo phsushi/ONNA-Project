@@ -101,8 +101,8 @@ go
 create table tblPerfil_Profissional(
 idProfissional varchar(120) primary key, -- Assumirá o exato mesmo valor do email do usuário
 email varchar(120) foreign key references tblTipo_Usuario(email) not null,
-crm char(8) not null,
-crp char(8) not null,
+crm char(8),
+crp char(8),
 area_Formacao varchar(80) not null
 )
 
