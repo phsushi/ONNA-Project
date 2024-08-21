@@ -208,7 +208,7 @@ model tblColecao_Contato {
   relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
 
   // Segunda chave estrangeira:
-  idContato Int @unique
+  idContato Int
   relContato tblContato @relation(fields: [idContato], references: [id])
 
   createdAt DateTime @default(now())
@@ -219,11 +219,11 @@ model tblColecao_Contato {
 model tblConversa_Privada {
 
   // Primeira chave estrangeira:
-  idPerfil_Pessoal Int @unique 
+  idPerfil_Pessoal Int 
   relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
 
   // Segunda chave estrangeira:
-  idContato Int @unique
+  idContato Int
   relContato tblContato @relation(fields: [idContato], references: [id])
 
   mensagem  String
