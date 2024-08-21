@@ -42,7 +42,7 @@ model tblPerfil_Pessoal {
 
   // Chave estrangeira recebida:
   idTipo_Usuario Int
-  relTipo_Usuario tblTipo_Usuario @relation(fields: [idTipo_User], references: [id])
+  relTipo_Usuario tblTipo_Usuario @relation(fields: [idTipo_Usuario], references: [id])
 
   // Sua chave primária estará contida nas tabelas:
   tblAjuda       tblAjuda?
@@ -189,7 +189,7 @@ model tblContato {
   id Int @id @default(autoincrement())
   
   idTipo_Usuario Int
-  relTipo_Usuario tblTipo_Usuario @relation(fields: [idTipo_User], references: [id])
+  relTipo_Usuario tblTipo_Usuario @relation(fields: [idTipo_Usuario], references: [id])
 
   tblColecao  tblColecao_Contato[]
   tblConversa tblConversa_Privada[]
@@ -286,7 +286,7 @@ model tblResposta_Postagem {
 
   // Segunda chave estrangeira:
   idPostagem Int 
-  relPostagem tblPostagem @relation(fields: [idForum], references: [id])
+  relPostagem tblPostagem @relation(fields: [idPostagem], references: [id])
 
   tblDenuncia tblDenuncia[]
 
@@ -311,7 +311,7 @@ model tblDenuncia {
 
   // Instanciar essa chave apenas caso seja uma denúncia de postagem:
   idPostagem Int?
-  relPostagem tblPostagem @relation(fields: [idForum], references: [id])
+  relPostagem tblPostagem @relation(fields: [idPostagem], references: [id])
 
   // Instanciar essa chave apenas no caso de uma denúncia de resposta de postagem:
   idResposta_Postagem Int? 
