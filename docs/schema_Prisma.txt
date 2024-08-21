@@ -1,0 +1,438 @@
+﻿
+// Tabela central
+
+model tblTipo_Usuario {
+
+  // Chave primária:
+  id Int @id @default(autoincrement())
+  
+  // Sua chave primária estará contida nas tabelas:
+  tblPessoal      tblPerfil_Pessoal?
+  tblProfissional tblPerfil_Profissional?
+  tblContato      tblContato?
+  tblColecao      tblColecao_Contato[]
+  tblConversa     tblConversa_Privada[]
+  tblPostagem     tblPostagem[]
+  tblResposta     tblResposta_Postagem[]
+  tblDenuncia     tblDenuncia[]
+
+  // Campos:
+  email        String @unique
+  senha        String
+  nome         String
+  status_Ban   Boolean @default(false)
+  dataNasc     Datetime
+  avatar       String                  // Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
+  tipo_Usuario Boolean @default(false) // false = perfil pessoal; true = perfil profissional
+
+  // Obrigações:
+  createdAt    DateTime @default(now())
+  updated      DateTime @updatedAt
+  @@map("tblTipo_Usuario")
+}
+
+
+
+// Funcionalidades do mobile "Perfil Pessoal"
+
+model tblPerfil_Pessoal {
+
+  // Chave primária:
+  id Int @id @default(autoincrement())
+
+  // Chave estrangeira recebida:
+  idTipo_Usuario Int
+  relTipo_Usuario tblTipo_Usuario @relation(fields: [idTipo_User], references: [id])
+
+  // Sua chave primária estará contida nas tabelas:
+  tblAjuda       tblAjuda?
+  tblNotificacao tblNotificacao?
+  tblCalendario  tblCalendario_Personalizado?
+  tblRelatorio   tblRelatorio_Humor[]
+
+  // Obrigações:
+  createdAt      DateTime @default(now())
+  updated        DateTime @updatedAt
+  @@map("tblPerfil_Pessoal")
+}
+
+model tblAjuda {
+  id Int @id @default(autoincrement())
+
+  idPerfil_Pessoal Int
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  titulo    String
+  mensagem  String
+  data_Hora Datetime
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblAjuda")
+}
+
+model tblNotificacao {
+  id Int @id @default(autoincrement())
+
+  idPerfil_Pessoal Int
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  mensagem  String
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblNotificacao")
+}
+
+model tblCalendario_Personalizado {
+  id Int @id @default(autoincrement())
+
+  idPerfil_Pessoal Int 
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  dia_Marcado Datetime
+  periodo     Int
+
+  createdAt   DateTime @default(now())
+  updated     DateTime @updatedAt
+  @@map("tblCalendario_Personalizado")
+}
+
+model tblHumor {
+  id Int @id @default(autoincrement())
+
+  tblRelatorio tblRelatorio_Humor[]
+
+  humor     Int
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblHumor")
+}
+
+model tblRelatorio_Humor {
+
+  // Essa tabela representa a relação n-n, e possui duas chaves estrangeiras!
+
+  // Chave estrangeira da "tblPerfil_Pessoal":
+  idPerfil_Pessoal Int 
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  // Chave estrangeira da "tblHumor":
+  idHumor Int
+  relHumor tblHumor @relation(fields: [idHumor], references: [id])
+
+  media_Humor    Decimal
+  data_Relatorio Datetime @default(now())
+
+  createdAt      DateTime @default(now())
+  updated        DateTime @updatedAt
+  @@map("tblRelatorio_Humor")
+}
+
+
+
+// Funcionalidades do mobile "Perfil Profissional"
+
+model tblPerfil_Profissional {
+  id Int @id @default(autoincrement())
+
+  idPerfil_Pessoal Int
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  tblDisponibilidade tblDisponibilidade[]
+
+  crm           String?
+  crp           String?
+  area_Formacao String
+
+  createdAt     DateTime @default(now())
+  updated       DateTime @updatedAt
+  @@map("tblPerfil_Profissional")
+}
+
+model tblDia_Semana {
+  id Int @id @default(autoincrement())
+
+  tblDisponibilidade tblDisponibilidade[]
+
+  dia_Semana Datetime // Dia da semana que se repetirá periodicamente ao longo do calendário
+
+  createdAt  DateTime @default(now())
+  updated    DateTime @updatedAt
+  @@map("tblDia_Semana")
+}
+
+model tblDisponibilidade {
+
+  // Primeira chave estrangeira:
+  idPerfil_Profissional Int
+  relPerfil_Profissional tblPerfil_Profissional @relation(fields: [idPerfil_Profissional], references: [id])
+
+  // Segunda chave estrangeira:
+  idDia_Semana Int
+  relDia_Semana tblDia_Semana @relation(fields: [idDia_Semana], references: [id])
+
+  hora_Inicial Datetime // Início do intervalo de disponibilidade para chat
+  hora_Final   Datetime // Fim do intervalo de disponibilidade para chat
+
+  createdAt    DateTime @default(now())
+  updated      DateTime @updatedAt
+  @@map("tblDisponibilidade")
+}
+
+
+
+// Funcionalidade de chat privado
+
+model tblContato {
+  id Int @id @default(autoincrement())
+  
+  idTipo_Usuario Int
+  relTipo_Usuario tblTipo_Usuario @relation(fields: [idTipo_User], references: [id])
+
+  tblColecao  tblColecao_Contato[]
+  tblConversa tblConversa_Privada[]
+
+  ultima_Mensagem String?
+
+  createdAt       DateTime @default(now())
+  updated         DateTime @updatedAt
+  @@map("tblContato")
+}
+
+model tblColecao_Contato {
+
+  // Primeira chave estrangeira:
+  idPerfil_Pessoal Int
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  // Segunda chave estrangeira:
+  idContato Int @unique
+  relContato tblContato @relation(fields: [idContato], references: [id])
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblColecao_Contato")
+}
+
+model tblConversa_Privada {
+
+  // Primeira chave estrangeira:
+  idPerfil_Pessoal Int @unique 
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  // Segunda chave estrangeira:
+  idContato Int @unique
+  relContato tblContato @relation(fields: [idContato], references: [id])
+
+  mensagem  String
+  data_Hora Datetime @default(now())
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblConversa_Privada")
+}
+
+
+
+// Funcionalidades do website
+
+model tblForum { 
+  id Int @id @default(autoincrement())
+
+  tblPostagem tblPostagem[]
+  
+  nome      String
+  descricao String
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblForum")
+}
+
+model tblPostagem {
+  id Int @id @default(autoincrement())
+
+  // Primeira chave estrangeira:
+  idPerfil_Pessoal Int
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  // Segunda chave estrangeira:
+  idForum Int
+  relForum tblForum @relation(fields: [idForum], references: [id])
+
+  tblResposta tblResposta_Postagem[]
+  tblDenuncia tblDenuncia[]
+
+  status_Ban Boolean @default(false)
+  mensagem   String
+  imagem     String?
+  data_Hora  Datetime @default(now())
+  gostei     Int
+  desgostei  Int
+
+  createdAt  DateTime @default(now())
+  updated    DateTime @updatedAt
+  @@map("tblPostagem")
+}
+
+model tblResposta_Postagem {
+  id Int @id @default(autoincrement())
+
+  // Primeira chave estrangeira:
+  idPerfil_Pessoal Int 
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  // Segunda chave estrangeira:
+  idPostagem Int 
+  relPostagem tblPostagem @relation(fields: [idForum], references: [id])
+
+  tblDenuncia tblDenuncia[]
+
+  status_Ban Boolean @default(false)
+  mensagem   String
+  imagem     String?
+  data_Hora  Datetime @default(now())
+  gostei     Int
+  desgostei  Int
+
+  createdAt  DateTime @default(now())
+  updated    DateTime @updatedAt
+  @@map("tblResposta_Postagem")
+}
+
+model tblDenuncia {
+  id Int @id @default(autoincrement())
+
+  // Primeira chave estrangeira:
+  idPerfil_Pessoal Int 
+  relPerfil_Pessoal tblPerfil_Pessoal @relation(fields: [idPerfil_Pessoal], references: [id])
+
+  // Instanciar essa chave apenas caso seja uma denúncia de postagem:
+  idPostagem Int?
+  relPostagem tblPostagem @relation(fields: [idForum], references: [id])
+
+  // Instanciar essa chave apenas no caso de uma denúncia de resposta de postagem:
+  idResposta_Postagem Int? 
+  relResposta_Postagem tblResposta_Postagem @relation(fields: [idResposta_Postagem], references: [id])
+
+  tblColecao tblColecao_Tipo[]
+
+  descricao String?
+  data_Hora Datetime @default(now())
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblDenuncia")
+}
+
+model tblTipo_Denuncia {
+  id Int @id @default(autoincrement()) // Cada inteiro irá se referir a um dos tipos já definidos (ofensa, discriminação etc.)
+
+  tblColecao tblColecao_Tipo[]
+
+  tipo      String
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblTipo_Denuncia")
+}
+
+model tblColecao_Tipo {
+  id Int @id @default(autoincrement())
+
+  // Primeira chave estrangeira:
+  idDenuncia Int 
+  relDenuncia tblDenuncia @relation(fields: [idDenuncia], references: [id])
+
+  // Segunda chave estrangeira:
+  idTipo_Denuncia Int 
+  relTipo_Denuncia tblTipo_Denuncia @relation(fields: [idTipo_Denuncia], references: [id])
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblColecao_Tipo")
+}
+
+
+
+// Funcionalidade desktop
+
+model tblAdmin {
+  id Int @id @default(autoincrement())
+
+  tblArtigo tblArtigo?
+
+  login     String
+  senha     String
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblAdmin")
+}
+
+model tblGenero {
+  id Int @id @default(autoincrement())
+
+  tblArtigo tblArtigo?
+
+  genero    String
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+  @@map("tblGenero")
+}
+
+model tblArtigo {
+  id Int @id @default(autoincrement())
+
+  // Primeira chave estrangeira:
+  idAdmin Int 
+  relAdmin tblAdmin @relation(fields: [idAdmin], references: [id])
+
+  // Segunda chave estrangeira:
+  idGenero Int 
+  relGenero tblGenero @relation(fields: [idGenero], references: [id])
+
+  titulo          String
+  resumo          String
+  link            String
+  imagem          String?
+  data_Publicacao Datetime @default(now())
+
+  createdAt       DateTime @default(now())
+  updated         DateTime @updatedAt
+  @@map("tblArtigo")
+}
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
