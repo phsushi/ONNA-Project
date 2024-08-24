@@ -12,10 +12,10 @@ use ONNA;
 
 create table tblTipo_Usuario(
 idTipo_Usuario int primary key auto_increment,
+status_Ban boolean default 0,
 email varchar(120) unique,
 senha varchar(120) not null,	
 nome varchar(100) not null,
-status_Ban boolean default 0,
 dataNasc date not null,
 avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
 tipo_Usuario boolean not null -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
