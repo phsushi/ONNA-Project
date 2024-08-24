@@ -184,6 +184,7 @@ constraint fkPostagem foreign key (idPostagem) references tblPostagem (idPostage
 
 create table tblDenuncia(
 idDenuncia int primary key auto_increment,
+status_Check boolean default 0 -- Campo que receberá instância [1] quando a denúncia for resolvida no desktop 
 descricao varchar(2000),
 data date not null default current_timestamp,
 hora time not null default current_timestamp,
