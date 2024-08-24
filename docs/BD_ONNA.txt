@@ -1,0 +1,243 @@
+﻿
+-- Inserções iniciais
+
+use sakila;
+drop database ONNA;
+
+create database ONNA;
+use ONNA;
+
+
+-- Tabela central
+
+create table tblTipo_Usuario(
+idTipo_Usuario int primary key auto_increment,
+email varchar(120) unique,
+senha varchar(120) not null,	
+nome varchar(100) not null,
+status_Ban boolean default 0,
+dataNasc date not null,
+avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
+tipo_Usuario boolean not null -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
+);
+
+
+-- Funcionalidade de chat privado
+
+create table tblContato(
+idContato int primary key auto_increment,
+ultima_Mensagem varchar(50),
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
+);
+
+create table tblColecao_Contato(
+idColecao_Contato int primary key auto_increment,
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
+
+idContato int not null,
+constraint fkContato foreign key (idContato) references tblContato (idContato)   
+);
+
+create table tblConversa_Privada(
+idConversa_Privada int primary key auto_increment,
+mensagem varchar(2000) not null,
+data date not null default current_timestamp,
+hora time not null default current_timestamp,
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
+
+idContato int not null,
+constraint fkContato foreign key (idContato) references tblContato (idContato) 
+);
+
+
+-- Funcionalidades do mobile "Perfil Pessoal"
+
+create table tblPerfil_Pessoal(
+idUsuario int primary key auto_increment,
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
+);
+
+create table tblAjuda(
+idAjuda int primary key auto_increment,
+titulo varchar(50) not null,
+mensagem varchar(2000) not null,
+data date not null,
+hora time not null,
+
+idUsuario int not null,
+constraint fkPerfil_Pessoal foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
+);
+
+create table tblNotificacao(
+idNotificacao int primary key auto_increment,
+mensagem varchar(2000) not null,
+
+idUsuario int not null,
+constraint fkPerfil_Pessoal foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
+);
+
+create table tblCalendario_Personalizado(
+idCalendario int primary key auto_increment,
+dia_Marcado date not null,
+periodo int not null,
+
+idUsuario int not null,
+constraint fkPerfil_Pessoal foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
+);
+
+create table tblHumor(
+idHumor int primary key auto_increment,
+humor int not null
+);
+
+create table tblRelatorio_Humor(
+idRelatorio_Humor int primary key auto_increment,
+media_Humor decimal not null,
+data_Relatorio date not null default current_timestamp,
+
+idUsuario int not null,
+constraint fkPerfil_Pessoal foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario),
+
+idHumor int not null,
+constraint fkHumor foreign key (idHumor) references tblHumor (idHumor)
+);
+
+
+-- Funcionalidades do mobile "Perfil Profissional"
+
+create table tblPerfil_Profissional(
+idProfissional int primary key auto_increment,
+crm char(8),
+crp char(8),
+area_Formacao varchar(80) not null,
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
+);
+
+create table tblDia_Semana(
+idDia_Semana int primary key auto_increment,
+dia_Semana date not null -- Dia da semana que se repetirá periodicamente ao longo do calendário
+);
+
+create table tblDisponibilidade(
+idDisponibilidade int primary key auto_increment,
+hora_Inicial time not null, -- Início do intervalo de disponibilidade para chat
+hora_Final time not null, -- Fim do intervalo de disponibilidade para chat,
+
+idProfissional int not null,
+constraint fkPerfil_Profissional foreign key (idProfissional) references tblPerfil_Profissional (idProfissional),
+
+idDia_Semana int not null,
+constraint fkDia_Semana foreign key (idDia_Semana) references tblDia_Semana (idDia_Semana)
+);
+
+
+-- Funcionalidades do website
+
+create table tblForum(
+idForum int primary key auto_increment,
+nome varchar(80) not null,
+descricao varchar(2000)
+);
+
+create table tblPostagem(
+idPostagem int primary key auto_increment,
+status_Ban boolean default 0,
+mensagem varchar(2000) not null,
+imagem varbinary(65000),
+data date not null default current_timestamp,
+hora time not null default current_timestamp,
+gostei int,
+desgostei int,
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
+
+idForum int not null,
+constraint fkForum foreign key (idForum) references tblForum (idForum)
+);
+
+create table tblResposta_Postagem(
+idResposta_Postagem int primary key auto_increment,
+status_Ban boolean default 0,
+mensagem varchar(2000) not null,
+data date not null default current_timestamp,
+hora time not null default current_timestamp,
+gostei int,
+desgostei int,
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
+
+idPostagem int not null,
+constraint fkPostagem foreign key (idPostagem) references tblPostagem (idPostagem)
+);
+
+create table tblDenuncia(
+idDenuncia int primary key auto_increment,
+descricao varchar(2000),
+data date not null default current_timestamp,
+hora time not null default current_timestamp,
+
+idTipo_Usuario int not null,
+constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
+
+idPostagem int,
+constraint fkPostagem foreign key (idPostagem) references tblPostagem (idPostagem),
+
+idResposta_Postagem int,
+constraint fkResposta_Postagem foreign key (idResposta_Postagem) references tblResposta_Postagem (idResposta_Postagem)
+);
+
+create table tblTipo_Denuncia(
+idTipo_Denuncia int primary key, -- Cada inteiro irá se referir a um dos tipos já definidos (ofensa, discriminação etc.)
+tipo varchar(40) not null
+);
+
+create table tblColecao_Tipo(
+idColecao_Tipo int primary key auto_increment,
+
+idDenuncia int not null,
+constraint fkDenuncia foreign key (idDenuncia) references tblDenuncia (idDenuncia),
+
+idTipo_Denuncia int not null,
+constraint fkTipo_Denuncia foreign key (idTipo_Denuncia) references tblTipo_Denuncia (idTipo_Denuncia)
+);
+
+
+-- Funcionalidade Desktop
+
+create table tblAdmin(
+idAdmin int primary key auto_increment,
+login varchar(120) not null,
+senha varchar(120) not null
+);
+
+create table tblGenero(
+idGenero int primary key, -- Cada inteiro irá se referir a um dos gêneros já definidos (maternidade, sexual etc.)
+genero varchar(40) not null
+);
+
+create table tblArtigo(
+idArtigo int primary key auto_increment,
+titulo varchar(255) not null,
+resumo varchar(2000) not null,
+link varchar(2000) not null,
+imagem varbinary(65000),
+data_Publicacao date not null default current_timestamp,
+
+idAdmin int not null,
+constraint fkAdmin foreign key (idAdmin) references tblAdmin (idAdmin),
+
+idGenero int not null,
+constraint fkGenero foreign key (idGenero) references tblGenero (idGenero)
+);
