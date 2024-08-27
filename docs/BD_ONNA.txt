@@ -233,7 +233,6 @@ idArtigo int primary key auto_increment,
 titulo varchar(255) not null,
 resumo varchar(2000) not null,
 link varchar(2000) not null,
-imagem varbinary(65000),
 data_Publicacao date not null default current_timestamp,
 
 idAdmin int not null,
