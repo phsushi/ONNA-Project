@@ -18,7 +18,7 @@ senha varchar(120) not null,
 nome varchar(100) not null,
 dataNasc date not null,
 avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
-tipo_Usuario boolean not null -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
+tipo_Usuario tinyint not null -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
 );
 
 
@@ -26,7 +26,6 @@ tipo_Usuario boolean not null -- Valor [0] será perfil pessoal; valor [1] será
 
 create table tblContato(
 idContato int primary key auto_increment,
-ultima_Mensagem varchar(50),
 
 idTipo_Usuario int not null,
 constraint fkTipo_Usuario foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
@@ -151,7 +150,7 @@ descricao varchar(2000)
 
 create table tblPostagem(
 idPostagem int primary key auto_increment,
-status_Ban boolean default 0,
+status_Ban tinyint default 0,
 mensagem varchar(2000) not null,
 imagem varbinary(65000),
 data date not null default current_timestamp,
@@ -168,7 +167,7 @@ constraint fkForum foreign key (idForum) references tblForum (idForum)
 
 create table tblResposta_Postagem(
 idResposta_Postagem int primary key auto_increment,
-status_Ban boolean default 0,
+status_Ban tinyint default 0,
 mensagem varchar(2000) not null,
 data date not null default current_timestamp,
 hora time not null default current_timestamp,
@@ -184,7 +183,7 @@ constraint fkPostagem foreign key (idPostagem) references tblPostagem (idPostage
 
 create table tblDenuncia(
 idDenuncia int primary key auto_increment,
-status_Check boolean default 0 -- Campo que receberá instância [1] quando a denúncia for resolvida no desktop 
+status_Check tinyint default 0 -- Campo que receberá instância [1] quando a denúncia for resolvida no desktop 
 descricao varchar(2000),
 data date not null default current_timestamp,
 hora time not null default current_timestamp,
