@@ -12,7 +12,7 @@ use ONNA;
 
 create table tblTipo_Usuario(
 idTipo_Usuario int primary key auto_increment,
-status_Ban boolean default 0,
+status_Ban tinyint default 0,
 email varchar(120) unique,
 senha varchar(120) not null,	
 nome varchar(100) not null,
