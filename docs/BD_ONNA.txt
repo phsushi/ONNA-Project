@@ -218,8 +218,8 @@ constraint fkTipo_Denuncia_tblColecao_Tipo foreign key (idTipo_Denuncia) referen
 
 create table tblAdmin(
 idAdmin int primary key auto_increment,
-login varchar(120) not null,
-senha varchar(120) not null
+username varchar(120) not null @unique,
+senha varchar(120) not null 
 );
 
 create table tblGenero(
@@ -252,21 +252,21 @@ constraint fkGenero_tblArtigo foreign key (idGenero) references tblGenero (idGen
 
 delimiter $$
 create procedure cadastro_Admin (
-in in_login varchar(120),
-in in_senha varchar(120))
+in $username varchar(120),
+in $senha varchar(120))
 
 begin
-insert into tblAdmin (login, senha) values (in_login, in_senha);
+insert into tblAdmin (username, senha) values ($username, $senha);
 end$$
 delimiter ;
 
 delimiter $$
 create procedure login_Admin (
-in in_login varchar(120),
-in in_senha varchar(120))
+in $username varchar(120),
+in $senha varchar(120))
 
 begin
-select * from tblAdmin where login = in_login and senha = in_senha;
+select * from tblAdmin where username = $username and senha = $senha;
 end$$
 delimiter ;
 
@@ -275,22 +275,22 @@ delimiter ;
 
 delimiter $$
 create procedure criar_Artigo (
-in in_titulo varchar(255), 
-in in_resumo varchar(2000), 
-in in_link varchar(2000), 
-in in_idGenero int)
+in $titulo varchar(255), 
+in $resumo varchar(2000), 
+in $link varchar(2000), 
+in $idGenero int)
 
 begin
-insert into tblArtigo (titulo, resumo, link, idGenero) values (in_titulo, in_resumo, in_link, in_idGenero);
+insert into tblArtigo (titulo, resumo, link, idGenero) values ($titulo, $resumo, $link, $idGenero);
 end$$
 delimiter ;
 
 delimiter $$
 create procedure consulta_Titulo_Artigo (
-in in_titulo varchar(255))
+in $titulo varchar(255))
 
 begin
-select titulo from tblArtigo where titulo = in_titulo order by titulo;
+select titulo from tblArtigo where titulo = $titulo order by titulo;
 end$$
 delimiter ;
 
@@ -304,32 +304,32 @@ delimiter ;
 
 delimiter $$
 create procedure consulta_Detalhada_Artigo (
-in in_idArtigo int)
+in $idArtigo int)
 
 begin
-select titulo, resumo, link, idGenero from tblArtigo where idArtigo = in_idArtigo;
+select titulo, resumo, link, idGenero from tblArtigo where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
 delimiter $$
 create procedure excluir_Artigo (
-in in_idArtigo int)
+in $idArtigo int)
 
 begin
-delete from tblArtigo where idArtigo = in_idArtigo;
+delete from tblArtigo where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
 delimiter $$
 create procedure alterar_Artigo (
-in in_idArtigo int,
-in in_titulo varchar(255), 
-in in_resumo varchar(2000), 
-in in_link varchar(2000), 
-in in_idGenero int)
+in $idArtigo int,
+in $titulo varchar(255), 
+in $resumo varchar(2000), 
+in $link varchar(2000), 
+in $idGenero int)
 
 begin
-update tblArtigo set titulo = in_titulo, resumo = in_resumo, link = in_link, idGenero = in_idGenero where idArtigo = in_idArtigo;
+update tblArtigo set titulo = $titulo, resumo = $resumo, link = $link, idGenero = $idGenero where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -354,10 +354,10 @@ delimiter ;
 
 delimiter $$
 create procedure banir_Usuario (
-in in_idTipoUsuario int)
+in $idTipoUsuario int)
 
 begin
-update tblTipo_Usuario set status_Ban = 1 where idTipo_Usuario = in_idTipo_Usuario;
+update tblTipo_Usuario set status_Ban = 1 where idTipo_Usuario = $idTipo_Usuario;
 end$$
 delimiter ;
 
@@ -372,9 +372,9 @@ delimiter ;
 
 delimiter $$
 create procedure ignorar_Denuncia (
-in in_idDenuncia int)
+in $idDenuncia int)
 
 begin
-update tblDenuncia set status_Checked = 1 where idDenuncia = in_idDenuncia;
+update tblDenuncia set status_Checked = 1 where idDenuncia = $idDenuncia;
 end$$
 delimiter ;
