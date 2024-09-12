@@ -262,11 +262,10 @@ delimiter ;
 
 delimiter $$
 create procedure login_Admin (
-in $username varchar(120),
-in $senha varchar(120))
+in $username varchar(120))
 
 begin
-select * from tblAdmin where username = $username and senha = $senha;
+select * from tblAdmin where username = $username;
 end$$
 delimiter ;
 
