@@ -247,7 +247,6 @@ constraint fkGenero_tblArtigo foreign key (idGenero) references tblGenero (idGen
 
 -- Procedures Desktop
 
-
 -- tblAdmin
 
 delimiter $$
@@ -336,13 +335,55 @@ delimiter ;
 -- tblDenuncia
 
 /*
+insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values 
+('Flavia@gmail.com', '123', 'Flavia Damasceno', '19960606', 1, 0),
+('Mari@gmail.com', '123', 'Marina Dias', '19950808', 3, 0)
+
+insert into tblForum (nome, descricao) values('Maternidade','Ambiente dedicado para apoiar mães durante a criação de sua criança')
+
+insert into tblPostagem (mensagem, data_Postagem, hora, idTipo_Usuario, idForum) values 
+('Receita de papinha de frango [...]', NOW(), NOW(), 1, 1),
+('Meu filho é chato demais! Ajudem-me!', NOW(), NOW(), 2, 1)
+
+insert into tblDenuncia (descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem) values 
+('Ofendeu o próprio filho! Isso é inapropriado!', NOW(), NOW(), 1, 2)
+
+select * from tblPostagem
+*/
+
 delimiter $$
+
 create procedure consulta_Superficial_Denuncia ()
 
 begin
+
+select a.idDenuncia, a.idTipo_Usuario, a.idPostagem, a.idResposta_Postagem, a.data_Denuncia,       
+       b.email as 'Quem denunciou',   
+       c.nome as 'Fórum',
+       d.email as 'Quem foi denunciado' from tblDenuncia a 
+       
+       inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
+       inner join tblPostagem e on a.idPostagem = e.idPostagem
+       inner join tblForum c on e.idForum = c.idForum
+       inner join tblTipo_Usuario d on d.idTipo_Usuario = e.idTipo_Usuario where a.status_Check = 0
+       
+       union all
+       
+select a.idDenuncia, a.idTipo_Usuario, a.idPostagem, a.idResposta_Postagem, a.data_Denuncia,       
+       b.email as 'Quem denunciou',   
+       c.nome as 'Fórum',
+       d.email as 'Quem foi denunciado' from tblDenuncia a   
+       
+       inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
+       inner join tblResposta_Postagem e on a.idResposta_Postagem = e.idResposta_Postagem
+       inner join tblPostagem f on e.idPostagem - f.idPostagem
+       inner join tblForum c on f.idForum = c.idForum
+       inner join tblTipo_Usuario d on d.idTipo_Usuario = e.idTipo_Usuario where a.status_Check = 0;
 end$$
+
 delimiter ;
 
+/*
 delimiter $$
 create procedure consulta_Detalhada_Denuncia ()
 
@@ -378,7 +419,11 @@ update tblDenuncia set status_Checked = 1 where idDenuncia = $idDenuncia;
 end$$
 delimiter ;
 
+end$$
 
+
+
+-- Procedures da tabela central
 
 -- TblTipo_Usuario
 
@@ -407,7 +452,7 @@ select idTipo_Usuario from tblTipo_Usuario where email = $email;
 end$$
 delimiter ;
 
--- Cadastros especificos para cada tipo de usuário
+-- Cadastros especificos para cada tipo de usuário. Devem ser realizados logo após o cadastro da tblTipo_Usuario
 
 delimiter $$
 create procedure cadastro_Perfil_Pessoal(
@@ -444,7 +489,7 @@ delimiter ;
 
 
 
--- Funções comunidade
+-- Procedures comunidade web
 
 -- tblForum
 
@@ -471,6 +516,7 @@ select idForum, nome, descricao from tblForum;
 end$$
 delimiter ;
 
+
 -- tblPostagem
 
 delimiter $$
@@ -481,9 +527,6 @@ in $idTipo_Usuario int,
 in $idForum int)
 
 begin
-insert into tblPostagem (mensagem, imagem, data_Postagem, hora, idTipo_Usuario, idForum) values ($mensagem, $imagem, now(), now(), $$idTipo_Usuario, $idForum);
+insert into tblPostagem (mensagem, imagem, data_Postagem, hora, idTipo_Usuario, idForum) values ($mensagem, $imagem, now(), now(), $idTipo_Usuario, $idForum);
 end$$
 delimiter ;
-
-
-
