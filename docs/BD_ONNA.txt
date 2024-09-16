@@ -218,7 +218,7 @@ constraint fkTipo_Denuncia_tblColecao_Tipo foreign key (idTipo_Denuncia) referen
 
 create table tblAdmin(
 idAdmin int primary key auto_increment,
-username varchar(120) not null @unique,
+username varchar(120) not null unique,
 senha varchar(120) not null 
 );
 
@@ -377,3 +377,113 @@ begin
 update tblDenuncia set status_Checked = 1 where idDenuncia = $idDenuncia;
 end$$
 delimiter ;
+
+
+
+-- TblTipo_Usuario
+
+delimiter $$
+create procedure cadastro_Tipo_Usuario (
+in $email varchar(120),
+in $senha varchar(120),
+in $nome varchar(100),
+in dataNasc date,
+in avatar int,
+in tipo_Usuario tinyint)
+
+begin
+insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values ($email, $senha, $nome, $dataNasc, $avatar, $tipo_Usuario);
+end$$
+delimiter ;
+
+-- Antes dos outros cadastros, precisamos armazenar o idTipo_Usuario cadastrado
+
+delimiter $$
+create procedure armazena_idTipo_Usuario (
+in $email varchar(120))
+
+begin
+select idTipo_Usuario from tblTipo_Usuario where email = $email;
+end$$
+delimiter ;
+
+-- Cadastros especificos para cada tipo de usuário
+
+delimiter $$
+create procedure cadastro_Perfil_Pessoal(
+in $idTipo_Usuario int)
+
+begin
+insert into tblPerfil_Pessoal (idTipo_Usuario) values ($idTipo_Usuario);
+end$$
+delimiter ;
+
+delimiter $$
+create procedure cadastro_Perfil_Profissional(
+in $crm char(8),
+in $crp char(8),
+in $area_Formacao varchar(80),
+in $idTipo_Usuario int)
+
+begin
+insert into tblPerfil_Profissional (crm, crp, area_Formacao, idTipo_Usuario) values ($crm, $crp, $area_Formacao, $idTipo_Usuario);
+end$$
+delimiter ;
+
+-- login
+
+delimiter $$
+create procedure login_Tipo_Usuario (
+in $email varchar(120),
+in $senha varchar(120))
+
+begin
+select email, senha from tblTipo_Usuario where email = $email and senha = $senha;
+end$$
+delimiter ;
+
+
+
+-- Funções comunidade
+
+-- tblForum
+
+delimiter $$
+create procedure criar_Forum (
+in $nome varchar(80),
+in $descricao varchar(2000))
+
+begin
+insert into tblForum (nome, descricao) values ($nome, $descricao);
+end$$
+delimiter ;
+
+call criar_Forum ('#Desabafos','Espaço dedicado ao acolhimento dos problemas da alma'),
+                 ('#Gravidez','Ambiente para sanar dúvidas e questionamentos sobre o período de gravidez')
+
+-- Menu de fóruns
+
+delimiter $$
+create procedure exibir_Foruns ()
+
+begin
+select idForum, nome, descricao from tblForum;
+end$$
+delimiter ;
+
+-- tblPostagem
+
+delimiter $$
+create procedure criar_Postagem (
+in $mensagem varchar(2000),
+in $imagem varbinary(45000),
+in $idTipo_Usuario int,
+in $idForum int)
+
+begin
+insert into tblPostagem (mensagem, imagem, data_Postagem, hora, idTipo_Usuario, idForum) values ($mensagem, $imagem, now(), now(), $$idTipo_Usuario, $idForum);
+end$$
+delimiter ;
+
+
+
