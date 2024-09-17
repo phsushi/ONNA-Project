@@ -43,7 +43,7 @@ constraint fkContato_tblColecao_Contato foreign key (idContato) references tblCo
 
 create table tblConversa_Privada(
 idConversa_Privada int primary key auto_increment,
-mensagem varchar(5000) not null,
+mensagem varchar(4000) not null,
 data_Mensagem date not null, -- now()
 hora time not null, -- now()
 
@@ -152,7 +152,7 @@ create table tblPostagem(
 idPostagem int primary key auto_increment,
 status_Ban tinyint default 0,
 titulo varchar(300) not null,
-subtitulo varchar(5000),
+subtitulo varchar(4000),
 imagem varbinary(45000),
 data_Postagem date not null, -- now()
 hora time not null, -- now()
@@ -169,7 +169,7 @@ constraint fkForum_tblPostagem foreign key (idForum) references tblForum (idForu
 create table tblResposta_Postagem(
 idResposta_Postagem int primary key auto_increment,
 status_Ban tinyint default 0,
-mensagem varchar(5000) not null,
+mensagem varchar(4000) not null,
 data_Resposta date not null, -- now()
 hora time not null, -- now()
 gostei int,
@@ -231,7 +231,7 @@ genero varchar(40) not null
 create table tblArtigo(
 idArtigo int primary key auto_increment,
 titulo varchar(255) not null,
-resumo varchar(5000) not null,
+resumo varchar(4000) not null,
 link varchar(2000) not null,
 data_Publicacao date not null, -- now()
 
@@ -342,22 +342,22 @@ delimiter ;
 
 -- tblDenuncia
 
-/*
+
 insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values 
 ('Flavia@gmail.com', '123', 'Flavia Damasceno', '19960606', 1, 0),
 ('Mari@gmail.com', '123', 'Marina Dias', '19950808', 3, 0);
 
 insert into tblForum (nome, descricao) values('Maternidade','Ambiente dedicado para apoiar mães durante a criação de sua criança');
 
-insert into tblPostagem (mensagem, data_Postagem, hora, idTipo_Usuario, idForum) values 
-('Receita de papinha de frango [...]', NOW(), NOW(), 1, 1),
-('Meu filho é chato demais! Ajudem-me!', NOW(), NOW(), 2, 1);
+insert into tblPostagem (titulo, subtitulo, data_Postagem, hora, idTipo_Usuario, idForum) values 
+('Receita de papinha de frango [...]', 'Frango, Páprica, orégano, sal, coentro, cebolinha etc.', NOW(), NOW(), 1, 1),
+('Meu filho é chato demais! Ajudem-me!', 'Genteeeeee, é... Simplesmente insuportável!', NOW(), NOW(), 2, 1);
 
 insert into tblDenuncia (descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem) values 
 ('Ofendeu o próprio filho! Isso é inapropriado!', NOW(), NOW(), 1, 2);
 
 select * from tblPostagem
-*/
+
 
 delimiter $$
 
@@ -588,7 +588,7 @@ delimiter ;
 delimiter $$
 create procedure criar_Postagem (
 in $titulo varchar(300),
-in $subtitulo varchar(5000),
+in $subtitulo varchar(4000),
 in $imagem varbinary(45000),
 in $idTipo_Usuario int,
 in $idForum int
@@ -604,9 +604,9 @@ in $idForum int
 )
 
 begin
-	select a.titulo, a.subtitulo, a.imagem, a,data_Postagem, a.hora,
+	select a.titulo, a.subtitulo, a.imagem, a.data_Postagem, a.hora,
 	       b.avatar, b.nome from tblPostagem a
            
-        inner join tblTipo_Usuario b on a.id_Tipo_Usuario = b.idTipo_Usuario order by data_Postagem, hora;
+	inner join tblTipo_Usuario b on a.id_Tipo_Usuario = b.idTipo_Usuario order by data_Postagem, hora
 end$$
 delimiter ;
