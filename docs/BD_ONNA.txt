@@ -607,6 +607,6 @@ begin
 	select a.titulo, a.subtitulo, a.imagem, a,data_Postagem, a.hora,
 	       b.avatar, b.nome from tblPostagem a
            
-              inner join tblTipo_Usuario b on a.id_Tipo_Usuario = b.idTipo_Usuario order by data_Postagem, hora;
+        inner join tblTipo_Usuario b on a.id_Tipo_Usuario = b.idTipo_Usuario order by data_Postagem, hora;
 end$$
 delimiter ;
