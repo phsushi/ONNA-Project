@@ -43,7 +43,7 @@ constraint fkContato_tblColecao_Contato foreign key (idContato) references tblCo
 
 create table tblConversa_Privada(
 idConversa_Privada int primary key auto_increment,
-mensagem varchar(2000) not null,
+mensagem varchar(5000) not null,
 data_Mensagem date not null, -- now()
 hora time not null, -- now()
 
@@ -66,7 +66,7 @@ constraint fkTipo_Usuario_tblPerfil_Pessoal foreign key (idTipo_Usuario) referen
 
 create table tblAjuda(
 idAjuda int primary key auto_increment,
-titulo varchar(50) not null,
+titulo varchar(100) not null,
 mensagem varchar(2000) not null,
 data_Ajuda date not null,
 hora time not null,
@@ -151,7 +151,8 @@ descricao varchar(2000)
 create table tblPostagem(
 idPostagem int primary key auto_increment,
 status_Ban tinyint default 0,
-mensagem varchar(2000) not null,
+titulo varchar(300) not null,
+subtitulo varchar(5000),
 imagem varbinary(45000),
 data_Postagem date not null, -- now()
 hora time not null, -- now()
@@ -168,7 +169,7 @@ constraint fkForum_tblPostagem foreign key (idForum) references tblForum (idForu
 create table tblResposta_Postagem(
 idResposta_Postagem int primary key auto_increment,
 status_Ban tinyint default 0,
-mensagem varchar(2000) not null,
+mensagem varchar(5000) not null,
 data_Resposta date not null, -- now()
 hora time not null, -- now()
 gostei int,
@@ -230,7 +231,7 @@ genero varchar(40) not null
 create table tblArtigo(
 idArtigo int primary key auto_increment,
 titulo varchar(255) not null,
-resumo varchar(2000) not null,
+resumo varchar(5000) not null,
 link varchar(2000) not null,
 data_Publicacao date not null, -- now()
 
@@ -252,19 +253,21 @@ constraint fkGenero_tblArtigo foreign key (idGenero) references tblGenero (idGen
 delimiter $$
 create procedure cadastro_Admin (
 in $username varchar(120),
-in $senha varchar(120))
+in $senha varchar(120)
+)
 
 begin
-insert into tblAdmin (username, senha) values ($username, $senha);
+	insert into tblAdmin (username, senha) values ($username, $senha);
 end$$
 delimiter ;
 
 delimiter $$
 create procedure login_Admin (
-in $username varchar(120))
+in $username varchar(120)
+)
 
 begin
-select * from tblAdmin where username = $username;
+	select * from tblAdmin where username = $username;
 end$$
 delimiter ;
 
@@ -276,19 +279,21 @@ create procedure criar_Artigo (
 in $titulo varchar(255), 
 in $resumo varchar(2000), 
 in $link varchar(2000), 
-in $idGenero int)
+in $idGenero int
+)
 
 begin
-insert into tblArtigo (titulo, resumo, link, idGenero) values ($titulo, $resumo, $link, $idGenero);
+	insert into tblArtigo (titulo, resumo, link, idGenero) values ($titulo, $resumo, $link, $idGenero);
 end$$
 delimiter ;
 
 delimiter $$
 create procedure consulta_Titulo_Artigo (
-in $titulo varchar(255))
+in $titulo varchar(255)
+)
 
 begin
-select titulo from tblArtigo where titulo = $titulo order by titulo;
+	select titulo from tblArtigo where titulo = $titulo order by titulo;
 end$$
 delimiter ;
 
@@ -296,25 +301,27 @@ delimiter $$
 create procedure consulta_Superficial_Artigo ()
 
 begin
-select idArtigo, titulo, link from tblArtigo order by idArtigo;
+	select idArtigo, titulo, link from tblArtigo order by idArtigo;
 end$$
 delimiter ;
 
 delimiter $$
 create procedure consulta_Detalhada_Artigo (
-in $idArtigo int)
+in $idArtigo int
+)
 
 begin
-select titulo, resumo, link, idGenero from tblArtigo where idArtigo = $idArtigo;
+	select titulo, resumo, link, idGenero from tblArtigo where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
 delimiter $$
 create procedure excluir_Artigo (
-in $idArtigo int)
+in $idArtigo int
+)
 
 begin
-delete from tblArtigo where idArtigo = $idArtigo;
+	delete from tblArtigo where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -324,10 +331,11 @@ in $idArtigo int,
 in $titulo varchar(255), 
 in $resumo varchar(2000), 
 in $link varchar(2000), 
-in $idGenero int)
+in $idGenero int
+)
 
 begin
-update tblArtigo set titulo = $titulo, resumo = $resumo, link = $link, idGenero = $idGenero where idArtigo = $idArtigo;
+	update tblArtigo set titulo = $titulo, resumo = $resumo, link = $link, idGenero = $idGenero where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -337,16 +345,16 @@ delimiter ;
 /*
 insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values 
 ('Flavia@gmail.com', '123', 'Flavia Damasceno', '19960606', 1, 0),
-('Mari@gmail.com', '123', 'Marina Dias', '19950808', 3, 0)
+('Mari@gmail.com', '123', 'Marina Dias', '19950808', 3, 0);
 
-insert into tblForum (nome, descricao) values('Maternidade','Ambiente dedicado para apoiar mães durante a criação de sua criança')
+insert into tblForum (nome, descricao) values('Maternidade','Ambiente dedicado para apoiar mães durante a criação de sua criança');
 
 insert into tblPostagem (mensagem, data_Postagem, hora, idTipo_Usuario, idForum) values 
 ('Receita de papinha de frango [...]', NOW(), NOW(), 1, 1),
-('Meu filho é chato demais! Ajudem-me!', NOW(), NOW(), 2, 1)
+('Meu filho é chato demais! Ajudem-me!', NOW(), NOW(), 2, 1);
 
 insert into tblDenuncia (descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem) values 
-('Ofendeu o próprio filho! Isso é inapropriado!', NOW(), NOW(), 1, 2)
+('Ofendeu o próprio filho! Isso é inapropriado!', NOW(), NOW(), 1, 2);
 
 select * from tblPostagem
 */
@@ -356,66 +364,107 @@ delimiter $$
 create procedure consulta_Superficial_Denuncia ()
 
 begin
-
-select a.idDenuncia, a.idTipo_Usuario, a.idPostagem, a.idResposta_Postagem, a.data_Denuncia,       
-       b.email as 'Quem denunciou',   
-       c.nome as 'Fórum',
-       d.email as 'Quem foi denunciado' from tblDenuncia a 
+	select a.idDenuncia, a.idTipo_Usuario, a.idPostagem, a.idResposta_Postagem, a.data_Denuncia as 'Data da denúncia',       
+	       b.email as 'Quem denunciou',   
+           c.nome as 'Fórum',
+           d.email as 'Quem foi denunciado' from tblDenuncia a 
        
-       inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
-       inner join tblPostagem e on a.idPostagem = e.idPostagem
-       inner join tblForum c on e.idForum = c.idForum
-       inner join tblTipo_Usuario d on d.idTipo_Usuario = e.idTipo_Usuario where a.status_Check = 0
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
+	inner join tblPostagem e on a.idPostagem = e.idPostagem
+	inner join tblForum c on e.idForum = c.idForum
+	inner join tblTipo_Usuario d on d.idTipo_Usuario = e.idTipo_Usuario where a.status_Check = 0
        
-       union all
+	union all
        
-select a.idDenuncia, a.idTipo_Usuario, a.idPostagem, a.idResposta_Postagem, a.data_Denuncia,       
-       b.email as 'Quem denunciou',   
-       c.nome as 'Fórum',
-       d.email as 'Quem foi denunciado' from tblDenuncia a   
+	select a.idDenuncia, a.idTipo_Usuario, a.idPostagem, a.idResposta_Postagem, a.data_Denuncia,       
+		   b.email as 'Quem denunciou',   
+           c.nome as 'Fórum',
+           d.email as 'Quem foi denunciado' from tblDenuncia a   
        
-       inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
-       inner join tblResposta_Postagem e on a.idResposta_Postagem = e.idResposta_Postagem
-       inner join tblPostagem f on e.idPostagem - f.idPostagem
-       inner join tblForum c on f.idForum = c.idForum
-       inner join tblTipo_Usuario d on d.idTipo_Usuario = e.idTipo_Usuario where a.status_Check = 0;
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
+	inner join tblResposta_Postagem e on a.idResposta_Postagem = e.idResposta_Postagem
+	inner join tblPostagem f on e.idPostagem - f.idPostagem
+	inner join tblForum c on f.idForum = c.idForum
+	inner join tblTipo_Usuario d on e.idTipo_Usuario = d.idTipo_Usuario where a.status_Check = 0 order by idDenuncia;
 end$$
 
 delimiter ;
 
-/*
+-- A própria aplicação desktop deverá distinguir uma [postagem] de uma [resposta de postagem], checando se o [idResposta_Postagem = null] por exemplo
+
 delimiter $$
-create procedure consulta_Detalhada_Denuncia ()
+create procedure consulta_Detalhada_Denuncia_Postagem (
+in $idDenuncia int
+)
 
 begin
+	select a.descricao as 'Descrição da denúncia',
+		   b.email as 'Quem denunciou',
+		   c.titulo as 'Título da postagem denunciada', c.subtitulo as 'Detalhes da postagem denunciada',
+		   d.email as 'Quem foi denunciado' from tblDenuncia a
+               
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
+	inner join tblPostagem c on a.idPostagem = c.idPostagem
+	inner join tblTipo_Usuario d on c.idTipo_Usuario = d.idTipo_Usuario where idDenuncia = $idDenuncia;
 end$$
 delimiter ;
-*/
+
+delimiter $$
+create procedure consulta_Detalhada_Denuncia_Resposta (
+in $idDenuncia int
+)
+
+begin
+	select a.descricao as 'Descrição da denúncia',
+		   b.email as 'Quem denunciou',
+		   c.mensagem as 'Mensagem denunciada',
+		   d.email as 'Quem foi denunciado' from tblDenuncia a
+               
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
+	inner join tblResposta_Postagem c on a.idResposta_Postagem = c.idResposta_Postagem
+	inner join tblTipo_Usuario d on c.idTipo_Usuario = d.idTipo_Usuario where idDenuncia = $idDenuncia;
+end$$
+delimiter ;
+
+-- Nas consultas detalhadas, deve-se guardar o [email] da pessoa denunciada para a execução da procedure a seguir:
 
 delimiter $$
 create procedure banir_Usuario (
-in $idTipoUsuario int)
+in $email_Denunciado varchar(120)
+)
 
 begin
-update tblTipo_Usuario set status_Ban = 1 where idTipo_Usuario = $idTipo_Usuario;
+	update tblTipo_Usuario set status_Ban = 1 where email = $email_Denunciado;
 end$$
 delimiter ;
 
-/*
 delimiter $$
-create procedure apagar_Postagem ()
+create procedure apagar_Postagem (
+in $idPostagem int
+)
 
 begin
+	update tblPostagem set status_Ban = 1 where idPostagem = $idPostagem;	
 end$$
 delimiter ;
-*/
+
+delimiter $$
+create procedure apagar_Resposta (
+in $idResposta_Postagem int
+)
+
+begin
+	update tblResposta_Postagem set status_Ban = 1 where idResposta_Postagem = $idResposta_Postagem;	
+end$$
+delimiter ;
 
 delimiter $$
 create procedure ignorar_Denuncia (
-in $idDenuncia int)
+in $idDenuncia int
+)
 
 begin
-update tblDenuncia set status_Checked = 1 where idDenuncia = $idDenuncia;
+	update tblDenuncia set status_Checked = 1 where idDenuncia = $idDenuncia;
 end$$
 delimiter ;
 
@@ -423,43 +472,46 @@ end$$
 
 
 
--- Procedures da tabela central
+-- Procedures da tabela central [TblTipo_Usuario]
 
--- TblTipo_Usuario
+-- Apenas após todas as validações por parte da aplicação web/mobile que se registrará todos os dados de cadastro no banco (simultaneamente)
 
 delimiter $$
 create procedure cadastro_Tipo_Usuario (
 in $email varchar(120),
 in $senha varchar(120),
 in $nome varchar(100),
-in dataNasc date,
-in avatar int,
-in tipo_Usuario tinyint)
+in $dataNasc date,
+in $avatar int,
+in $tipo_Usuario tinyint
+)
 
 begin
-insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values ($email, $senha, $nome, $dataNasc, $avatar, $tipo_Usuario);
+	insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values ($email, $senha, $nome, $dataNasc, $avatar, $tipo_Usuario);
 end$$
 delimiter ;
 
--- Antes dos outros cadastros, precisamos armazenar o idTipo_Usuario cadastrado
+-- Antes de preencher a [tblPerfil_Pessoal] ou [tblPerfil_Profissional], precisamos armazenar o [idTipo_Usuario] do usuário recém-cadastrado
 
 delimiter $$
 create procedure armazena_idTipo_Usuario (
-in $email varchar(120))
+in $email varchar(120)
+)
 
 begin
-select idTipo_Usuario from tblTipo_Usuario where email = $email;
+	select idTipo_Usuario from tblTipo_Usuario where email = $email;
 end$$
 delimiter ;
 
--- Cadastros especificos para cada tipo de usuário. Devem ser realizados logo após o cadastro da tblTipo_Usuario
+-- Cadastros especificos para cada tipo de usuário. Devem ser realizados logo após o cadastro da [tblTipo_Usuario]
 
 delimiter $$
 create procedure cadastro_Perfil_Pessoal(
-in $idTipo_Usuario int)
+in $idTipo_Usuario int
+)
 
 begin
-insert into tblPerfil_Pessoal (idTipo_Usuario) values ($idTipo_Usuario);
+	insert into tblPerfil_Pessoal (idTipo_Usuario) values ($idTipo_Usuario);
 end$$
 delimiter ;
 
@@ -468,10 +520,11 @@ create procedure cadastro_Perfil_Profissional(
 in $crm char(8),
 in $crp char(8),
 in $area_Formacao varchar(80),
-in $idTipo_Usuario int)
+in $idTipo_Usuario int
+)
 
 begin
-insert into tblPerfil_Profissional (crm, crp, area_Formacao, idTipo_Usuario) values ($crm, $crp, $area_Formacao, $idTipo_Usuario);
+	insert into tblPerfil_Profissional (crm, crp, area_Formacao, idTipo_Usuario) values ($crm, $crp, $area_Formacao, $idTipo_Usuario);
 end$$
 delimiter ;
 
@@ -480,13 +533,25 @@ delimiter ;
 delimiter $$
 create procedure login_Tipo_Usuario (
 in $email varchar(120),
-in $senha varchar(120))
+in $senha varchar(120)
+)
 
 begin
-select email, senha from tblTipo_Usuario where email = $email and senha = $senha;
+	select email, senha from tblTipo_Usuario where email = $email and senha = $senha;
 end$$
 delimiter ;
 
+-- Alterações de perfil
+
+/*
+delimiter $$
+create procedure modificar_Avatar ()
+
+begin
+	update
+end$$
+delimiter ;
+*/
 
 
 -- Procedures comunidade web
@@ -496,10 +561,11 @@ delimiter ;
 delimiter $$
 create procedure criar_Forum (
 in $nome varchar(80),
-in $descricao varchar(2000))
+in $descricao varchar(2000)
+)
 
 begin
-insert into tblForum (nome, descricao) values ($nome, $descricao);
+	insert into tblForum (nome, descricao) values ($nome, $descricao);
 end$$
 delimiter ;
 
@@ -512,7 +578,7 @@ delimiter $$
 create procedure exibir_Foruns ()
 
 begin
-select idForum, nome, descricao from tblForum;
+	select idForum, nome, descricao from tblForum;
 end$$
 delimiter ;
 
@@ -521,12 +587,26 @@ delimiter ;
 
 delimiter $$
 create procedure criar_Postagem (
-in $mensagem varchar(2000),
+in $titulo varchar(300),
+in $subtitulo varchar(5000),
 in $imagem varbinary(45000),
 in $idTipo_Usuario int,
-in $idForum int)
+in $idForum int
+)
 
 begin
-insert into tblPostagem (mensagem, imagem, data_Postagem, hora, idTipo_Usuario, idForum) values ($mensagem, $imagem, now(), now(), $idTipo_Usuario, $idForum);
+	insert into tblPostagem (titulo, subtitulo, imagem, data_Postagem, hora, idTipo_Usuario, idForum) values ($titulo, $subtitulo, $imagem, now(), now(), $idTipo_Usuario, $idForum);
+end$$
+delimiter ;
+
+create procedure exibir_Postagem (
+in $idForum int
+)
+
+begin
+	select a.titulo, a.subtitulo, a.imagem, a,data_Postagem, a.hora,
+		   b.avatar, b.nome from tblPostagem a
+           
+           inner join tblTipo_Usuario b on a.id_Tipo_Usuario = b.idTipo_Usuario order by data_Postagem, hora;
 end$$
 delimiter ;
