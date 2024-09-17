@@ -604,7 +604,7 @@ in $idForum int
 )
 
 begin
-	select a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora,
+	select a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem',
 	       b.avatar, b.nome from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario order by data_Postagem, hora
