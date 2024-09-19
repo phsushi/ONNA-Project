@@ -60,7 +60,7 @@ constraint fkContato_tblConversa_Privada foreign key (idContato) references tblC
 create table tblPerfil_Pessoal(
 idUsuario int primary key auto_increment,
 
-idTipo_Usuario int not null,
+idTipo_Usuario int unique not null,
 constraint fkTipo_Usuario_tblPerfil_Pessoal foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
 );
 
@@ -114,11 +114,12 @@ constraint fkHumor_tblRelatorio_Humor foreign key (idHumor) references tblHumor 
 
 create table tblPerfil_Profissional(
 idProfissional int primary key auto_increment,
-crm char(8),
-crp char(8),
+crm int(5),
+crp int(5),
+uf char(2) not null,
 area_Formacao varchar(80) not null,
 
-idTipo_Usuario int not null,
+idTipo_Usuario int unique not null,
 constraint fkTipo_Usuario_tblPerfil_Profissional foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
 );
 
@@ -144,8 +145,8 @@ constraint fkDia_Semana_tblDisponibilidade foreign key (idDia_Semana) references
 
 create table tblForum(
 idForum int primary key auto_increment,
-nome varchar(80) not null,
-descricao varchar(2000)
+nome varchar(80) unique not null,
+descricao varchar(500)
 );
 
 create table tblPostagem(
@@ -263,11 +264,12 @@ delimiter ;
 
 delimiter $$
 create procedure login_Admin (
-in $username varchar(120)
+in $username varchar(120),
+in $senha varchar(120)
 )
 
 begin
-	select * from tblAdmin where username = $username;
+	select * from tblAdmin where username = $username and senha = $senha;
 end$$
 delimiter ;
 
@@ -301,7 +303,9 @@ delimiter $$
 create procedure consulta_Superficial_Artigo ()
 
 begin
-	select idArtigo, titulo, link from tblArtigo order by idArtigo;
+	select idArtigo, titulo, link from tblArtigo 
+	
+	order by idArtigo;
 end$$
 delimiter ;
 
@@ -385,7 +389,9 @@ begin
 	inner join tblResposta_Postagem e on a.idResposta_Postagem = e.idResposta_Postagem
 	inner join tblPostagem f on e.idPostagem - f.idPostagem
 	inner join tblForum c on f.idForum = c.idForum
-	inner join tblTipo_Usuario d on e.idTipo_Usuario = d.idTipo_Usuario where a.status_Check = 0 order by idDenuncia;
+	inner join tblTipo_Usuario d on e.idTipo_Usuario = d.idTipo_Usuario where a.status_Check = 0 
+	
+	order by idDenuncia;
 end$$
 
 delimiter ;
@@ -464,7 +470,7 @@ in $idDenuncia int
 )
 
 begin
-	update tblDenuncia set status_Checked = 1 where idDenuncia = $idDenuncia;
+	update tblDenuncia set status_Check = 1 where idDenuncia = $idDenuncia;
 end$$
 delimiter ;
 
@@ -472,9 +478,9 @@ end$$
 
 
 
--- Procedures da tabela central [TblTipo_Usuario]
+-- Procedures do usuário
 
--- Apenas após todas as validações por parte da aplicação web/mobile que se registrará todos os dados de cadastro no banco (simultaneamente)
+-- Apenas após todas as validações de preenchimento de campo por parte da aplicação web/mobile que se registrará todos os dados de cadastro no banco (simultaneamente)
 
 delimiter $$
 create procedure cadastro_Tipo_Usuario (
@@ -506,7 +512,7 @@ delimiter ;
 -- Cadastros especificos para cada tipo de usuário. Devem ser realizados logo após o cadastro da [tblTipo_Usuario]
 
 delimiter $$
-create procedure cadastro_Perfil_Pessoal(
+create procedure cadastro_Perfil_Pessoal (
 in $idTipo_Usuario int
 )
 
@@ -516,15 +522,16 @@ end$$
 delimiter ;
 
 delimiter $$
-create procedure cadastro_Perfil_Profissional(
-in $crm char(8),
-in $crp char(8),
+create procedure cadastro_Perfil_Profissional (
+in $crm int(5),
+in $crp int(5),
+in $uf char(2),
 in $area_Formacao varchar(80),
 in $idTipo_Usuario int
 )
 
 begin
-	insert into tblPerfil_Profissional (crm, crp, area_Formacao, idTipo_Usuario) values ($crm, $crp, $area_Formacao, $idTipo_Usuario);
+	insert into tblPerfil_Profissional (crm, crp, uf, area_Formacao, idTipo_Usuario) values ($crm, $crp, $uf, $area_Formacao, $idTipo_Usuario);
 end$$
 delimiter ;
 
@@ -537,21 +544,61 @@ in $senha varchar(120)
 )
 
 begin
-	select email, senha from tblTipo_Usuario where email = $email and senha = $senha;
+	select email, senha from tblTipo_Usuario where email = $email and senha = $senha and status_Ban = 0;
 end$$
 delimiter ;
 
--- Alterações de perfil
+-- Exibição dos dados de perfil
 
-/*
 delimiter $$
-create procedure modificar_Avatar ()
+create procedure exibir_Perfil (
+in $idTipo_Usuario int
+)
 
 begin
-	update
+	select email, nome, date_format(str_to_date(dataNasc, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de nascimento', avatar, tipo_Usuario from tblTipo_Usuario where idTipo_Usuario = $idTipo_Usuario;
 end$$
 delimiter ;
-*/
+
+-- Caso o campo [tipo_Usuario] seja [1], também será exibida as informações do perfil profissional 
+
+delimiter $$
+create procedure exibir_Dados_Profissional (
+in $idTipo_Usuario int
+)
+
+begin
+	select crp, crm, uf, area_Formacao from tblPerfil_Profissional where idTipo_Usuario = $idTipo_Usuario;
+end$$
+delimiter ;
+
+-- Alterações de dados do perfil
+
+delimiter $$
+create procedure modificar_Perfil (
+in $idTipo_Usuario int,
+in $senha varchar(120),
+in $nome varchar(100),
+in $dataNasc date,
+in $avatar int
+)
+
+begin
+	update tblTipo_Usuario set nome = $nome, senha = $senha, dataNasc = $dataNasc, avatar = $avatar where idTipo_Usuario = $idTipo_Usuario;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure modificar_Area_Formacao (
+in $idTipo_Usuario int,
+in $area_Formacao varchar(80)
+)
+
+begin
+	update tblPerfil_Profissional set area_Formacao = $area_Formacao where idTipo_Usuario = $idTipo_Usuario;
+end$$
+delimiter ;
+
 
 
 -- Procedures comunidade web
@@ -561,7 +608,7 @@ delimiter ;
 delimiter $$
 create procedure criar_Forum (
 in $nome varchar(80),
-in $descricao varchar(2000)
+in $descricao varchar(500)
 )
 
 begin
@@ -569,8 +616,10 @@ begin
 end$$
 delimiter ;
 
+/*
 call criar_Forum ('#Desabafos','Espaço dedicado ao acolhimento dos problemas da alma'),
                  ('#Gravidez','Ambiente para sanar dúvidas e questionamentos sobre o período de gravidez')
+*/
 
 -- Menu de fóruns
 
@@ -579,6 +628,18 @@ create procedure exibir_Foruns ()
 
 begin
 	select idForum, nome, descricao from tblForum;
+end$$
+delimiter ;
+
+-- Exibir dados do fórum que o usuário optou por participar
+
+delimiter $$
+create procedure exibir_Forum_Escolhido (
+in $idForum int
+)
+
+begin
+	select nome, descricao from tblForum where idForum = $idForum;
 end$$
 delimiter ;
 
@@ -599,14 +660,73 @@ begin
 end$$
 delimiter ;
 
+delimiter $$
 create procedure exibir_Postagem (
 in $idForum int
 )
 
 begin
-	select a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem',
+	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem',
 	       b.avatar, b.nome from tblPostagem a
            
-	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario order by data_Postagem, hora
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = $idForum and status_Ban = 0 
+	
+	order by data_Postagem, hora;
 end$$
 delimiter ;
+
+
+-- tblResposta_Postagem
+
+delimiter $$
+create procedure criar_Resposta_Postagem (
+in $mensagem varchar(4000),
+in $idTipo_Usuario int,
+in $idPostagem int
+)
+
+begin
+	insert into tblResposta_Postagem (mensagem, data_Resposta, hora, idTipo_Usuario, idPostagem) values ($mensagem, now(), now(), $idTipo_Usuario, $idPostagem);
+end$$
+delimiter ;
+
+delimiter $$
+create procedure exibir_Resposta_Postagem (
+in $idPostagem int
+)
+
+begin
+	select a.mensagem, date_format(str_to_date(a.data_Resposta, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da resposta', a.hora as 'Hora da resposta',
+	       b.avatar, b.nome from tblResposta_Postagem a
+           
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idPostagem = $idPostagem and status_Ban = 0 
+	
+	order by data_Resposta, hora;
+end$$
+delimiter ;
+
+
+-- Procedures de denúncia
+
+/*
+delimiter $$
+create procedure abc ()
+
+begin
+	select
+end$$
+delimiter ;
+*/
+
+
+-- Procedures de artigo
+
+/*
+delimiter $$
+create procedure abc ()
+
+begin
+	select
+end$$
+delimiter ;
+*/
