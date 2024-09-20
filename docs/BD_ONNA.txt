@@ -220,7 +220,7 @@ constraint fkTipo_Denuncia_tblColecao_Tipo foreign key (idTipo_Denuncia) referen
 
 create table tblAdmin(
 idAdmin int primary key auto_increment,
-username varchar(120) not null unique,
+username varchar(120) unique not null,
 senha varchar(120) not null 
 );
 
@@ -264,12 +264,11 @@ delimiter ;
 
 delimiter $$
 create procedure login_Admin (
-in $username varchar(120),
-in $senha varchar(120)
+in $username varchar(120)
 )
 
 begin
-	select * from tblAdmin where username = $username and senha = $senha;
+	select * from tblAdmin where username = $username;
 end$$
 delimiter ;
 
@@ -539,12 +538,11 @@ delimiter ;
 
 delimiter $$
 create procedure login_Tipo_Usuario (
-in $email varchar(120),
-in $senha varchar(120)
+in $email varchar(120)
 )
 
 begin
-	select email, senha from tblTipo_Usuario where email = $email and senha = $senha and status_Ban = 0;
+	select email, senha from tblTipo_Usuario where email = $email and status_Ban = 0;
 end$$
 delimiter ;
 
