@@ -232,8 +232,8 @@ genero varchar(40) not null
 create table tblArtigo(
 idArtigo int primary key auto_increment,
 titulo varchar(255) not null,
-resumo varchar(4000) not null,
-link varchar(2000) not null,
+assunto varchar(4000) not null,
+link varchar(1000) not null,
 data_Publicacao date not null, -- now()
 
 idAdmin int not null,
@@ -278,25 +278,27 @@ delimiter ;
 delimiter $$
 create procedure criar_Artigo (
 in $titulo varchar(255), 
-in $resumo varchar(2000), 
-in $link varchar(2000), 
+in $assunto varchar(4000), 
+in $link varchar(1000), 
 in $idGenero int
 )
 
 begin
-	insert into tblArtigo (titulo, resumo, link, idGenero) values ($titulo, $resumo, $link, $idGenero);
+	insert into tblArtigo (titulo, assunto, link, idGenero) values ($titulo, $assunto, $link, $idGenero);
 end$$
 delimiter ;
 
+/*
 delimiter $$
 create procedure consulta_Titulo_Artigo (
 in $titulo varchar(255)
 )
 
 begin
-	select titulo from tblArtigo where titulo = $titulo order by titulo;
+	select titulo from tblArtigo where titulo like $titulo order by titulo;
 end$$
 delimiter ;
+*/
 
 delimiter $$
 create procedure consulta_Superficial_Artigo ()
@@ -314,7 +316,7 @@ in $idArtigo int
 )
 
 begin
-	select titulo, resumo, link, idGenero from tblArtigo where idArtigo = $idArtigo;
+	select titulo, assunto, link, idGenero from tblArtigo where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -332,13 +334,13 @@ delimiter $$
 create procedure alterar_Artigo (
 in $idArtigo int,
 in $titulo varchar(255), 
-in $resumo varchar(2000), 
-in $link varchar(2000), 
+in $assunto varchar(4000), 
+in $link varchar(1000), 
 in $idGenero int
 )
 
 begin
-	update tblArtigo set titulo = $titulo, resumo = $resumo, link = $link, idGenero = $idGenero where idArtigo = $idArtigo;
+	update tblArtigo set titulo = $titulo, assunto = $assunto, link = $link, idGenero = $idGenero where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -719,12 +721,80 @@ delimiter ;
 
 -- Procedures de artigo
 
-/*
+-- A exibição dos artigos estará classificada em 5 tipos:
+
 delimiter $$
-create procedure abc ()
+create procedure exibir_Artigo_Menstruacao ()
 
 begin
-	select
+	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 1
+    
+    order by data_Publicacao desc;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure exibir_Artigo_Engravidar ()
+
+begin
+	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 2
+    
+    order by data_Publicacao desc;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure exibir_Artigo_Gestacao ()
+
+begin
+	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 3
+    
+    order by data_Publicacao desc;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure exibir_Artigo_Maternidade ()
+
+begin
+	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 4
+    
+    order by data_Publicacao desc;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure exibir_Artigo_Cuidados_Corpo ()
+
+begin
+	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 5
+    
+    order by data_Publicacao desc;
+end$$
+delimiter ;
+
+-- Consulta de artigo conforme seu título:
+
+/*
+delimiter $$
+create procedure exibir_Artigo_Pesquisado (
+in $idArtigo int
+)
+
+begin
+	
 end$$
 delimiter ;
 */
+
+-- Consulta detalhada do artigo selecionado pelo usuário
+
+delimiter $$
+create procedure exibir_Artigo_Selecionado (
+in $idArtigo int
+)
+
+begin
+	select titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA', link from tblArtigo where idArtigo = $idArtigo;
+end$$
+delimiter ;
