@@ -664,7 +664,7 @@ in $idForum int
 )
 
 begin
-	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem',
+	select a.idPostagem, a.status_Ban, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem',
 	       b.avatar, b.nome from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = $idForum and status_Ban = 0 
@@ -694,7 +694,7 @@ in $idPostagem int
 )
 
 begin
-	select a.mensagem, date_format(str_to_date(a.data_Resposta, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da resposta', a.hora as 'Hora da resposta',
+	select a.idResposta_Postagem, a.status_Ban, a.mensagem, date_format(str_to_date(a.data_Resposta, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da resposta', a.hora as 'Hora da resposta',
 	       b.avatar, b.nome from tblResposta_Postagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idPostagem = $idPostagem and status_Ban = 0 
