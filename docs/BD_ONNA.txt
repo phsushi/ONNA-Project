@@ -233,7 +233,7 @@ create table tblArtigo(
 idArtigo int primary key auto_increment,
 titulo varchar(255) not null,
 resumo varchar(3000) not null,
-link varchar(1000) not null,
+fonte varchar(1000) not null,
 data_Publicacao date not null, -- now()
 
 idAdmin int not null,
@@ -304,12 +304,12 @@ delimiter $$
 create procedure criar_Artigo (
 in $titulo varchar(255), 
 in $resumo varchar(3000), 
-in $link varchar(1000),
+in $fonte varchar(1000),
 in $idGenero int
 )
 
 begin
-	insert into tblArtigo (titulo, resumo, link, data_Publicacao, idGenero) values ($titulo, $resumo, $link, now(), $idGenero);
+	insert into tblArtigo (titulo, resumo, fonte, data_Publicacao, idGenero) values ($titulo, $resumo, $fonte, now(), $idGenero);
 end$$
 delimiter ;
 
@@ -321,7 +321,7 @@ in $titulo varchar(255)
 begin
 	select titulo from tblArtigo where titulo regexp ($titulo) 
     
-    order by titulo;
+	order by titulo;
 end$$
 delimiter ;
 
@@ -341,7 +341,7 @@ in $idArtigo int
 )
 
 begin
-	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', link from tblArtigo where idArtigo = $idArtigo;
+	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', fonte from tblArtigo where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -360,12 +360,12 @@ create procedure alterar_Artigo (
 in $idArtigo int,
 in $titulo varchar(255), 
 in $resumo varchar(3000), 
-in $link varchar(1000), 
+in $fonte varchar(1000), 
 in $idGenero int
 )
 
 begin
-	update tblArtigo set titulo = $titulo, resumo = $resumo, link = $link, data_Publicacao = now(), idGenero = $idGenero where idArtigo = $idArtigo;
+	update tblArtigo set titulo = $titulo, resumo = $resumo, fonte = $fonte, data_Publicacao = now(), idGenero = $idGenero where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -805,7 +805,7 @@ create procedure exibir_Artigo_Menstruacao ()
 begin
 	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 1
     
-    order by data_Publicacao desc;
+	order by data_Publicacao desc;
 end$$
 delimiter ;
 
@@ -815,7 +815,7 @@ create procedure exibir_Artigo_Engravidar ()
 begin
 	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 2
     
-    order by data_Publicacao desc;
+	order by data_Publicacao desc;
 end$$
 delimiter ;
 
@@ -825,7 +825,7 @@ create procedure exibir_Artigo_Gestacao ()
 begin
 	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 3
     
-    order by data_Publicacao desc;
+	order by data_Publicacao desc;
 end$$
 delimiter ;
 
@@ -835,7 +835,7 @@ create procedure exibir_Artigo_Maternidade ()
 begin
 	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 4
     
-    order by data_Publicacao desc;
+	order by data_Publicacao desc;
 end$$
 delimiter ;
 
@@ -845,7 +845,7 @@ create procedure exibir_Artigo_Cuidados_Corpo ()
 begin
 	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 5
     
-    order by data_Publicacao desc;
+	order by data_Publicacao desc;
 end$$
 delimiter ;
 
@@ -858,7 +858,7 @@ in $idArtigo int
 begin
 	select titulo from tblArtigo where titulo regexp ($titulo) 
     
-    order by titulo;
+	order by titulo;
 end$$
 */
 
@@ -869,7 +869,7 @@ in $idArtigo int
 ) 
 
 begin
-	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', link from tblArtigo where idArtigo = $idArtigo;
+	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', fonte from tblArtigo where idArtigo = $idArtigo;
 end$$
 */
 
