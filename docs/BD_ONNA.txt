@@ -1,5 +1,4 @@
 
-
 -- Inserções iniciais
 
 create database ONNA;
