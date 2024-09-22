@@ -1,11 +1,12 @@
 
--- Inserções iniciais
 
-use test;
-drop database ONNA;
+-- Inserções iniciais
 
 create database ONNA;
 use ONNA;
+
+-- use test;
+-- drop database ONNA;
 
 
 -- Tabela central
@@ -225,14 +226,14 @@ senha varchar(120) not null
 );
 
 create table tblGenero(
-idGenero int primary key, -- Cada inteiro irá se referir a um dos gêneros já definidos (maternidade, sexual etc.)
+idGenero int primary key, -- Cada inteiro irá se referir a um dos gêneros já definidos (maternidade, gravidez etc.)
 genero varchar(40) not null
 );
 
 create table tblArtigo(
 idArtigo int primary key auto_increment,
 titulo varchar(255) not null,
-assunto varchar(4000) not null,
+resumo varchar(3000) not null,
 link varchar(1000) not null,
 data_Publicacao date not null, -- now()
 
@@ -242,6 +243,31 @@ constraint fkAdmin_tblArtigo foreign key (idAdmin) references tblAdmin (idAdmin)
 idGenero int not null,
 constraint fkGenero_tblArtigo foreign key (idGenero) references tblGenero (idGenero)
 );
+
+
+-- Dados pré-cadastrados em nosso banco:
+
+insert into tblGenero (genero) values
+('Menstruação'), 
+('Engravidar'), 
+('Gestação'), 
+('Materidade'), 
+('Cuidados com o corpo')
+
+insert into tblTipo (tipo) values
+('Abuso verbal'), -- Lingujar ofensivo, ameaças
+('Discurso de ódio'), -- Racismo, sexismo, homofobia etc. 
+('Nome ofensivo ou inadequado'), -- Nome de usuário indevido 
+('Postagem inadequada') -- Assuntos não relevantes à proposta da plataforma ONNA, como propaganda política, conteúdo explícito etc. 
+
+insert into tblForum (nome, descricao) values
+('#Desabafos', 'Espaço dedicado ao acolhimento dos problemas da alma'),
+('#Gravidez', 'Ambiente para sanar dúvidas e questionamentos sobre o período de gravidez'),
+('#Maternidade', 'Discussões sobre os devidos cuidados com nenês e seu desenvolvimento saudável')
+
+
+
+
 
 
 
@@ -278,33 +304,33 @@ delimiter ;
 delimiter $$
 create procedure criar_Artigo (
 in $titulo varchar(255), 
-in $assunto varchar(4000), 
-in $link varchar(1000), 
+in $resumo varchar(3000), 
+in $link varchar(1000),
 in $idGenero int
 )
 
 begin
-	insert into tblArtigo (titulo, assunto, link, idGenero) values ($titulo, $assunto, $link, $idGenero);
+	insert into tblArtigo (titulo, resumo, link, data_Publicacao, idGenero) values ($titulo, $resumo, $link, now(), $idGenero);
 end$$
 delimiter ;
 
-/*
 delimiter $$
 create procedure consulta_Titulo_Artigo (
 in $titulo varchar(255)
 )
 
 begin
-	select titulo from tblArtigo where titulo like $titulo order by titulo;
+	select titulo from tblArtigo where titulo regexp ($titulo) 
+    
+    order by titulo;
 end$$
 delimiter ;
-*/
 
 delimiter $$
 create procedure consulta_Superficial_Artigo ()
 
 begin
-	select idArtigo, titulo, link from tblArtigo 
+	select idArtigo, titulo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') from tblArtigo 
 	
 	order by idArtigo;
 end$$
@@ -316,7 +342,7 @@ in $idArtigo int
 )
 
 begin
-	select titulo, assunto, link, idGenero from tblArtigo where idArtigo = $idArtigo;
+	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', link from tblArtigo where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -334,13 +360,13 @@ delimiter $$
 create procedure alterar_Artigo (
 in $idArtigo int,
 in $titulo varchar(255), 
-in $assunto varchar(4000), 
+in $resumo varchar(3000), 
 in $link varchar(1000), 
 in $idGenero int
 )
 
 begin
-	update tblArtigo set titulo = $titulo, assunto = $assunto, link = $link, idGenero = $idGenero where idArtigo = $idArtigo;
+	update tblArtigo set titulo = $titulo, resumo = $resumo, link = $link, data_Publicacao = now(), idGenero = $idGenero where idArtigo = $idArtigo;
 end$$
 delimiter ;
 
@@ -433,6 +459,18 @@ begin
 end$$
 delimiter ;
 
+-- Esta última procedure exibirá o(s) tipo(s) da denúncia clicada
+
+delimiter $$
+create procedure exibir_Tipo_Denuncia (
+in $idDenuncia int
+)
+
+begin
+	select idTipo_Denuncia from tblColecao_Tipo where idDenuncia = $idDenuncia;
+end$$
+delimiter ;
+
 -- Nas consultas detalhadas, deve-se guardar o [email] da pessoa denunciada para a execução da procedure a seguir:
 
 delimiter $$
@@ -476,6 +514,12 @@ end$$
 delimiter ;
 
 end$$
+
+
+
+
+
+
 
 
 
@@ -601,6 +645,12 @@ delimiter ;
 
 
 
+
+
+
+
+
+
 -- Procedures comunidade web
 
 -- tblForum
@@ -616,18 +666,15 @@ begin
 end$$
 delimiter ;
 
-/*
-call criar_Forum ('#Desabafos','Espaço dedicado ao acolhimento dos problemas da alma'),
-                 ('#Gravidez','Ambiente para sanar dúvidas e questionamentos sobre o período de gravidez')
-*/
-
 -- Menu de fóruns
 
 delimiter $$
 create procedure exibir_Foruns ()
 
 begin
-	select idForum, nome, descricao from tblForum;
+	select idForum, nome, descricao from tblForum
+    
+    order by nome;
 end$$
 delimiter ;
 
@@ -708,26 +755,56 @@ delimiter ;
 
 -- Procedures de denúncia
 
-/*
 delimiter $$
-create procedure abc ()
+create procedure criar_Denuncia (
+in $descricao varchar(2000),
+in $idTipo_Usuario int,
+in $idPostagem int,
+in $idResposta_Postagem int
+)
 
 begin
-	select
+	insert into tblDenuncia (descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem, idResposta_Postagem) values ($descricao, now(), now(), $idTipo_Usuario, $idPostagem, $idResposta_Postagem);
 end$$
 delimiter ;
-*/
+
+-- Precisaremos armazenar o [idDenuncia] da denúncia recém-criada para a próxima procedure
+
+delimiter $$
+create procedure armazena_idDenuncia (
+in $idTipo_Usuario int
+)
+
+begin
+	select idDenuncia from tblDenuncia where idTipo_Usuario = $idTipo_Usuario
+    
+    order by idDenuncia desc limit 1;
+end$$
+delimiter ;
+
+-- Durante o processo de uma denúncia, o usuário preencherá as categorias dessa denúncia. Para cada categoria selecionada, executar a procedure a seguir:
+
+delimiter $$
+create procedure relacionar_Categoria_Denuncia (
+in $idDenuncia int,
+in $idTipo_Denuncia int
+)
+
+begin
+	insert into tblColecao_Tipo (idDenuncia, idTipo_Denuncia) values ($idDenuncia, $idTipo_Denuncia);
+end$$
+delimiter ;
 
 
 -- Procedures de artigo
 
--- A exibição dos artigos estará classificada em 5 tipos:
+-- A exibição dos artigos estará classificada em cinco gêneros:
 
 delimiter $$
 create procedure exibir_Artigo_Menstruacao ()
 
 begin
-	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 1
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 1
     
     order by data_Publicacao desc;
 end$$
@@ -737,7 +814,7 @@ delimiter $$
 create procedure exibir_Artigo_Engravidar ()
 
 begin
-	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 2
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 2
     
     order by data_Publicacao desc;
 end$$
@@ -747,7 +824,7 @@ delimiter $$
 create procedure exibir_Artigo_Gestacao ()
 
 begin
-	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 3
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 3
     
     order by data_Publicacao desc;
 end$$
@@ -757,7 +834,7 @@ delimiter $$
 create procedure exibir_Artigo_Maternidade ()
 
 begin
-	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 4
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 4
     
     order by data_Publicacao desc;
 end$$
@@ -767,34 +844,52 @@ delimiter $$
 create procedure exibir_Artigo_Cuidados_Corpo ()
 
 begin
-	select idArtigo, titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA' from tblArtigo where idGenero = 5
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 5
     
     order by data_Publicacao desc;
 end$$
 delimiter ;
 
--- Consulta de artigo conforme seu título:
+/* Para consultar um artigo conforme seu título, invocar a procedure já existente:
+
+procedure consulta_Titulo_Artigo (
+in $idArtigo int
+) 
+
+begin
+	select titulo from tblArtigo where titulo regexp ($titulo) 
+    
+    order by titulo;
+end$$
+*/
+
+/* Para consultar detalhadamente o artigo selecionado pelo usuário, invocar a procedure já existente:
+
+procedure consulta_Detalhada_Artigo (
+in $idArtigo int
+) 
+
+begin
+	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', link from tblArtigo where idArtigo = $idArtigo;
+end$$
+*/
+
+
+
+
+
+
+
+
+
+-- Procedures mobile
 
 /*
 delimiter $$
-create procedure exibir_Artigo_Pesquisado (
-in $idArtigo int
-)
+create procedure abc ()
 
 begin
 	
 end$$
-delimiter ;
+delimiter ; 
 */
-
--- Consulta detalhada do artigo selecionado pelo usuário
-
-delimiter $$
-create procedure exibir_Artigo_Selecionado (
-in $idArtigo int
-)
-
-begin
-	select titulo, assunto, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação na plataforma ONNA', link from tblArtigo where idArtigo = $idArtigo;
-end$$
-delimiter ;
