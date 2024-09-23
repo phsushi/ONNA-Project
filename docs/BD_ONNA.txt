@@ -680,11 +680,11 @@ delimiter ;
 
 delimiter $$
 create procedure armazena_idForum (
-in $idTipo_Usuario int
+in $nome varchar(80)
 )
 
 begin
-	select idForum from tblForum where idTipo_Usuario = $idTipo_Usuario;
+	select idForum from tblForum where nome = $nome;
 end$$
 delimiter ;
 
