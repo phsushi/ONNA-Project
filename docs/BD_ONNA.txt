@@ -246,23 +246,23 @@ constraint fkGenero_tblArtigo foreign key (idGenero) references tblGenero (idGen
 
 -- Dados pré-cadastrados em nosso banco:
 
-insert into tblGenero (genero) values
-('Menstruação'), 
-('Engravidar'), 
-('Gestação'), 
-('Materidade'), 
-('Cuidados com o corpo')
+insert into tblGenero (idGenero, genero) values
+(1, 'Menstruação'), 
+(2, 'Engravidar'), 
+(3, 'Gestação'), 
+(4, 'Materidade'), 
+(5, 'Cuidados com o corpo');
 
-insert into tblTipo (tipo) values
-('Abuso verbal'), -- Lingujar ofensivo, ameaças
-('Discurso de ódio'), -- Racismo, sexismo, homofobia etc. 
-('Nome ofensivo ou inadequado'), -- Nome de usuário indevido 
-('Postagem inadequada') -- Assuntos não relevantes à proposta da plataforma ONNA, como propaganda política, conteúdo explícito etc. 
+insert into tblTipo_Denuncia (idTipo_Denuncia, tipo) values
+(1, 'Abuso verbal'), -- Lingujar ofensivo, ameaças
+(2, 'Discurso de ódio'), -- Racismo, sexismo, homofobia etc. 
+(3, 'Nome ofensivo ou inadequado'), -- Nome de usuário indevido 
+(4, 'Postagem inadequada'); -- Assuntos não relevantes à proposta da plataforma ONNA, como propaganda política, conteúdo explícito etc. 
 
 insert into tblForum (nome, descricao) values
 ('#Desabafos', 'Espaço dedicado ao acolhimento dos problemas da alma'),
 ('#Gravidez', 'Ambiente para sanar dúvidas e questionamentos sobre o período de gravidez'),
-('#Maternidade', 'Discussões sobre os devidos cuidados com nenês e seu desenvolvimento saudável')
+('#Maternidade', 'Discussões sobre os devidos cuidados com nenês e seu desenvolvimento saudável');
 
 
 
@@ -305,11 +305,12 @@ create procedure criar_Artigo (
 in $titulo varchar(255), 
 in $resumo varchar(3000), 
 in $fonte varchar(1000),
+in $idAdmin int,
 in $idGenero int
 )
 
 begin
-	insert into tblArtigo (titulo, resumo, fonte, data_Publicacao, idGenero) values ($titulo, $resumo, $fonte, now(), $idGenero);
+	insert into tblArtigo (titulo, resumo, fonte, data_Publicacao, idAdmin, idGenero) values ($titulo, $resumo, $fonte, now(), $idAdmin, $idGenero);
 end$$
 delimiter ;
 
@@ -576,6 +577,18 @@ in $idTipo_Usuario int
 
 begin
 	insert into tblPerfil_Profissional (crm, crp, uf, area_Formacao, idTipo_Usuario) values ($crm, $crp, $uf, $area_Formacao, $idTipo_Usuario);
+end$$
+delimiter ;
+
+-- Para finalizar o cadastro em nossa plataforma, deve-se preencher a [tblContato] com os dados do novo usuário
+
+delimiter $$
+create procedure cadastro_Contato (
+in $idTipo_Usuario int
+)
+
+begin
+	insert into tblContato (idContato) values ($idTipo_Usuario);
 end$$
 delimiter ;
 
@@ -883,12 +896,22 @@ end$$
 
 -- Procedures mobile
 
-/*
+-- Procedures de chat privado
+
 delimiter $$
-create procedure abc ()
+create procedure exibir_Lista_Contatos (
+in $idTipo_Usuario int
+)
 
 begin
-	
+	select a.idContato,
+		   b.avatar, b.nome,
+		   SUBSTRING(c.mensagem, 1, 50) as 'Última mensagem do contato' from tblColecao_Contato a
+           
+           inner join tblContato d on a.idContato = d.idContato
+           inner join tblTipo_Usuario b on d.idTipo_Usuario = b.idTipo_Usuario
+           inner join tblConversa_Privada c on d.idContato = c.idContato where a.idTipo_Usuario = $
+           
+           order by c.mensagem desc;
 end$$
 delimiter ; 
-*/
