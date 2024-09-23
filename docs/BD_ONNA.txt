@@ -600,7 +600,7 @@ in $email varchar(120)
 )
 
 begin
-	select email, senha from tblTipo_Usuario where email = $email and status_Ban = 0;
+	select email from tblTipo_Usuario where email = $email and status_Ban = 0;
 end$$
 delimiter ;
 
@@ -675,6 +675,16 @@ in $descricao varchar(500)
 
 begin
 	insert into tblForum (nome, descricao) values ($nome, $descricao);
+end$$
+delimiter ;
+
+delimiter $$
+create procedure armazena_idForum (
+in $idTipo_Usuario int
+)
+
+begin
+	select idForum from tblForum where idTipo_Usuario = $idTipo_Usuario;
 end$$
 delimiter ;
 
