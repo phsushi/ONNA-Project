@@ -678,30 +678,6 @@ begin
 end$$
 delimiter ;
 
--- Menu de fóruns
-
-delimiter $$
-create procedure exibir_Foruns ()
-
-begin
-	select idForum, nome, descricao from tblForum
-    
-    order by nome;
-end$$
-delimiter ;
-
--- Exibir dados do fórum que o usuário optou por participar
-
-delimiter $$
-create procedure exibir_Forum_Escolhido (
-in $idForum int
-)
-
-begin
-	select nome, descricao from tblForum where idForum = $idForum;
-end$$
-delimiter ;
-
 
 -- tblPostagem
 
