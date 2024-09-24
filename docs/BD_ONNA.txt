@@ -109,7 +109,7 @@ constraint fkTipo_Usuario_tblPerfil_Profissional foreign key (idTipo_Usuario) re
 
 create table tblDisponibilidade(
 idDisponibilidade int primary key auto_increment,
-data_Disponibilidade date,
+data_Disponibilidade date not null,
 hora_Inicial time not null, -- Início do intervalo de disponibilidade para chat
 hora_Final time not null, -- Fim do intervalo de disponibilidade para chat,
 
