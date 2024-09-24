@@ -191,7 +191,7 @@ constraint fkTipo_Denuncia_tblColecao_Tipo foreign key (idTipo_Denuncia) referen
 );
 
 
--- Funcionalidade Desktop
+-- Funcionalidades Desktop
 
 create table tblAdmin(
 idAdmin int primary key auto_increment,
@@ -225,14 +225,15 @@ insert into tblGenero (idGenero, genero) values
 (1, 'Menstruação'), 
 (2, 'Engravidar'), 
 (3, 'Gestação'), 
-(4, 'Materidade'), 
+(4, 'Maternidade'), 
 (5, 'Cuidados com o corpo');
 
 insert into tblTipo_Denuncia (idTipo_Denuncia, tipo) values
 (1, 'Abuso verbal'), -- Lingujar ofensivo, ameaças
 (2, 'Discurso de ódio'), -- Racismo, sexismo, homofobia etc. 
 (3, 'Nome ofensivo ou inadequado'), -- Nome de usuário indevido 
-(4, 'Postagem inadequada'); -- Assuntos não relevantes à proposta da plataforma ONNA, como propaganda política, conteúdo explícito etc. 
+(4, 'Postagem inadequada'), -- Assuntos não relevantes à proposta da plataforma ONNA, como propaganda política, conteúdo explícito etc. 
+(5, 'Spam de mensagens'); -- Excesso de postagens irrelevantes na plataforma ONNA
 
 insert into tblForum (nome, descricao) values
 ('#Desabafos', 'Espaço dedicado ao acolhimento dos problemas da alma'),
@@ -497,8 +498,6 @@ begin
 	update tblDenuncia set status_Check = 1 where idDenuncia = $idDenuncia;
 end$$
 delimiter ;
-
-
 
 
 
@@ -955,7 +954,6 @@ begin
 end$$
 delimiter ; 
 
-
 -- As próximas duas procedures devem ser executadas em sequência caso o usuário deseja remover um contato
 
 -- Excluir um contato da própria lista de contatos
@@ -1079,7 +1077,6 @@ delimiter ;
 
 
 
-
 -- Mobile da usuária comum
 
 -- Função de assistência voluntária
@@ -1135,7 +1132,7 @@ in $idUsuario int
 )
 
 begin
-	select idNotificacao, titulo, mensagem, data_Notificacao, hora from tblNotificacao where idUsuario = $idUsuario
+	select idNotificacao, titulo, mensagem, date_format(str_to_date(data_Notificacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da notificação', hora from tblNotificacao where idUsuario = $idUsuario
     
     order by data_Notificacao, hora;
 end$$
@@ -1220,7 +1217,7 @@ in $idUsuario int
 )
 
 begin
-	select media_Humor, data_Relatorio from tblRelatorio_Humor where idUsuario = $idUsuario
+	select media_Humor, date_format(str_to_date(data_Relatorio, '%Y-%m-%d'), '%d/%m/%Y') as 'Data do relatório' from tblRelatorio_Humor where idUsuario = $idUsuario
     
     order by data_Relatorio desc;
 end$$
