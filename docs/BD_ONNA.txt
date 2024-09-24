@@ -582,7 +582,7 @@ in $idTipo_Usuario int
 )
 
 begin
-	insert into tblContato (idContato) values ($idTipo_Usuario);
+	insert into tblContato (idTipo_Usuario) values ($idTipo_Usuario);
 end$$
 delimiter ;
 
@@ -594,7 +594,7 @@ in $email varchar(120)
 )
 
 begin
-	select email from tblTipo_Usuario where email = $email and status_Ban = 0;
+	select email, senha from tblTipo_Usuario where email = $email and status_Ban = 0;
 end$$
 delimiter ;
 
