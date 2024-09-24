@@ -141,7 +141,7 @@ subtitulo varchar(4000),
 imagem longtext,
 data_Postagem date not null, -- now()
 hora time not null, -- now()
-reacoes default 0,
+reacoes int default 0,
 
 idTipo_Usuario int not null,
 constraint fkTipo_Usuario_tblPostagem foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
@@ -156,7 +156,7 @@ status_Ban tinyint default 0,
 mensagem varchar(4000) not null,
 data_Resposta date not null, -- now()
 hora time not null, -- now()
-reacoes default 0,
+reacoes int default 0,
 
 idTipo_Usuario int not null,
 constraint fkTipo_Usuario_tblResposta_Postagem foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
