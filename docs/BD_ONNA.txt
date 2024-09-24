@@ -64,20 +64,12 @@ idTipo_Usuario int unique not null,
 constraint fkTipo_Usuario_tblPerfil_Pessoal foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
 );
 
-create table tblAjuda(
-idAjuda int primary key auto_increment,
-titulo varchar(100) not null,
-mensagem varchar(2000) not null,
-data_Ajuda date not null,
-hora time not null,
-
-idUsuario int not null,
-constraint fkPerfil_Pessoal_tblAjuda foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
-);
-
 create table tblNotificacao(
 idNotificacao int primary key auto_increment,
-mensagem varchar(500) not null,
+titulo varchar(50) not null,
+mensagem varchar(255),
+data_Notificacao date,
+hora time,
 
 idUsuario int not null,
 constraint fkPerfil_Pessoal_tblNotificacao foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
@@ -123,21 +115,13 @@ idTipo_Usuario int unique not null,
 constraint fkTipo_Usuario_tblPerfil_Profissional foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
 );
 
-create table tblDia_Semana(
-idDia_Semana int primary key auto_increment,
-dia_Semana date not null -- Dia da semana que se repetirá periodicamente ao longo do calendário
-);
-
 create table tblDisponibilidade(
 idDisponibilidade int primary key auto_increment,
 hora_Inicial time not null, -- Início do intervalo de disponibilidade para chat
 hora_Final time not null, -- Fim do intervalo de disponibilidade para chat,
 
-idProfissional int not null,
-constraint fkPerfil_Profissional_tblDisponibilidade foreign key (idProfissional) references tblPerfil_Profissional (idProfissional),
-
-idDia_Semana int not null,
-constraint fkDia_Semana_tblDisponibilidade foreign key (idDia_Semana) references tblDia_Semana (idDia_Semana)
+idProfissional int not null unique,
+constraint fkPerfil_Profissional_tblDisponibilidade foreign key (idProfissional) references tblPerfil_Profissional (idProfissional)
 );
 
 
@@ -157,8 +141,8 @@ subtitulo varchar(4000),
 imagem longtext,
 data_Postagem date not null, -- now()
 hora time not null, -- now()
-gostei int,
-desgostei int,
+gostei int default 0,
+desgostei int default 0,
 
 idTipo_Usuario int not null,
 constraint fkTipo_Usuario_tblPostagem foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
@@ -173,8 +157,8 @@ status_Ban tinyint default 0,
 mensagem varchar(4000) not null,
 data_Resposta date not null, -- now()
 hora time not null, -- now()
-gostei int,
-desgostei int,
+gostei int default 0,
+desgostei int default 0,
 
 idTipo_Usuario int not null,
 constraint fkTipo_Usuario_tblResposta_Postagem foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
@@ -443,6 +427,16 @@ end$$
 delimiter ;
 
 delimiter $$
+create procedure imagem_Postagem (
+in $idPostagem int
+)
+
+begin
+	select imagem from tblPostagem where idPostagem = $idPostagem;
+end$$
+delimiter ;
+
+delimiter $$
 create procedure consulta_Detalhada_Denuncia_Resposta (
 in $idDenuncia int
 )
@@ -513,7 +507,7 @@ begin
 end$$
 delimiter ;
 
-end$$
+
 
 
 
@@ -720,6 +714,64 @@ begin
 end$$
 delimiter ;
 
+delimiter $$
+create procedure consulta_Titulo_Postagem (
+in $titulo int,
+in $idForum int
+)
+
+begin
+	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem',
+	       b.avatar, b.nome from tblPostagem a
+           
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where titulo regexp ($titulo) and idForum = $idForum and a.status_Ban = 0 
+	
+	order by titulo;
+end$$
+delimiter ;
+
+-- Upvote e downvote
+
+delimiter $$
+create procedure gostei_Postagem (
+in $idPostagem int
+)
+
+begin
+	update tblPostagem set gostei = gostei + 1 where idPostagem = $idPostagem;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure retirar_Gostei_Postagem (
+in $idPostagem int
+)
+
+begin
+	update tblPostagem set gostei = gostei - 1 where idPostagem = $idPostagem;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure desgostei_Postagem (
+in $idPostagem int
+)
+
+begin
+	update tblPostagem set desgostei = desgostei + 1 where idPostagem = $idPostagem;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure retirar_Desgostei_Postagem (
+in $idPostagem int
+)
+
+begin
+	update tblPostagem set desgostei = desgostei - 1 where idPostagem = $idPostagem;
+end$$
+delimiter ;
+
 
 -- tblResposta_Postagem
 
@@ -747,6 +799,48 @@ begin
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idPostagem = $idPostagem and a.status_Ban = 0 
 	
 	order by data_Resposta, hora;
+end$$
+delimiter ;
+
+-- Upvote e downvote
+
+delimiter $$
+create procedure gostei_Resposta (
+in $idResposta_Postagem int
+)
+
+begin
+	update tblResposta_Postagem set gostei = gostei + 1 where idResposta_Postagem = $idResposta_Postagem;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure retirar_Gostei_Resposta (
+in $idResposta_Postagem int
+)
+
+begin
+	update tblResposta_Postagem set gostei = gostei - 1 where idResposta_Postagem = $idResposta_Postagem;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure desgostei_Postagem (
+in $idResposta_Postagem int
+)
+
+begin
+	update tblResposta_Postagem set desgostei = desgostei + 1 where idResposta_Postagem = $idResposta_Postagem;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure retirar_Desgostei_Resposta (
+in $idResposta_Postagem int
+)
+
+begin
+	update tblResposta_Postagem set desgostei = desgostei - 1 where idResposta_Postagem = $idResposta_Postagem;
 end$$
 delimiter ;
 
@@ -880,9 +974,25 @@ end$$
 
 
 
--- Procedures mobile
-
 -- Procedures de chat privado
+
+-- tblColecao_Contato
+
+-- Quando ocorrer o encontro entre a usuária comum e o profissional, a tabela [tblColecao_Contato] deverá ser preenchida
+
+delimiter $$
+create procedure salvar_Contato (
+in $idTipo_Usuario int,
+in $idContato int
+)
+
+begin
+	insert into tblColecao_Contato (idTipo_Usuario, idContato) values ($idTipo_Usuario, $idContato);
+end$$
+delimiter ; 
+
+
+-- tblContato
 
 delimiter $$
 create procedure exibir_Lista_Contatos (
@@ -892,12 +1002,193 @@ in $idTipo_Usuario int
 begin
 	select a.idContato,
 		   b.avatar, b.nome,
-		   SUBSTRING(c.mensagem, 1, 50) as 'Última mensagem do contato' from tblColecao_Contato a
+		   SUBSTRING(c.mensagem, 1, 50) as 'Última mensagem do contato', date_format(str_to_date(c.data_Mensagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data dessa mensagem' from tblColecao_Contato a
            
            inner join tblContato d on a.idContato = d.idContato
            inner join tblTipo_Usuario b on d.idTipo_Usuario = b.idTipo_Usuario
-           inner join tblConversa_Privada c on d.idContato = c.idContato where a.idTipo_Usuario = $
+           inner join tblConversa_Privada c on d.idContato = c.idContato where a.idTipo_Usuario = $idTipo_Usuario
            
-           order by c.mensagem desc;
+           order by c.data_Mensagem, c.hora desc;
 end$$
 delimiter ; 
+
+
+-- tblConversa_Privada
+
+delimiter $$
+create procedure enviar_Mensagem (
+in $mensagem varchar(4000),
+in $idTipo_Usuario int,
+in $idContato int
+)
+
+begin
+	insert into tblConversa_Privada (mensagem, data_Mensagem, hora, idTipo_Usuario, idContato) values ($mensagem, now(), now(), $idTipo_Usuario, $idContato);
+end$$
+delimiter ; 
+
+delimiter $$
+create procedure exibir_Mensagens (
+in $idTipo_Usuario int,
+in $idContato int
+)
+
+begin
+	select mensagem, hora from tblConversa_Privada where idTipo_Usuario = $idTipo_Usuario and idContato = $idContato
+    union all
+    select mensagem, hora from tblConversa_Privada where idTipo_Usuario = $idContato and idContato = $idTipo_Usuario
+    
+    order by data_Mensagem, hora desc;
+end$$
+delimiter ; 
+
+
+
+
+
+
+
+
+
+-- Mobile do profissional
+
+delimiter $$
+create procedure criar_Disponibilidade (
+in $idProfissional int,
+in $hora_Inicial time,
+in $hora_Final time
+)
+
+begin
+	insert into tblDisponibilidade (idProfissional, hora_Inicial, hora_Final) values ($idProfissional, $hora_Inicial, $hora_Final);
+end$$
+delimiter ; 
+
+delimiter $$
+create procedure excluir_Disponibilidade (
+in $idProfissional int
+)
+
+begin
+	delete from tblDisponibilidade where idProfissional = $idProfissional;
+end$$
+delimiter ; 
+
+
+
+
+
+
+
+
+
+
+-- Mobile da usuária comum
+
+-- Função de assistência voluntária
+
+delimiter $$
+create procedure procurar_Profissional_Medico (
+in $hora_Atual time
+)
+
+begin
+	select a.idProfissional from tblPerfil_Profissional a
+    
+    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crm != null and $hora_Atual >= hora_Inicial and $hora_Atual < hora_Final 
+    
+    order by rand() limit 1;
+end$$
+delimiter ; 
+
+delimiter $$
+create procedure procurar_Profissional_Psicologo (
+in $hora_Atual time
+)
+
+begin
+	select a.idProfissional from tblPerfil_Profissional a
+    
+    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional
+    inner join tblDia_Semana c on b.idDia_Semana = c.idDia_Semana where a.crp != null and $hora_Atual >= hora_Inicial and $hora_Atual < hora_Final 
+    
+    order by rand() limit 1;
+end$$
+delimiter ; 
+
+
+-- Funções das notificações
+
+delimiter $$
+create procedure criar_Notificacao (
+in $titulo varchar(50),
+in $mensagem varchar(255),
+in $data_Notificacao date,
+in $hora time,
+in $idUsuario int
+)
+
+begin
+	insert into tblNotificacao (titulo, mensagem, data_Notificacao, hora, idUsuario) values ($titulo, $mensagem, $data_Notificacao, $hora, $idUsuario);
+end$$
+delimiter ; 
+
+delimiter $$
+create procedure exibir_Lista_Notificacoes (
+in $idUsuario int
+)
+
+begin
+	select idNotificacao, titulo, mensagem, data_Notificacao, hora from tblNotificacao where idUsuario = $idUsuario;
+    
+    order by data_Notificacao, hora;
+end$$
+delimiter ; 
+
+delimiter $$
+create procedure excluir_Notificacao (
+in $idNotificacao int
+)
+
+begin
+	delete from tblNotificacao where idNotificacao = $idNotificacao;
+end$$
+delimiter ; 
+
+delimiter $$
+create procedure alertar_Notificacao (
+in $data_Atual date,
+in $hora_Atual time,
+in $idUsuario int
+)
+
+begin
+	select titulo, mensagem from tblNotificacao where $data_Atual = now() and $hora_Atual = now() and idUsuario = $idUsuario;
+end$$
+delimiter ; 
+
+
+-- Funções do calendário menstrual
+
+/*
+delimiter $$
+create procedure abc ()
+
+begin
+	select 
+end$$
+delimiter ; 
+*/
+
+
+-- Funções do relatório de humor
+
+/*
+delimiter $$
+create procedure abc ()
+
+begin
+	select 
+end$$
+delimiter ; 
+*/
