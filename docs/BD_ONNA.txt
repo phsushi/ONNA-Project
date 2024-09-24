@@ -976,18 +976,60 @@ end$$
 
 -- Procedures de chat privado
 
--- tblColecao_Contato
+-- As próximas duas procedures devem ser executadas em sequência caso a usuária deseja conversar com um profissioanal
 
--- Quando ocorrer o encontro entre a usuária comum e o profissional, a tabela [tblColecao_Contato] deverá ser preenchida
+-- Salvar o contato do profissional na própria agenda
 
 delimiter $$
-create procedure salvar_Contato (
+create procedure salvar_Contato_1 (
 in $idTipo_Usuario int,
 in $idContato int
 )
 
 begin
 	insert into tblColecao_Contato (idTipo_Usuario, idContato) values ($idTipo_Usuario, $idContato);
+end$$
+delimiter ; 
+
+-- Salvar o próprio contato na agenda do profissional contatado
+
+delimiter $$
+create procedure salvar_Contato_2 (
+in $idTipo_Usuario int,
+in $idContato int
+)
+
+begin
+	insert into tblColecao_Contato (idTipo_Usuario, idContato) values ($idContato, $idTipo_Usuario);
+end$$
+delimiter ; 
+
+
+-- As próximas duas procedures devem ser executadas em sequência caso o usuário deseja remover um contato
+
+-- Excluir um contato da própria lista de contatos
+
+delimiter $$
+create procedure excluir_Contato_1 (
+in $idTipo_Usuario int,
+in $idContato int
+)
+
+begin
+	delete from tblColecao_Contato where idTipo_Usuario = $idTipo_Usuario and idContato = $idContato;
+end$$
+delimiter ; 
+
+-- Excluir o próprio contato da lista do contato excluido
+
+delimiter $$
+create procedure excluir_Contato_2 (
+in $idTipo_Usuario int,
+in $idContato int
+)
+
+begin
+	delete from tblColecao_Contato where idTipo_Usuario = $idContato and idContato = $idTipo_Usuario;
 end$$
 delimiter ; 
 
