@@ -825,7 +825,7 @@ end$$
 delimiter ;
 
 delimiter $$
-create procedure desgostei_Postagem (
+create procedure desgostei_Resposta (
 in $idResposta_Postagem int
 )
 
@@ -1139,7 +1139,7 @@ in $idUsuario int
 )
 
 begin
-	select idNotificacao, titulo, mensagem, data_Notificacao, hora from tblNotificacao where idUsuario = $idUsuario;
+	select idNotificacao, titulo, mensagem, data_Notificacao, hora from tblNotificacao where idUsuario = $idUsuario
     
     order by data_Notificacao, hora;
 end$$
