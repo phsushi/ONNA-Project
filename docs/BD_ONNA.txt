@@ -1088,7 +1088,7 @@ delimiter ;
 -- Função de assistência voluntária
 
 delimiter $$
-create procedure procurar_Profissional_Medico (
+create procedure procurar_Profissional_Fisiologico (
 in $hora_Atual time
 )
 
@@ -1102,7 +1102,7 @@ end$$
 delimiter ; 
 
 delimiter $$
-create procedure procurar_Profissional_Psicologo (
+create procedure procurar_Profissional_Psicologico (
 in $hora_Atual time
 )
 
