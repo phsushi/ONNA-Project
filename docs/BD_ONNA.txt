@@ -716,7 +716,7 @@ delimiter ;
 
 delimiter $$
 create procedure consulta_Titulo_Postagem (
-in $titulo int,
+in $titulo varchar(300),
 in $idForum int
 )
 
