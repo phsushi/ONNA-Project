@@ -1001,10 +1001,12 @@ in $idTipo_Usuario int
 
 begin
 	select a.idContato,
-	       b.avatar, b.nome from tblColecao_Contato a
+	       b.avatar, b.nome,
+		   c.area_Formacao from tblColecao_Contato a
 
            inner join tblContato d on a.idContato = d.idContato
-           inner join tblTipo_Usuario b on d.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = $idTipo_Usuario
+           inner join tblTipo_Usuario b on d.idTipo_Usuario = b.idTipo_Usuario 
+           left join tblPerfil_Profissional c on b.idTipo_Usuario = c.idTipo_Usuario where a.idTipo_Usuario = $idTipo_Usuario
            
            order by b.nome;
 end$$
