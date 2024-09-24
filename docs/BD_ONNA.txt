@@ -78,15 +78,10 @@ constraint fkPerfil_Pessoal_tblNotificacao foreign key (idUsuario) references tb
 create table tblCalendario_Personalizado(
 idCalendario int primary key auto_increment,
 dia_Marcado date not null,
-periodo int not null,
+periodo int default 7 not null,
 
-idUsuario int not null,
+idUsuario int unique not null,
 constraint fkPerfil_Pessoal_tblCalendario_Personalizado foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
-);
-
-create table tblHumor(
-idHumor int primary key auto_increment,
-humor int not null
 );
 
 create table tblRelatorio_Humor(
@@ -95,10 +90,7 @@ media_Humor decimal not null,
 data_Relatorio date not null, -- now()
 
 idUsuario int not null,
-constraint fkPerfil_Pessoal_tblRelatorio_Humor foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario),
-
-idHumor int not null,
-constraint fkHumor_tblRelatorio_Humor foreign key (idHumor) references tblHumor (idHumor)
+constraint fkPerfil_Pessoal_tblRelatorio_Humor foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
 );
 
 
@@ -117,10 +109,11 @@ constraint fkTipo_Usuario_tblPerfil_Profissional foreign key (idTipo_Usuario) re
 
 create table tblDisponibilidade(
 idDisponibilidade int primary key auto_increment,
+data_Disponibilidade date,
 hora_Inicial time not null, -- Início do intervalo de disponibilidade para chat
 hora_Final time not null, -- Fim do intervalo de disponibilidade para chat,
 
-idProfissional int not null unique,
+idProfissional int unique not null,
 constraint fkPerfil_Profissional_tblDisponibilidade foreign key (idProfissional) references tblPerfil_Profissional (idProfissional)
 );
 
@@ -1055,22 +1048,26 @@ delimiter ;
 delimiter $$
 create procedure criar_Disponibilidade (
 in $idProfissional int,
+in $data_Disponibilidade date,
 in $hora_Inicial time,
 in $hora_Final time
 )
 
 begin
-	insert into tblDisponibilidade (idProfissional, hora_Inicial, hora_Final) values ($idProfissional, $hora_Inicial, $hora_Final);
+	insert into tblDisponibilidade (idProfissional, data_Disponibilidade, hora_Inicial, hora_Final) values ($idProfissional, $data_Disponibilidade, $hora_Inicial, $hora_Final);
 end$$
 delimiter ; 
 
 delimiter $$
-create procedure excluir_Disponibilidade (
-in $idProfissional int
+create procedure alterar_Disponibilidade (
+in $idProfissional int,
+in $data_Disponibilidade date,
+in $hora_Inicial time,
+in $hora_Final time
 )
 
 begin
-	delete from tblDisponibilidade where idProfissional = $idProfissional;
+	update tblDisponibilidade set data_Disponibilidade = $data_Disponibilidade, hora_Inicial = $hora_Inicial, hora_Final = $hora_Final where idProfissional = $idProfissional;
 end$$
 delimiter ; 
 
@@ -1109,8 +1106,7 @@ in $hora_Atual time
 begin
 	select a.idProfissional from tblPerfil_Profissional a
     
-    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional
-    inner join tblDia_Semana c on b.idDia_Semana = c.idDia_Semana where a.crp != null and $hora_Atual >= hora_Inicial and $hora_Atual < hora_Final 
+    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crp != null and $hora_Atual >= hora_Inicial and $hora_Atual < hora_Final 
     
     order by rand() limit 1;
 end$$
@@ -1170,25 +1166,62 @@ delimiter ;
 
 -- Funções do calendário menstrual
 
-/*
 delimiter $$
-create procedure abc ()
+create procedure cadastrar_Calendario (
+in $dia_Marcado date,
+in $idUsuario int
+)
 
 begin
-	select 
+	insert into tblCalendario_Personalizado (dia_Marcado, idUsuario) values ($dia_Marcado, $idUsuario);
 end$$
 delimiter ; 
-*/
+
+delimiter $$
+create procedure alterar_Calendario (
+in $dia_Marcado date,
+in $periodo int, 
+in $idUsuario int
+)
+
+begin
+	update tblCalendario_Personalizado set dia_Marcado = $dia_Marcado, periodo = $periodo where idUsuario = $idUsuario;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure definir_Intervalo_Calendario (
+in $dia_Marcado date,
+in $periodo int
+)
+
+begin
+	select $dia_marcado as 'Data de início do período fértil', date_add($dia_Marcado, interval $periodo day) as 'Data do término do período fértil';
+end$$
+delimiter ;
 
 
 -- Funções do relatório de humor
 
-/*
 delimiter $$
-create procedure abc ()
+create procedure criar_Relatorio_Humor (
+in $idUsuario int,
+in $media_Humor decimal
+)
 
 begin
-	select 
+	insert into tblRelatorio_Humor (media_Humor, data_Relatorio, idUsuario) values ($media_Humor, now(), $idUsuario);
 end$$
 delimiter ; 
-*/
+
+delimiter $$
+create procedure exibir_Relatorios (
+in $idUsuario int
+)
+
+begin
+	select media_Humor, data_Relatorio from tblRelatorio_Humor where idUsuario = $idUsuario
+    
+    order by data_Relatorio desc;
+end$$
+delimiter ; 
