@@ -1001,14 +1001,12 @@ in $idTipo_Usuario int
 
 begin
 	select a.idContato,
-		   b.avatar, b.nome,
-		   SUBSTRING(c.mensagem, 1, 50) as 'Última mensagem do contato', date_format(str_to_date(c.data_Mensagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data dessa mensagem' from tblColecao_Contato a
-           
+	       b.avatar, b.nome,
+
            inner join tblContato d on a.idContato = d.idContato
-           inner join tblTipo_Usuario b on d.idTipo_Usuario = b.idTipo_Usuario
-           inner join tblConversa_Privada c on d.idContato = c.idContato where a.idTipo_Usuario = $idTipo_Usuario
+           inner join tblTipo_Usuario b on d.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = $idTipo_Usuario
            
-           order by c.data_Mensagem, c.hora desc;
+           order by b.nome;
 end$$
 delimiter ; 
 
