@@ -68,8 +68,8 @@ create table tblNotificacao(
 idNotificacao int primary key auto_increment,
 titulo varchar(50) not null,
 mensagem varchar(255),
-data_Notificacao date,
-hora time,
+data_Notificacao date not null,
+hora time not null,
 
 idUsuario int not null,
 constraint fkPerfil_Pessoal_tblNotificacao foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
@@ -1193,7 +1193,7 @@ in $periodo int
 )
 
 begin
-	select $dia_marcado as 'Data de início do fluxo menstrual', date_add($dia_Marcado, interval $periodo day) as 'Data do término do fluxo menstrual';
+	select $dia_marcado as 'Data de início do fluxo menstrual', date_add($dia_Marcado, interval $periodo day) as 'Data de término do fluxo menstrual';
 end$$
 delimiter ;
 
