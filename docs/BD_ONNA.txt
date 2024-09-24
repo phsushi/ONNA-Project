@@ -154,7 +154,7 @@ idPostagem int primary key auto_increment,
 status_Ban tinyint default 0,
 titulo varchar(300) not null,
 subtitulo varchar(4000),
-imagem varbinary(45000),
+imagem longtext,
 data_Postagem date not null, -- now()
 hora time not null, -- now()
 gostei int,
@@ -695,7 +695,7 @@ delimiter $$
 create procedure criar_Postagem (
 in $titulo varchar(300),
 in $subtitulo varchar(4000),
-in $imagem varbinary(45000),
+in $imagem longtext,
 in $idTipo_Usuario int,
 in $idForum int
 )
