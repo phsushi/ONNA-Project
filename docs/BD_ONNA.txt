@@ -1082,28 +1082,24 @@ delimiter ;
 -- Função de assistência voluntária
 
 delimiter $$
-create procedure procurar_Profissional_Fisiologico (
-in $hora_Atual time
-)
+create procedure procurar_Profissional_Fisiologico ()
 
 begin
 	select a.idProfissional from tblPerfil_Profissional a
     
-    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crm != null and $hora_Atual >= hora_Inicial and $hora_Atual < hora_Final 
+    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crm != null and now() >= hora_Inicial and now() < hora_Final 
     
     order by rand() limit 1;
 end$$
 delimiter ; 
 
 delimiter $$
-create procedure procurar_Profissional_Psicologico (
-in $hora_Atual time
-)
+create procedure procurar_Profissional_Psicologico ()
 
 begin
 	select a.idProfissional from tblPerfil_Profissional a
     
-    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crp != null and $hora_Atual >= hora_Inicial and $hora_Atual < hora_Final 
+    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crp != null and now() >= hora_Inicial and now() < hora_Final 
     
     order by rand() limit 1;
 end$$
@@ -1150,13 +1146,11 @@ delimiter ;
 
 delimiter $$
 create procedure alertar_Notificacao (
-in $data_Atual date,
-in $hora_Atual time,
 in $idUsuario int
 )
 
 begin
-	select titulo, mensagem from tblNotificacao where $data_Atual = data_Notificacao and $hora_Atual = hora and $idUsuario = idUsuario;
+	select titulo, mensagem from tblNotificacao where data_Notificacao = now() and hora = now() and $idUsuario = idUsuario;
 end$$
 delimiter ; 
 
