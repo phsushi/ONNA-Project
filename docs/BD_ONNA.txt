@@ -695,7 +695,7 @@ in $idForum int
 )
 
 begin
-	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem', a.reacoes,
+	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
 	       b.avatar, b.nome from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = $idForum and a.status_Ban = 0 
@@ -711,7 +711,7 @@ in $idForum int
 )
 
 begin
-	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', a.hora as 'Hora da postagem', a.reacoes,
+	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
 	       b.avatar, b.nome from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where titulo regexp ($titulo) and idForum = $idForum and a.status_Ban = 0 
@@ -763,7 +763,7 @@ in $idPostagem int
 )
 
 begin
-	select a.idResposta_Postagem, a.mensagem, date_format(str_to_date(a.data_Resposta, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da resposta', a.hora as 'Hora da resposta', a.reacoes,
+	select a.idResposta_Postagem, a.mensagem, date_format(str_to_date(a.data_Resposta, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da resposta', date_format(a.hora, '%H:%i') as 'Hora da resposta', a.reacoes,
 	       b.avatar, b.nome from tblResposta_Postagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idPostagem = $idPostagem and a.status_Ban = 0 
@@ -1025,9 +1025,9 @@ in $idContato int
 )
 
 begin
-	select mensagem, hora from tblConversa_Privada where idTipo_Usuario = $idTipo_Usuario and idContato = $idContato
+	select mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = $idTipo_Usuario and idContato = $idContato
     union all
-    select mensagem, hora from tblConversa_Privada where idTipo_Usuario = $idContato and idContato = $idTipo_Usuario
+    select mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = $idContato and idContato = $idTipo_Usuario
     
     order by data_Mensagem, hora desc;
 end$$
@@ -1128,7 +1128,7 @@ in $idUsuario int
 )
 
 begin
-	select idNotificacao, titulo, mensagem, date_format(str_to_date(data_Notificacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da notificação', hora from tblNotificacao where idUsuario = $idUsuario
+	select idNotificacao, titulo, mensagem, date_format(str_to_date(data_Notificacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da notificação', date_format(hora, '%H:%i') as 'Hora da notificação' from tblNotificacao where idUsuario = $idUsuario
     
     order by data_Notificacao, hora;
 end$$
@@ -1150,7 +1150,7 @@ in $idUsuario int
 )
 
 begin
-	select titulo, mensagem from tblNotificacao where data_Notificacao = now() and hora = now() and $idUsuario = idUsuario;
+	select titulo, mensagem from tblNotificacao where data_Notificacao = now() and date_format(hora, '%H:%i') = date_format(now(), '%H:%i') and $idUsuario = idUsuario;
 end$$
 delimiter ; 
 
