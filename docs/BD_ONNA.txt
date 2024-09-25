@@ -1156,7 +1156,7 @@ in $idUsuario int
 )
 
 begin
-	select titulo, mensagem from tblNotificacao where $data_Atual = now() and $hora_Atual = now() and idUsuario = $idUsuario;
+	select titulo, mensagem from tblNotificacao where $data_Atual = data_Notificacao and $hora_Atual = hora and $idUsuario = idUsuario;
 end$$
 delimiter ; 
 
