@@ -30,11 +30,11 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
-            this.TxtUsuario = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.BtnLogar = new prjDESK_ONNA.ModeracaoBtn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtSenha = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.panelEstilizado1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,12 +56,12 @@
             this.panelEstilizado1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.panelEstilizado1.Controls.Add(this.BtnLogar);
             this.panelEstilizado1.Controls.Add(this.label3);
-            this.panelEstilizado1.Controls.Add(this.textBox1);
+            this.panelEstilizado1.Controls.Add(this.TxtSenha);
             this.panelEstilizado1.Controls.Add(this.label1);
             this.panelEstilizado1.Controls.Add(this.TxtUsuario);
             this.panelEstilizado1.Controls.Add(this.label2);
             this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.panelEstilizado1.CurvaturaBorda = 95;
+            this.panelEstilizado1.CurvaturaBorda = 40;
             this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
             this.panelEstilizado1.Location = new System.Drawing.Point(158, 81);
             this.panelEstilizado1.Name = "panelEstilizado1";
@@ -69,46 +69,6 @@
             this.panelEstilizado1.TabIndex = 4;
             this.panelEstilizado1.TamanhoBorda = 0;
             this.panelEstilizado1.TextColor = System.Drawing.Color.White;
-            // 
-            // TxtUsuario
-            // 
-            this.TxtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsuario.Location = new System.Drawing.Point(57, 124);
-            this.TxtUsuario.Name = "TxtUsuario";
-            this.TxtUsuario.Size = new System.Drawing.Size(332, 38);
-            this.TxtUsuario.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(51, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(341, 41);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Nome de usuário:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(51, 179);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(341, 46);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Senha:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(57, 239);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(332, 38);
-            this.textBox1.TabIndex = 5;
             // 
             // BtnLogar
             // 
@@ -130,6 +90,46 @@
             this.BtnLogar.UseVisualStyleBackColor = false;
             this.BtnLogar.Click += new System.EventHandler(this.BtnLogar_Click);
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(51, 179);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(341, 46);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Senha:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // TxtSenha
+            // 
+            this.TxtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSenha.Location = new System.Drawing.Point(57, 239);
+            this.TxtSenha.Name = "TxtSenha";
+            this.TxtSenha.Size = new System.Drawing.Size(332, 38);
+            this.TxtSenha.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(51, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(341, 41);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Nome de usuário:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // TxtUsuario
+            // 
+            this.TxtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUsuario.Location = new System.Drawing.Point(57, 124);
+            this.TxtUsuario.Name = "TxtUsuario";
+            this.TxtUsuario.Size = new System.Drawing.Size(332, 38);
+            this.TxtUsuario.TabIndex = 0;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,6 +139,7 @@
             this.Controls.Add(this.panelEstilizado1);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panelEstilizado1.ResumeLayout(false);
             this.panelEstilizado1.PerformLayout();
             this.ResumeLayout(false);
@@ -153,6 +154,6 @@
         private System.Windows.Forms.Label label1;
         private ModeracaoBtn BtnLogar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtSenha;
     }
 }

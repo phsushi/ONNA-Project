@@ -31,19 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.TxtPesquisaCons = new System.Windows.Forms.TextBox();
             this.DtaConsulta = new System.Windows.Forms.DataGridView();
+            this.tblArtigoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+           
             this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
             this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
-            this.demonstracaoDataSet = new prjDESK_ONNA.demonstracaoDataSet();
-            this.tblArtigoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblArtigoTableAdapter = new prjDESK_ONNA.demonstracaoDataSetTableAdapters.tblArtigoTableAdapter();
+            
             this.idArtigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tituloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resumoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.linkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.generoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.demonstracaoDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblArtigoBindingSource)).BeginInit();
+            
             this.SuspendLayout();
             // 
             // TxtPesquisaCons
@@ -74,6 +74,15 @@
             this.DtaConsulta.Size = new System.Drawing.Size(710, 399);
             this.DtaConsulta.TabIndex = 3;
             this.DtaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // tblArtigoBindingSource
+            // 
+            this.tblArtigoBindingSource.DataMember = "tblArtigo";
+            
+            // 
+            // demonstracaoDataSet
+            // 
+           
             // 
             // BtnVoltar
             // 
@@ -111,19 +120,9 @@
             this.panelEstilizado1.TamanhoBorda = 0;
             this.panelEstilizado1.TextColor = System.Drawing.Color.White;
             // 
-            // demonstracaoDataSet
-            // 
-            this.demonstracaoDataSet.DataSetName = "demonstracaoDataSet";
-            this.demonstracaoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblArtigoBindingSource
-            // 
-            this.tblArtigoBindingSource.DataMember = "tblArtigo";
-            this.tblArtigoBindingSource.DataSource = this.demonstracaoDataSet;
-            // 
             // tblArtigoTableAdapter
             // 
-            this.tblArtigoTableAdapter.ClearBeforeFill = true;
+            
             // 
             // idArtigoDataGridViewTextBoxColumn
             // 
@@ -176,8 +175,8 @@
             this.Text = "Art_Consulta";
             this.Load += new System.EventHandler(this.Art_Consulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.demonstracaoDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblArtigoBindingSource)).EndInit();
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,9 +188,8 @@
         private System.Windows.Forms.DataGridView DtaConsulta;
         private ModeracaoBtn BtnVoltar;
         private classes.PanelEstilizado panelEstilizado1;
-        private demonstracaoDataSet demonstracaoDataSet;
         private System.Windows.Forms.BindingSource tblArtigoBindingSource;
-        private demonstracaoDataSetTableAdapters.tblArtigoTableAdapter tblArtigoTableAdapter;
+        
         private System.Windows.Forms.DataGridViewTextBoxColumn idArtigoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tituloDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn resumoDataGridViewTextBoxColumn;

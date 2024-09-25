@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjDESK_ONNA.classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,16 @@ namespace prjDESK_ONNA.paginas
 {
     public partial class Art_Consulta : Form
     {
-        public Art_Consulta()
+        private Intermediaria _obj;
+        public Art_Consulta(Intermediaria obj)
         {
             InitializeComponent();
+            _obj = obj;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Art_Alterar a= new Art_Alterar();
+            Art_Alterar a= new Art_Alterar(_obj);
             a.Show();
             this.Close();
         }
@@ -28,7 +31,7 @@ namespace prjDESK_ONNA.paginas
 
         private void BtnVoltar_Click(object sender, EventArgs e)
         {
-            Art_Gerenc a = new Art_Gerenc();
+            Art_Gerenc a = new Art_Gerenc(_obj);
             a.Show();
             this.Close();
         }
@@ -38,7 +41,7 @@ namespace prjDESK_ONNA.paginas
             // TODO: esta linha de código carrega dados na tabela 'demonstracaoDataSet.tblArtigo'. Você pode movê-la ou removê-la conforme necessário.
             try
             {
-                this.tblArtigoTableAdapter.Fill(this.demonstracaoDataSet.tblArtigo);
+                
             }
             catch (Exception)
             {

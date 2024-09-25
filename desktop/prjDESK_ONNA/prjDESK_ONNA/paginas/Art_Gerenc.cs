@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjDESK_ONNA.classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,11 @@ namespace prjDESK_ONNA.paginas
 {
     public partial class Art_Gerenc : Form
     {
-        public Art_Gerenc()
+        private Intermediaria _obj;
+        public Art_Gerenc(Intermediaria obj)
         {
             InitializeComponent();
-          
+            _obj = obj;
         }
 
         private void Art_Gerenc_Load(object sender, EventArgs e)
@@ -31,28 +33,28 @@ namespace prjDESK_ONNA.paginas
     
         private void BtnJanelaAlter_Click(object sender, EventArgs e)
         {
-            Art_Consulta c = new Art_Consulta();
+            Art_Consulta c = new Art_Consulta(_obj);
             c.Show();
             this.Close();
         }
 
         private void BtnJanelaExcluir_Click(object sender, EventArgs e)
         {
-            Art_Exclusao c = new Art_Exclusao();
+            Art_Exclusao c = new Art_Exclusao(_obj);
             c.Show();
             this.Close();
         }
 
         private void BtnInsercao_Click(object sender, EventArgs e)
         {
-            Art_Insert a = new Art_Insert();
+            Art_Insert a = new Art_Insert(_obj);
             a.Show();
             this.Close();
         }
 
         private void BtnVoltar_Click(object sender, EventArgs e)
         {
-            Menu a = new Menu();
+            Menu a = new Menu(_obj);
             a.Show();
             this.Close();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjDESK_ONNA.classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace prjDESK_ONNA.paginas
 {
     public partial class Art_Alterar : Form
     {
-        public Art_Alterar()
+        private Intermediaria _obj;
+        public Art_Alterar(Intermediaria obj)
         {
             InitializeComponent();
+            _obj = obj;
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
@@ -26,7 +29,7 @@ namespace prjDESK_ONNA.paginas
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            Art_Consulta art = new Art_Consulta();
+            Art_Consulta art = new Art_Consulta(_obj);
             art.Show();
             this.Close();
         }

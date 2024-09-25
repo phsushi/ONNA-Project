@@ -97,7 +97,7 @@
             this.panelEstilizado1.Controls.Add(this.BtnMod);
             this.panelEstilizado1.Controls.Add(this.BtnArt);
             this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.panelEstilizado1.CurvaturaBorda = 45;
+            this.panelEstilizado1.CurvaturaBorda = 40;
             this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
             this.panelEstilizado1.Location = new System.Drawing.Point(150, 187);
             this.panelEstilizado1.Name = "panelEstilizado1";
@@ -121,6 +121,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.TransparencyKey = System.Drawing.Color.Transparent;
+            this.Load += new System.EventHandler(this.Menu_Load);
             this.panelEstilizado1.ResumeLayout(false);
             this.ResumeLayout(false);
 

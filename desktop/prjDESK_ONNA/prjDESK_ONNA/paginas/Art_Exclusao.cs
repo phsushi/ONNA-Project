@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjDESK_ONNA.classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace prjDESK_ONNA.paginas
 {
     public partial class Art_Exclusao : Form
     {
-        public Art_Exclusao()
+        private Intermediaria _obj;
+
+        public Art_Exclusao(Intermediaria obj)
         {
             InitializeComponent();
+            _obj = obj;
         }
 
       
@@ -26,7 +30,7 @@ namespace prjDESK_ONNA.paginas
 
         private void BtnVoltar_Click(object sender, EventArgs e)
         {
-            Art_Gerenc a = new Art_Gerenc();
+            Art_Gerenc a = new Art_Gerenc(_obj);
             a.Show();
             this.Close();
         }

@@ -272,6 +272,7 @@
             this.Name = "Art_Insert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Art_Insert";
+            this.Load += new System.EventHandler(this.Art_Insert_Load);
             this.panelEstilizado2.ResumeLayout(false);
             this.panelEstilizado2.PerformLayout();
             this.panelEstilizado3.ResumeLayout(false);

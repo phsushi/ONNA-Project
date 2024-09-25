@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prjDESK_ONNA.classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,16 @@ namespace prjDESK_ONNA.paginas
 {
     public partial class Mod_moderacao : Form
     {
-        public Mod_moderacao()
+        private Intermediaria _obj;
+
+        public Mod_moderacao(Intermediaria obj)
         {
             InitializeComponent();
         }
 
         private void BtnVoltar_Click(object sender, EventArgs e)
         {
-            Menu a =new Menu();
+            Menu a =new Menu(_obj);
             a.Show();
             this.Close();
         }
