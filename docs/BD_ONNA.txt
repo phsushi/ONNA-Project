@@ -1025,9 +1025,9 @@ in $idContato int
 )
 
 begin
-	select mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = $idTipo_Usuario and idContato = $idContato
+	select mensagem, data_Mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = $idTipo_Usuario and idContato = $idContato
     union all
-    select mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = $idContato and idContato = $idTipo_Usuario
+    select mensagem, data_Mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = $idContato and idContato = $idTipo_Usuario
     
     order by data_Mensagem, hora desc;
 end$$
