@@ -1089,7 +1089,7 @@ create procedure procurar_Profissional_Fisiologico ()
 begin
 	select a.idProfissional from tblPerfil_Profissional a
     
-    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crm != null and now() >= hora_Inicial and now() < hora_Final 
+    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crm != null and now() >= hora_Inicial and now() < hora_Final and now() = data_Disponibilidade
     
     order by rand() limit 1;
 end$$
@@ -1101,7 +1101,7 @@ create procedure procurar_Profissional_Psicologico ()
 begin
 	select a.idProfissional from tblPerfil_Profissional a
     
-    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crp != null and now() >= hora_Inicial and now() < hora_Final 
+    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crp != null and now() >= hora_Inicial and now() < hora_Final and now() = data_Disponibilidade
     
     order by rand() limit 1;
 end$$
