@@ -41,14 +41,13 @@ export const alterar_Calendario = async (req:Request, res:Response) => {
 
 // definir_Intervalo_Calendario
 export const definir_Intervalo_Calendario = async (req:Request, res:Response) => {
-    const q = "call definir_Intervalo_Calendario(?, ?)"
+    const q = "call definir_Intervalo_Calendario(?)"
 
     const values = [
-        req.body.dia_Marcado,
-        req.body.periodo
+        req.params.idUsuario
     ]
 
-    db.query(q, [...values], (err, data) => {
+    db.query(q, [values], (err, data) => {
         if(err){
             return res.status(500).json(err)
         }
