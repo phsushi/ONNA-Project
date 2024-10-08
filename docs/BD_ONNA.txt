@@ -296,7 +296,7 @@ in $titulo varchar(255)
 )
 
 begin
-	select titulo from tblArtigo where titulo regexp ($titulo) 
+	select idArtigo, titulo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') from tblArtigo where titulo regexp ($titulo) 
     
 	order by titulo;
 end$$
