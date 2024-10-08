@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -95,22 +96,22 @@ namespace prjDESK_ONNA.paginas
             return table;
         }
 
-        private void TxtPesquisaCons_KeyUp(object sender, KeyEventArgs e)
+
+        private void TxtPesquisaCons_TextChanged(object sender, EventArgs e)
         {
-            string outputInfo = "";
-            string[] keyWords = TxtPesquisaCons.Text.Split(' ');
+            string conect = "server=localhost;database=ONNA;uid=root;pwd=U1de8JA87Rrb";
+            MySqlConnection con = new MySqlConnection(conect);
+            string query = "Select * from tblArtigo where titulo like '%" + TxtPesquisaCons.Text + "%'";
+            MySqlCommand command = new MySqlCommand(query, con);         
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            DtaConsulta.DataSource = dt;
+        }
 
-            foreach (string word in keyWords)
-            {
-                if (outputInfo.Length == 0)
-                {
-                    outputInfo = "";
-                }
-              
-            }
+        private void panelEstilizado2_Paint(object sender, PaintEventArgs e)
+        {
 
-
-            ((DataTable)DtaConsulta.DataSource).DefaultView.RowFilter = outputInfo;
         }
     }
 }

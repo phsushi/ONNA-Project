@@ -245,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\exit.png" />
+    <None Include="Resources\lupa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.TxtPesquisaCons = new System.Windows.Forms.TextBox();
             this.DtaConsulta = new System.Windows.Forms.DataGridView();
-            this.tblArtigoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
+            this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
+            this.tblArtigoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panelEstilizado2 = new prjDESK_ONNA.classes.PanelEstilizado();
             ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblArtigoBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -41,11 +42,11 @@
             // TxtPesquisaCons
             // 
             this.TxtPesquisaCons.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Italic);
-            this.TxtPesquisaCons.Location = new System.Drawing.Point(148, 19);
+            this.TxtPesquisaCons.Location = new System.Drawing.Point(166, 19);
             this.TxtPesquisaCons.Name = "TxtPesquisaCons";
-            this.TxtPesquisaCons.Size = new System.Drawing.Size(485, 33);
+            this.TxtPesquisaCons.Size = new System.Drawing.Size(467, 33);
             this.TxtPesquisaCons.TabIndex = 2;
-            this.TxtPesquisaCons.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtPesquisaCons_KeyUp);
+            this.TxtPesquisaCons.TextChanged += new System.EventHandler(this.TxtPesquisaCons_TextChanged);
             // 
             // DtaConsulta
             // 
@@ -59,26 +60,6 @@
             this.DtaConsulta.Size = new System.Drawing.Size(720, 399);
             this.DtaConsulta.TabIndex = 3;
             this.DtaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // tblArtigoBindingSource
-            // 
-            this.tblArtigoBindingSource.DataMember = "tblArtigo";
-            // 
-            // panelEstilizado1
-            // 
-            this.panelEstilizado1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.panelEstilizado1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.panelEstilizado1.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.VERDADEIROARTIGO;
-            this.panelEstilizado1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.panelEstilizado1.CurvaturaBorda = 39;
-            this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
-            this.panelEstilizado1.Location = new System.Drawing.Point(12, 12);
-            this.panelEstilizado1.Name = "panelEstilizado1";
-            this.panelEstilizado1.Size = new System.Drawing.Size(51, 42);
-            this.panelEstilizado1.TabIndex = 18;
-            this.panelEstilizado1.TamanhoBorda = 0;
-            this.panelEstilizado1.TextColor = System.Drawing.Color.White;
             // 
             // BtnVoltar
             // 
@@ -100,12 +81,49 @@
             this.BtnVoltar.UseVisualStyleBackColor = false;
             this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
             // 
+            // panelEstilizado1
+            // 
+            this.panelEstilizado1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.VERDADEIROARTIGO;
+            this.panelEstilizado1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado1.CurvaturaBorda = 39;
+            this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado1.Location = new System.Drawing.Point(12, 12);
+            this.panelEstilizado1.Name = "panelEstilizado1";
+            this.panelEstilizado1.Size = new System.Drawing.Size(51, 42);
+            this.panelEstilizado1.TabIndex = 18;
+            this.panelEstilizado1.TamanhoBorda = 0;
+            this.panelEstilizado1.TextColor = System.Drawing.Color.White;
+            // 
+            // tblArtigoBindingSource
+            // 
+            this.tblArtigoBindingSource.DataMember = "tblArtigo";
+            // 
+            // panelEstilizado2
+            // 
+            this.panelEstilizado2.BackColor = System.Drawing.Color.White;
+            this.panelEstilizado2.BackgroudColor = System.Drawing.Color.White;
+            this.panelEstilizado2.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.lupa;
+            this.panelEstilizado2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panelEstilizado2.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado2.CurvaturaBorda = 32;
+            this.panelEstilizado2.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado2.Location = new System.Drawing.Point(121, 17);
+            this.panelEstilizado2.Name = "panelEstilizado2";
+            this.panelEstilizado2.Size = new System.Drawing.Size(39, 35);
+            this.panelEstilizado2.TabIndex = 19;
+            this.panelEstilizado2.TamanhoBorda = 0;
+            this.panelEstilizado2.TextColor = System.Drawing.Color.White;
+            // 
             // Art_Consulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.panelEstilizado2);
             this.Controls.Add(this.panelEstilizado1);
             this.Controls.Add(this.BtnVoltar);
             this.Controls.Add(this.DtaConsulta);
@@ -135,5 +153,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn resumoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn linkDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn generoDataGridViewTextBoxColumn;
+        private classes.PanelEstilizado panelEstilizado2;
     }
 }

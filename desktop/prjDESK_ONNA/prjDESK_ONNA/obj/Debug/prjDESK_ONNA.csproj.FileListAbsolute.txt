@@ -31,7 +31,6 @@ F:\TCC\Desk1Entrega\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.csproj.Core
 F:\TCC\Desk1Entrega\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.exe
 F:\TCC\Desk1Entrega\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.pdb
 F:\TCC\Desk1Entrega\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Login.resources
-C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Art_Insert_Imagem.resources
 C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Login.resources
 C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\BouncyCastle.Cryptography.dll
 C:\Users\paulo\ONNA-Project\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\Google.Protobuf.dll

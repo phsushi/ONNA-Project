@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\prjDESK_ONNA",
+    "\\prjDESK_ONNA\\classes"
   ],
-  "SelectedNode": "\\prjDESK_ONNA.sln",
+  "SelectedNode": "\\prjDESK_ONNA\\classes\\Intermediaria.cs",
   "PreviewInSolutionExplorer": false
 }
