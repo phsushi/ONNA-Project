@@ -238,6 +238,7 @@ insert into tblTipo_Denuncia (idTipo_Denuncia, tipo) values
 insert into tblForum (nome, descricao) values
 ('#Desabafos', 'Espaço dedicado ao acolhimento dos problemas da alma'),
 ('#Gravidez', 'Ambiente para sanar dúvidas e questionamentos sobre o período de gravidez'),
+('#Autocuidado', 'Trocas de informações sobre a preservação do corpo feminino'),
 ('#Maternidade', 'Discussões sobre os devidos cuidados com nenês e seu desenvolvimento saudável');
 
 
@@ -899,7 +900,7 @@ in $idArtigo int
 ) 
 
 begin
-	select titulo from tblArtigo where titulo regexp ($titulo) 
+	select idArtigo, titulo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') from tblArtigo where titulo regexp ($titulo) 
     
 	order by titulo;
 end$$
