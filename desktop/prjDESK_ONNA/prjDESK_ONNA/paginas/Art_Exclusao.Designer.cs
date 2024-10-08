@@ -75,6 +75,7 @@
             this.BtnExcluir.Text = "Excluir";
             this.BtnExcluir.TextColor = System.Drawing.Color.Black;
             this.BtnExcluir.UseVisualStyleBackColor = false;
+            this.BtnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
             // BtnVoltar
             // 

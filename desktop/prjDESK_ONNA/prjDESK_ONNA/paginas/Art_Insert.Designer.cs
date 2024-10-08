@@ -185,7 +185,7 @@
             this.TxtResumo.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtResumo.Location = new System.Drawing.Point(10, 71);
             this.TxtResumo.Name = "TxtResumo";
-            this.TxtResumo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
+            this.TxtResumo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.TxtResumo.Size = new System.Drawing.Size(482, 236);
             this.TxtResumo.TabIndex = 2;
             this.TxtResumo.Text = "";

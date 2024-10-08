@@ -40,8 +40,8 @@
             this.RdoMater = new System.Windows.Forms.RadioButton();
             this.TxtResumoAlter = new System.Windows.Forms.RichTextBox();
             this.TxtTituloAlter = new System.Windows.Forms.TextBox();
-            this.panelEstilizado2 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.label2 = new System.Windows.Forms.Label();
+            this.panelEstilizado2 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +98,7 @@
             this.BtnAlterar.Text = "alterar";
             this.BtnAlterar.TextColor = System.Drawing.Color.Black;
             this.BtnAlterar.UseVisualStyleBackColor = false;
+            this.BtnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // TxtLinkAlter
             // 
@@ -192,7 +193,7 @@
             this.TxtResumoAlter.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtResumoAlter.Location = new System.Drawing.Point(18, 71);
             this.TxtResumoAlter.Name = "TxtResumoAlter";
-            this.TxtResumoAlter.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
+            this.TxtResumoAlter.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.TxtResumoAlter.Size = new System.Drawing.Size(381, 202);
             this.TxtResumoAlter.TabIndex = 13;
             this.TxtResumoAlter.Text = "";
@@ -205,6 +206,18 @@
             this.TxtTituloAlter.Name = "TxtTituloAlter";
             this.TxtTituloAlter.Size = new System.Drawing.Size(381, 44);
             this.TxtTituloAlter.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 27.75F, System.Drawing.FontStyle.Italic);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(197, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(383, 56);
+            this.label2.TabIndex = 10;
+            this.label2.Text = " Alterações de Artigos";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelEstilizado2
             // 
@@ -222,18 +235,6 @@
             this.panelEstilizado2.TamanhoBorda = 0;
             this.panelEstilizado2.TextColor = System.Drawing.Color.White;
             // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 27.75F, System.Drawing.FontStyle.Italic);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(197, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(383, 56);
-            this.label2.TabIndex = 10;
-            this.label2.Text = " Alterações de Artigos";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Art_Alterar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +248,7 @@
             this.Name = "Art_Alterar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Art_Alterar";
+            this.Load += new System.EventHandler(this.Art_Alterar_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -1,4 +1,5 @@
-﻿using prjDESK_ONNA.classes;
+﻿using MySql.Data.MySqlClient;
+using prjDESK_ONNA.classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,6 +34,38 @@ namespace prjDESK_ONNA.paginas
             Art_Gerenc a = new Art_Gerenc(_obj);
             a.Show();
             this.Close();
+        }
+
+        private void BtnExcluir_Click(object sender, EventArgs e)
+        {
+            int idArtigo = Convert.ToInt16(TxtPesquisa.Text);
+            try
+            {
+                string conect = "server=localhost;database=ONNA;uid=root;pwd=U1de8JA87Rrb";
+                MySqlConnection con = new MySqlConnection(conect);
+                con.Open();
+                MySqlCommand comando = new MySqlCommand("call excluir_Artigo("+idArtigo+")", con);
+                int val = comando.ExecuteNonQuery();
+                if (val == 1)
+                {
+                    MessageBox.Show("Artigo excluido com sucesso!", "Sucesso");
+                    Art_Gerenc art = new Art_Gerenc(_obj);
+                    art.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("O artigo não foi excluido com êxito", "Falha");
+                }
+                con.Close();
+
+
+
+            }
+            catch(Exception er)
+            {
+                MessageBox.Show(er.ToString(),"Erro");
+            }
         }
     }
 }

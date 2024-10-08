@@ -40,5 +40,12 @@ namespace prjDESK_ONNA
         {
 
         }
+
+        private void BtnDeslogar_Click(object sender, EventArgs e)
+        {
+            Login a = new Login();
+            a.Show();
+            this.Close();
+        }
     }
 }
