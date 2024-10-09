@@ -292,14 +292,12 @@ end$$
 delimiter ;
 
 delimiter $$
-create procedure consulta_Titulo_Artigo (
+create procedure consultar_Artigo (
 in $titulo varchar(255)
 )
 
 begin
-	select idArtigo, titulo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') from tblArtigo where titulo regexp ($titulo) 
-    
-	order by titulo;
+	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idAdmin, idGenero from tblArtigo where titulo like concat('%', $titulo, '%') 
 end$$
 delimiter ;
 
@@ -320,6 +318,16 @@ in $idArtigo int
 
 begin
 	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', fonte from tblArtigo where idArtigo = $idArtigo;
+end$$
+delimiter ;
+
+delimiter $$
+create procedure excluir_Titulo_Artigo (
+in $titulo varchar(255)
+)
+
+begin
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', $titulo, '%') 
 end$$
 delimiter ;
 
@@ -895,14 +903,12 @@ delimiter ;
 
 /* Para consultar um artigo conforme seu título, invocar a procedure já existente:
 
-procedure consulta_Titulo_Artigo (
-in $idArtigo int
-) 
+create procedure excluir_Titulo_Artigo (
+in $titulo varchar(255)
+)
 
 begin
-	select idArtigo, titulo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') from tblArtigo where titulo regexp ($titulo) 
-    
-	order by titulo;
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', $titulo, '%') 
 end$$
 */
 
