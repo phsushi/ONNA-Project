@@ -297,7 +297,7 @@ in $titulo varchar(255)
 )
 
 begin
-	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idAdmin, idGenero from tblArtigo where titulo like concat('%', $titulo, '%') 
+	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idAdmin, idGenero from tblArtigo where titulo like concat('%', $titulo, '%');
 end$$
 delimiter ;
 
@@ -327,7 +327,7 @@ in $titulo varchar(255)
 )
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', $titulo, '%') 
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', $titulo, '%'); 
 end$$
 delimiter ;
 
@@ -358,25 +358,7 @@ delimiter ;
 
 -- tblDenuncia
 
-/*
-insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values 
-('Flavia@gmail.com', '123', 'Flavia Damasceno', '19960606', 1, 0),
-('Mari@gmail.com', '123', 'Marina Dias', '19950808', 3, 0);
-
-insert into tblForum (nome, descricao) values('Maternidade','Ambiente dedicado para apoiar mães durante a criação de sua criança');
-
-insert into tblPostagem (titulo, subtitulo, data_Postagem, hora, idTipo_Usuario, idForum) values 
-('Receita de papinha de frango [...]', 'Frango, Páprica, orégano, sal, coentro, cebolinha etc.', NOW(), NOW(), 1, 1),
-('Meu filho é chato demais! Ajudem-me!', 'Genteeeeee, é... Simplesmente insuportável!', NOW(), NOW(), 2, 1);
-
-insert into tblDenuncia (descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem) values 
-('Ofendeu o próprio filho! Isso é inapropriado!', NOW(), NOW(), 1, 2);
-
-select * from tblPostagem
-*/
-
 delimiter $$
-
 create procedure consulta_Superficial_Denuncia ()
 
 begin
@@ -405,7 +387,6 @@ begin
 	
 	order by idDenuncia;
 end$$
-
 delimiter ;
 
 -- A própria aplicação desktop deverá distinguir uma [postagem] de uma [resposta de postagem], checando se o [idResposta_Postagem = null] por exemplo
@@ -901,27 +882,25 @@ begin
 end$$
 delimiter ;
 
-/* Para consultar um artigo conforme seu título, invocar a procedure já existente:
-
-create procedure excluir_Titulo_Artigo (
+delimiter $$
+create procedure consulta_Titulo_Artigo (
 in $titulo varchar(255)
 )
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', $titulo, '%') 
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', $titulo, '%'); 
 end$$
-*/
+delimiter ;
 
-/* Para consultar detalhadamente o artigo selecionado pelo usuário, invocar a procedure já existente:
-
-procedure consulta_Detalhada_Artigo (
+delimiter $$
+create procedure consulta_Artigo_Selecionado (
 in $idArtigo int
 ) 
 
 begin
 	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', fonte from tblArtigo where idArtigo = $idArtigo;
 end$$
-*/
+delimiter ;
 
 
 
