@@ -60,24 +60,3 @@ export const excluir_Notificacao = async (req:Request, res:Response) => {
         return res.status(200).json(data)
     })
 }
-
-// alertar_Notificacao
-export const alertar_Notificacao = async (req:Request, res:Response) => {
-    const q = "call alertar_Notificacao(?)"
-
-    const values = [
-        req.params.idUsuario
-    ]
-
-    db.query(q, [values], (err, data) => {
-        if(err){
-            return res.status(500).json(err)
-        }
-        
-        if (data[0].length === 0) {
-            return res.status(404).json(err);
-        }
-
-        return res.status(200).json(data[0])
-    })
-}
