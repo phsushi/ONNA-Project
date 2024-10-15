@@ -516,18 +516,6 @@ begin
 end /
 delimiter ;
 
--- Antes de preencher a [tblPerfil_Pessoal] ou [tblPerfil_Profissional], precisamos armazenar o [idTipo_Usuario] do usuário recém-cadastrado
-
-delimiter /
-create procedure armazena_idTipo_Usuario (
-in p_email varchar(120)
-)
-
-begin
-	select idTipo_Usuario from tblTipo_Usuario where email = p_email;
-end /
-delimiter ;
-
 -- Cadastros especificos para cada tipo de usuário. Devem ser realizados logo após o cadastro da [tblTipo_Usuario]
 
 delimiter /
@@ -574,23 +562,13 @@ in p_email varchar(120)
 )
 
 begin
-	select email, senha from tblTipo_Usuario where email = p_email and status_Ban = 0;
+	select idTipo_Usuario, email, nome, senha, date_format(str_to_date(dataNasc, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de nascimento', avatar, tipo_Usuario from tblTipo_Usuario where email = p_email and status_Ban = 0;
 end /
 delimiter ;
 
 -- Exibição dos dados de perfil
 
-delimiter /
-create procedure exibir_Perfil (
-in p_idTipo_Usuario int
-)
-
-begin
-	select email, nome, date_format(str_to_date(dataNasc, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de nascimento', avatar, tipo_Usuario from tblTipo_Usuario where idTipo_Usuario = p_idTipo_Usuario;
-end /
-delimiter ;
-
--- Caso o campo [tipo_Usuario] seja [1], também será exibida as informações do perfil profissional 
+-- Caso o campo [tipo_Usuario] seja [1], também serão exibidas as informações do perfil profissional 
 
 delimiter /
 create procedure exibir_Dados_Profissional (
