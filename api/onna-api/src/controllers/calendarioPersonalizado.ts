@@ -8,7 +8,7 @@ export const cadastrar_Calendario = async (req:Request, res:Response) => {
 
     const values = [
         req.body.dia_Marcado,
-        req.params.idUsuario
+        req.body.idUsuario
     ]
 
     db.query(q, [...values], (err) => {
@@ -27,7 +27,7 @@ export const alterar_Calendario = async (req:Request, res:Response) => {
     const values = [
         req.body.dia_Marcado,
         req.body.periodo,
-        req.params.idUsuario
+        req.body.idUsuario
     ]
 
     db.query(q, [...values], (err) => {

@@ -92,7 +92,7 @@ export const consulta_Titulo_Artigo = async (req:Request, res:Response) => {
     const q = "call consulta_Titulo_Artigo(?)"
 
     const values = [
-        req.body.titulo
+        req.params.titulo
     ]
 
     db.query(q, [values], (err, data) => {

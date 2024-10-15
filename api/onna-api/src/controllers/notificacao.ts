@@ -11,7 +11,7 @@ export const criar_Notificacao = async (req:Request, res:Response) => {
         req.body.mensagem,
         req.body.data_Notificacao,
         req.body.hora,
-        req.params.idUsuario
+        req.body.idUsuario
     ]
 
     db.query(q, [...values], (err) => {
@@ -49,7 +49,7 @@ export const excluir_Notificacao = async (req:Request, res:Response) => {
     const q = "call excluir_Notificacao(?)"
 
     const values = [
-        req.params.idNotificacao
+        req.body.idNotificacao
     ]
 
     db.query(q, [values], (err, data) => {

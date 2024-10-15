@@ -9,7 +9,8 @@ artigoRoutes.get("/artigo/engravidar", exibir_Artigo_Engravidar)
 artigoRoutes.get("/artigo/gestacao", exibir_Artigo_Gestacao)
 artigoRoutes.get("/artigo/maternidade", exibir_Artigo_Maternidade)
 artigoRoutes.get("/artigo/cuidadosCorpo", exibir_Artigo_Cuidados_Corpo)
-artigoRoutes.get("/artigo/tituloArtigo", consulta_Titulo_Artigo)
-artigoRoutes.get("/artigo/artigoSelecionado", consulta_Artigo_Selecionado)
+
+artigoRoutes.get("/artigo/:titulo", consulta_Titulo_Artigo)
+artigoRoutes.get("/artigo/:idArtigo", consulta_Artigo_Selecionado)
 
 export default artigoRoutes
