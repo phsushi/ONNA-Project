@@ -28,26 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DtaConsulta = new System.Windows.Forms.DataGridView();
             this.TxtPesquisa = new System.Windows.Forms.TextBox();
-            this.BtnExcluir = new prjDESK_ONNA.ModeracaoBtn();
-            this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
-            this.LblLink = new System.Windows.Forms.Label();
-            this.LblResumo = new System.Windows.Forms.Label();
-            this.LblTitulo = new System.Windows.Forms.Label();
-            this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelEstilizado2 = new prjDESK_ONNA.classes.PanelEstilizado();
-            ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).BeginInit();
+            this.LblTitulo = new System.Windows.Forms.Label();
+            this.BtnExcluir = new prjDESK_ONNA.ModeracaoBtn();
+            this.LblResumo = new System.Windows.Forms.Label();
+            this.LblLink = new System.Windows.Forms.Label();
+            this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
+            this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
+            this.flowLayoutPanel1.SuspendLayout();
             this.panelEstilizado2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // DtaConsulta
-            // 
-            this.DtaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtaConsulta.Location = new System.Drawing.Point(514, -1);
-            this.DtaConsulta.Name = "DtaConsulta";
-            this.DtaConsulta.Size = new System.Drawing.Size(270, 536);
-            this.DtaConsulta.TabIndex = 0;
             // 
             // TxtPesquisa
             // 
@@ -56,6 +49,49 @@
             this.TxtPesquisa.Name = "TxtPesquisa";
             this.TxtPesquisa.Size = new System.Drawing.Size(354, 33);
             this.TxtPesquisa.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(479, 10);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(302, 513);
+            this.flowLayoutPanel1.TabIndex = 19;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(8, 8);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
+            // panelEstilizado2
+            // 
+            this.panelEstilizado2.BackColor = System.Drawing.Color.White;
+            this.panelEstilizado2.BackgroudColor = System.Drawing.Color.White;
+            this.panelEstilizado2.Controls.Add(this.LblTitulo);
+            this.panelEstilizado2.Controls.Add(this.BtnExcluir);
+            this.panelEstilizado2.Controls.Add(this.LblResumo);
+            this.panelEstilizado2.Controls.Add(this.LblLink);
+            this.panelEstilizado2.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado2.CurvaturaBorda = 40;
+            this.panelEstilizado2.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado2.Location = new System.Drawing.Point(12, 58);
+            this.panelEstilizado2.Name = "panelEstilizado2";
+            this.panelEstilizado2.Size = new System.Drawing.Size(461, 419);
+            this.panelEstilizado2.TabIndex = 18;
+            this.panelEstilizado2.TamanhoBorda = 0;
+            this.panelEstilizado2.TextColor = System.Drawing.Color.White;
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.LblTitulo.Location = new System.Drawing.Point(23, 14);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(414, 44);
+            this.LblTitulo.TabIndex = 12;
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnExcluir
             // 
@@ -77,6 +113,40 @@
             this.BtnExcluir.UseVisualStyleBackColor = false;
             this.BtnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
+            // LblResumo
+            // 
+            this.LblResumo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.LblResumo.Location = new System.Drawing.Point(23, 69);
+            this.LblResumo.Name = "LblResumo";
+            this.LblResumo.Size = new System.Drawing.Size(414, 239);
+            this.LblResumo.TabIndex = 13;
+            this.LblResumo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblLink
+            // 
+            this.LblLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.LblLink.Location = new System.Drawing.Point(23, 319);
+            this.LblLink.Name = "LblLink";
+            this.LblLink.Size = new System.Drawing.Size(414, 35);
+            this.LblLink.TabIndex = 14;
+            this.LblLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelEstilizado1
+            // 
+            this.panelEstilizado1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
+            this.panelEstilizado1.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.VERDADEIROARTIGO;
+            this.panelEstilizado1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado1.CurvaturaBorda = 39;
+            this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado1.Location = new System.Drawing.Point(12, 10);
+            this.panelEstilizado1.Name = "panelEstilizado1";
+            this.panelEstilizado1.Size = new System.Drawing.Size(51, 42);
+            this.panelEstilizado1.TabIndex = 17;
+            this.panelEstilizado1.TamanhoBorda = 0;
+            this.panelEstilizado1.TextColor = System.Drawing.Color.White;
+            // 
             // BtnVoltar
             // 
             this.BtnVoltar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
@@ -97,85 +167,25 @@
             this.BtnVoltar.UseVisualStyleBackColor = false;
             this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
             // 
-            // LblLink
-            // 
-            this.LblLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblLink.Location = new System.Drawing.Point(23, 319);
-            this.LblLink.Name = "LblLink";
-            this.LblLink.Size = new System.Drawing.Size(414, 35);
-            this.LblLink.TabIndex = 14;
-            this.LblLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblResumo
-            // 
-            this.LblResumo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblResumo.Location = new System.Drawing.Point(23, 69);
-            this.LblResumo.Name = "LblResumo";
-            this.LblResumo.Size = new System.Drawing.Size(414, 239);
-            this.LblResumo.TabIndex = 13;
-            this.LblResumo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblTitulo
-            // 
-            this.LblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblTitulo.Location = new System.Drawing.Point(23, 14);
-            this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(414, 44);
-            this.LblTitulo.TabIndex = 12;
-            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panelEstilizado1
-            // 
-            this.panelEstilizado1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.panelEstilizado1.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(180)))), ((int)(((byte)(225)))));
-            this.panelEstilizado1.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.VERDADEIROARTIGO;
-            this.panelEstilizado1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelEstilizado1.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.panelEstilizado1.CurvaturaBorda = 39;
-            this.panelEstilizado1.ForeColor = System.Drawing.Color.White;
-            this.panelEstilizado1.Location = new System.Drawing.Point(12, 10);
-            this.panelEstilizado1.Name = "panelEstilizado1";
-            this.panelEstilizado1.Size = new System.Drawing.Size(51, 42);
-            this.panelEstilizado1.TabIndex = 17;
-            this.panelEstilizado1.TamanhoBorda = 0;
-            this.panelEstilizado1.TextColor = System.Drawing.Color.White;
-            // 
-            // panelEstilizado2
-            // 
-            this.panelEstilizado2.BackColor = System.Drawing.Color.White;
-            this.panelEstilizado2.BackgroudColor = System.Drawing.Color.White;
-            this.panelEstilizado2.Controls.Add(this.LblTitulo);
-            this.panelEstilizado2.Controls.Add(this.BtnExcluir);
-            this.panelEstilizado2.Controls.Add(this.LblResumo);
-            this.panelEstilizado2.Controls.Add(this.LblLink);
-            this.panelEstilizado2.CorBorda = System.Drawing.Color.PaleVioletRed;
-            this.panelEstilizado2.CurvaturaBorda = 40;
-            this.panelEstilizado2.ForeColor = System.Drawing.Color.White;
-            this.panelEstilizado2.Location = new System.Drawing.Point(12, 58);
-            this.panelEstilizado2.Name = "panelEstilizado2";
-            this.panelEstilizado2.Size = new System.Drawing.Size(461, 419);
-            this.panelEstilizado2.TabIndex = 18;
-            this.panelEstilizado2.TamanhoBorda = 0;
-            this.panelEstilizado2.TextColor = System.Drawing.Color.White;
-            // 
             // Art_Exclusao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panelEstilizado2);
             this.Controls.Add(this.panelEstilizado1);
             this.Controls.Add(this.BtnVoltar);
             this.Controls.Add(this.TxtPesquisa);
-            this.Controls.Add(this.DtaConsulta);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "Art_Exclusao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exclusão de Artigos";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Art_Exclusao_Closed);
-            ((System.ComponentModel.ISupportInitialize)(this.DtaConsulta)).EndInit();
+            this.Load += new System.EventHandler(this.Art_Exclusao_Load);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.panelEstilizado2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -183,8 +193,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView DtaConsulta;
         private System.Windows.Forms.TextBox TxtPesquisa;
         private ModeracaoBtn BtnExcluir;
         private ModeracaoBtn BtnVoltar;
@@ -193,5 +201,7 @@
         private System.Windows.Forms.Label LblTitulo;
         private classes.PanelEstilizado panelEstilizado1;
         private classes.PanelEstilizado panelEstilizado2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

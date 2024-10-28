@@ -114,6 +114,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\Artigos.cs" />
+    <Compile Include="classes\ArtigosView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="classes\Intermediaria.cs" />
     <Compile Include="classes\LabelEstilizado.cs">
       <SubType>Component</SubType>
@@ -130,6 +134,7 @@
     <Compile Include="classes\ModeracaoBtn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="paginas\ArticlesViewModel.cs" />
     <Compile Include="paginas\Art_Alterar.cs">
       <SubType>Form</SubType>
     </Compile>

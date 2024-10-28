@@ -41,7 +41,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 27.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label1.Location = new System.Drawing.Point(141, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(489, 105);
@@ -59,14 +59,14 @@
             this.BtnDeslogar.FlatAppearance.BorderSize = 0;
             this.BtnDeslogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDeslogar.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnDeslogar.ForeColor = System.Drawing.Color.White;
+            this.BtnDeslogar.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.BtnDeslogar.Location = new System.Drawing.Point(674, 484);
             this.BtnDeslogar.Name = "BtnDeslogar";
             this.BtnDeslogar.Size = new System.Drawing.Size(98, 39);
             this.BtnDeslogar.TabIndex = 5;
             this.BtnDeslogar.TamanhoBorda = 0;
             this.BtnDeslogar.Text = "Deslogar ";
-            this.BtnDeslogar.TextColor = System.Drawing.Color.White;
+            this.BtnDeslogar.TextColor = System.Drawing.Color.WhiteSmoke;
             this.BtnDeslogar.UseVisualStyleBackColor = false;
             this.BtnDeslogar.Click += new System.EventHandler(this.BtnDeslogar_Click);
             // 

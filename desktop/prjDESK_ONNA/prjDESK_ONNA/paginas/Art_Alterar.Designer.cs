@@ -119,7 +119,7 @@
             this.panel2.Controls.Add(this.RdoMater);
             this.panel2.Location = new System.Drawing.Point(422, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(291, 416);
+            this.panel2.Size = new System.Drawing.Size(294, 419);
             this.panel2.TabIndex = 0;
             // 
             // RdoCuidado
