@@ -842,38 +842,12 @@ create procedure criar_Denuncia (
 in p_descricao varchar(2000),
 in p_idTipo_Usuario int,
 in p_idPostagem int,
-in p_idResposta_Postagem int
-)
-
-begin
-	insert into tblDenuncia (descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem, idResposta_Postagem) values (p_descricao, now(), now(), p_idTipo_Usuario, p_idPostagem, p_idResposta_Postagem);
-end /
-delimiter ;
-
--- Precisaremos armazenar o [idDenuncia] da denúncia recém-criada para a próxima procedure
-
-delimiter /
-create procedure armazena_idDenuncia (
-in p_idTipo_Usuario int
-)
-
-begin
-	select idDenuncia from tblDenuncia where idTipo_Usuario = p_idTipo_Usuario
-    
-    order by idDenuncia desc limit 1;
-end /
-delimiter ;
-
--- Durante o processo de uma denúncia, o usuário preencherá as categorias dessa denúncia. Para cada categoria selecionada, executar a procedure a seguir:
-
-delimiter /
-create procedure relacionar_Categoria_Denuncia (
-in p_idDenuncia int,
+in p_idResposta_Postagem int,
 in p_idTipo_Denuncia int
 )
 
 begin
-	insert into tblColecao_Tipo (idDenuncia, idTipo_Denuncia) values (p_idDenuncia, p_idTipo_Denuncia);
+	insert into tblDenuncia (descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem, idResposta_Postagem, idTipo_Denuncia) values (p_descricao, now(), now(), p_idTipo_Usuario, p_idPostagem, p_idResposta_Postagem, p_idTipo_Denuncia);
 end /
 delimiter ;
 
