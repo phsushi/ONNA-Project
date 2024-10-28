@@ -16,7 +16,7 @@ namespace prjDESK_ONNA.paginas
     public partial class Art_Exclusao : Form
     {
         private Intermediaria _obj;
-       
+        int idArtigo;
         public Art_Exclusao(Intermediaria obj)
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace prjDESK_ONNA.paginas
 
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
-            int idArtigo = Convert.ToInt16(TxtPesquisa.Text);
+           
             try
             {
                 string conect = "server=localhost;database=ONNA;uid=root;pwd=U1de8JA87Rrb";
@@ -87,6 +87,10 @@ namespace prjDESK_ONNA.paginas
         {
             string genero = "";
 
+            int iidd = Convert.ToInt32(reader["idArtigo"]);
+
+            string link = reader["fonte"].ToString();
+
             if (reader["idGenero"].ToString() == "1")
             {
                 genero = "Menstruação";
@@ -108,17 +112,20 @@ namespace prjDESK_ONNA.paginas
                 genero = "Cuidados com o corpo";
             }
 
-            // Configuração do painel card
-            Panel card = new Panel
+
+            PanelEstilizado card = new PanelEstilizado
             {
                 Size = new Size(265, 150),
                 BorderStyle = BorderStyle.FixedSingle,
                 Margin = new Padding(10),
-                BackColor = Color.LightBlue
+                BackgroudColor = Color.WhiteSmoke,
+                ForeColor = Color.Black,
+                CurvaturaBorda = 15
                 
+   
             };
 
-            // Adiciona informações como labels
+            
             Label labelTitulo = new Label
             {
                 Text = reader["titulo"].ToString(),
@@ -132,17 +139,16 @@ namespace prjDESK_ONNA.paginas
 
             Label labelResumo = new Label
             {
-                Size = new Size(230, 30),
+                Size = new Size(230, 50),
                 Text =  reader["resumo"].ToString(),
-                Font = new Font("Palatino Linotype", 10),
+                Font = new Font("Palatino Linotype", 7),
                 Location = new Point(10, 50),
                 AutoSize = false,
                 
             };
             card.Controls.Add(labelResumo);
 
-            // Adicione mais Labels ou outros controles conforme necessário
-            // Exemplo: outro campo do banco de dados
+            
             Label labelGenero = new Label
             {
                 Text =  genero,
@@ -155,35 +161,53 @@ namespace prjDESK_ONNA.paginas
 
             ModeracaoBtn btnDetalhes = new ModeracaoBtn
             {
-                Text = "Ver Detalhes",
+                Text = "Selecionar",
                 Location = new Point(80, 100),
-                Size = new Size(100, 30)
+                Size = new Size(100, 30),
+                BackColor = Color.FromArgb(38, 180, 225)
             };
             card.Controls.Add(btnDetalhes);
 
             btnDetalhes.Click += (sender, e) =>
             {
-                TxtPesquisa.Text = labelResumo.Text;
+                LblTitulo.Text = labelTitulo.Text;
+                LblResumo.Text = labelResumo.Text;
+                LblLink.Text = link;
+                idArtigo = iidd;
+
             };
 
 
             return card;
         }
-        private void CarregarDados()
+        private void CarregarDados(string filtro = "")
         {
             try
             {
-                 string connectionString = "server=localhost;database=ONNA;uid=root;pwd=U1de8JA87Rrb";
-                 MySqlConnection connection = new MySqlConnection(connectionString);
+                string conect = "server=localhost;database=ONNA;uid=root;pwd=U1de8JA87Rrb";
+                MySqlConnection con = new MySqlConnection(conect);
 
-                connection.Open();
+                
+                con.Open();
 
                 
                 string query = "SELECT * FROM tblArtigo";
 
-                
-                MySqlCommand command = new MySqlCommand(query, connection);
 
+                if (!string.IsNullOrEmpty(filtro))
+                {
+                    query += " WHERE titulo LIKE @filtro";
+                }
+
+                
+                MySqlCommand command = new MySqlCommand(query, con);
+
+                if (!string.IsNullOrEmpty(filtro))
+                {
+                    command.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+                }
+
+                
                 MySqlDataReader reader = command.ExecuteReader();
 
                 
@@ -196,15 +220,22 @@ namespace prjDESK_ONNA.paginas
                     Panel card = CriarCard(reader);
                     flowLayoutPanel1.Controls.Add(card);
                 }
-                connection.Close();
+                con.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro: " + ex.Message);
             }
             
+                
+               
+            
         }
 
+        private void TxtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            CarregarDados(TxtPesquisa.Text);
+        }
     }
 
    

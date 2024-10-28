@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblObservacao = new System.Windows.Forms.Label();
             this.LblComentario = new System.Windows.Forms.Label();
@@ -41,17 +40,11 @@
             this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
             this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(537, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(247, 534);
-            this.dataGridView1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -64,13 +57,13 @@
             this.panel1.Controls.Add(this.LblDenunciou);
             this.panel1.Location = new System.Drawing.Point(12, 68);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(509, 359);
+            this.panel1.Size = new System.Drawing.Size(497, 359);
             this.panel1.TabIndex = 11;
             // 
             // LblObservacao
             // 
             this.LblObservacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblObservacao.Location = new System.Drawing.Point(24, 230);
+            this.LblObservacao.Location = new System.Drawing.Point(11, 230);
             this.LblObservacao.Name = "LblObservacao";
             this.LblObservacao.Size = new System.Drawing.Size(459, 115);
             this.LblObservacao.TabIndex = 4;
@@ -78,7 +71,7 @@
             // LblComentario
             // 
             this.LblComentario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblComentario.Location = new System.Drawing.Point(208, 65);
+            this.LblComentario.Location = new System.Drawing.Point(197, 65);
             this.LblComentario.Name = "LblComentario";
             this.LblComentario.Size = new System.Drawing.Size(275, 162);
             this.LblComentario.TabIndex = 3;
@@ -86,7 +79,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.panel2.Location = new System.Drawing.Point(24, 65);
+            this.panel2.Location = new System.Drawing.Point(14, 65);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(177, 162);
             this.panel2.TabIndex = 2;
@@ -94,7 +87,7 @@
             // LblDenunciada
             // 
             this.LblDenunciada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblDenunciada.Location = new System.Drawing.Point(303, 16);
+            this.LblDenunciada.Location = new System.Drawing.Point(290, 16);
             this.LblDenunciada.Name = "LblDenunciada";
             this.LblDenunciada.Size = new System.Drawing.Size(180, 36);
             this.LblDenunciada.TabIndex = 1;
@@ -103,7 +96,7 @@
             // LblDenunciou
             // 
             this.LblDenunciou.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblDenunciou.Location = new System.Drawing.Point(21, 16);
+            this.LblDenunciou.Location = new System.Drawing.Point(11, 16);
             this.LblDenunciou.Name = "LblDenunciou";
             this.LblDenunciou.Size = new System.Drawing.Size(180, 36);
             this.LblDenunciou.TabIndex = 0;
@@ -138,7 +131,7 @@
             this.BtnApagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnApagar.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnApagar.ForeColor = System.Drawing.Color.Black;
-            this.BtnApagar.Location = new System.Drawing.Point(193, 433);
+            this.BtnApagar.Location = new System.Drawing.Point(189, 433);
             this.BtnApagar.Name = "BtnApagar";
             this.BtnApagar.Size = new System.Drawing.Size(148, 40);
             this.BtnApagar.TabIndex = 13;
@@ -157,7 +150,7 @@
             this.BtnIgnorar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnIgnorar.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
             this.BtnIgnorar.ForeColor = System.Drawing.Color.Black;
-            this.BtnIgnorar.Location = new System.Drawing.Point(373, 433);
+            this.BtnIgnorar.Location = new System.Drawing.Point(361, 433);
             this.BtnIgnorar.Name = "BtnIgnorar";
             this.BtnIgnorar.Size = new System.Drawing.Size(148, 40);
             this.BtnIgnorar.TabIndex = 14;
@@ -214,12 +207,29 @@
             this.label2.Text = "Moderação";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(515, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(265, 519);
+            this.flowLayoutPanel1.TabIndex = 20;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(8, 8);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
             // Mod_moderacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panelEstilizado1);
             this.Controls.Add(this.BtnVoltar);
@@ -227,19 +237,17 @@
             this.Controls.Add(this.BtnApagar);
             this.Controls.Add(this.BtnBanir);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "Mod_moderacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mod_moderacao";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Mod_moderacao_Load);
             this.panel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
         private ModeracaoBtn BtnBanir;
         private ModeracaoBtn BtnApagar;
@@ -252,5 +260,7 @@
         private System.Windows.Forms.Label LblComentario;
         private classes.PanelEstilizado panelEstilizado1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

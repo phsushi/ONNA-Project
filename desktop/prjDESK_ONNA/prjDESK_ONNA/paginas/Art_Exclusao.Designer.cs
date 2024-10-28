@@ -32,12 +32,13 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelEstilizado2 = new prjDESK_ONNA.classes.PanelEstilizado();
+            this.LblResumo = new System.Windows.Forms.RichTextBox();
             this.LblTitulo = new System.Windows.Forms.Label();
             this.BtnExcluir = new prjDESK_ONNA.ModeracaoBtn();
-            this.LblResumo = new System.Windows.Forms.Label();
             this.LblLink = new System.Windows.Forms.Label();
             this.panelEstilizado1 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.BtnVoltar = new prjDESK_ONNA.ModeracaoBtn();
+            this.panelEstilizado3 = new prjDESK_ONNA.classes.PanelEstilizado();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelEstilizado2.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +50,7 @@
             this.TxtPesquisa.Name = "TxtPesquisa";
             this.TxtPesquisa.Size = new System.Drawing.Size(354, 33);
             this.TxtPesquisa.TabIndex = 1;
+            this.TxtPesquisa.TextChanged += new System.EventHandler(this.TxtPesquisa_TextChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -70,9 +72,9 @@
             // 
             this.panelEstilizado2.BackColor = System.Drawing.Color.White;
             this.panelEstilizado2.BackgroudColor = System.Drawing.Color.White;
+            this.panelEstilizado2.Controls.Add(this.LblResumo);
             this.panelEstilizado2.Controls.Add(this.LblTitulo);
             this.panelEstilizado2.Controls.Add(this.BtnExcluir);
-            this.panelEstilizado2.Controls.Add(this.LblResumo);
             this.panelEstilizado2.Controls.Add(this.LblLink);
             this.panelEstilizado2.CorBorda = System.Drawing.Color.PaleVioletRed;
             this.panelEstilizado2.CurvaturaBorda = 40;
@@ -84,12 +86,27 @@
             this.panelEstilizado2.TamanhoBorda = 0;
             this.panelEstilizado2.TextColor = System.Drawing.Color.White;
             // 
+            // LblResumo
+            // 
+            this.LblResumo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.LblResumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblResumo.ForeColor = System.Drawing.Color.Black;
+            this.LblResumo.Location = new System.Drawing.Point(26, 61);
+            this.LblResumo.Name = "LblResumo";
+            this.LblResumo.ReadOnly = true;
+            this.LblResumo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.LblResumo.Size = new System.Drawing.Size(411, 254);
+            this.LblResumo.TabIndex = 15;
+            this.LblResumo.Text = "";
+            // 
             // LblTitulo
             // 
             this.LblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblTitulo.Location = new System.Drawing.Point(23, 14);
+            this.LblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.ForeColor = System.Drawing.Color.Black;
+            this.LblTitulo.Location = new System.Drawing.Point(26, 14);
             this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(414, 44);
+            this.LblTitulo.Size = new System.Drawing.Size(411, 44);
             this.LblTitulo.TabIndex = 12;
             this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -113,23 +130,16 @@
             this.BtnExcluir.UseVisualStyleBackColor = false;
             this.BtnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
-            // LblResumo
-            // 
-            this.LblResumo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblResumo.Location = new System.Drawing.Point(23, 69);
-            this.LblResumo.Name = "LblResumo";
-            this.LblResumo.Size = new System.Drawing.Size(414, 239);
-            this.LblResumo.TabIndex = 13;
-            this.LblResumo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // LblLink
             // 
             this.LblLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.LblLink.Location = new System.Drawing.Point(23, 319);
+            this.LblLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblLink.ForeColor = System.Drawing.Color.Black;
+            this.LblLink.Location = new System.Drawing.Point(26, 319);
             this.LblLink.Name = "LblLink";
-            this.LblLink.Size = new System.Drawing.Size(414, 35);
+            this.LblLink.Size = new System.Drawing.Size(411, 35);
             this.LblLink.TabIndex = 14;
-            this.LblLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelEstilizado1
             // 
@@ -167,12 +177,29 @@
             this.BtnVoltar.UseVisualStyleBackColor = false;
             this.BtnVoltar.Click += new System.EventHandler(this.BtnVoltar_Click);
             // 
+            // panelEstilizado3
+            // 
+            this.panelEstilizado3.BackColor = System.Drawing.Color.White;
+            this.panelEstilizado3.BackgroudColor = System.Drawing.Color.White;
+            this.panelEstilizado3.BackgroundImage = global::prjDESK_ONNA.Properties.Resources.lupa;
+            this.panelEstilizado3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panelEstilizado3.CorBorda = System.Drawing.Color.PaleVioletRed;
+            this.panelEstilizado3.CurvaturaBorda = 32;
+            this.panelEstilizado3.ForeColor = System.Drawing.Color.White;
+            this.panelEstilizado3.Location = new System.Drawing.Point(74, 17);
+            this.panelEstilizado3.Name = "panelEstilizado3";
+            this.panelEstilizado3.Size = new System.Drawing.Size(39, 35);
+            this.panelEstilizado3.TabIndex = 20;
+            this.panelEstilizado3.TamanhoBorda = 0;
+            this.panelEstilizado3.TextColor = System.Drawing.Color.White;
+            // 
             // Art_Exclusao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(784, 535);
+            this.Controls.Add(this.panelEstilizado3);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panelEstilizado2);
             this.Controls.Add(this.panelEstilizado1);
@@ -197,11 +224,12 @@
         private ModeracaoBtn BtnExcluir;
         private ModeracaoBtn BtnVoltar;
         private System.Windows.Forms.Label LblLink;
-        private System.Windows.Forms.Label LblResumo;
         private System.Windows.Forms.Label LblTitulo;
         private classes.PanelEstilizado panelEstilizado1;
         private classes.PanelEstilizado panelEstilizado2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.RichTextBox LblResumo;
+        private classes.PanelEstilizado panelEstilizado3;
     }
 }
