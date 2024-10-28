@@ -18,7 +18,8 @@ senha varchar(120) not null,
 nome varchar(100) not null,
 dataNasc date not null,
 avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
-tipo_Usuario tinyint not null -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
+tipo_Usuario tinyint not null, -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
+data_Cadastro date not null -- Dia em que o usuário cadastrou sua conta
 );
 
 
@@ -158,6 +159,11 @@ idPostagem int not null,
 constraint fkPostagem_tblResposta_Postagem foreign key (idPostagem) references tblPostagem (idPostagem)
 );
 
+create table tblTipo_Denuncia(
+idTipo_Denuncia int primary key, -- Cada inteiro irá se referir a um dos tipos já definidos (ofensa, discriminação etc.)
+tipo varchar(40) not null
+);
+
 create table tblDenuncia(
 idDenuncia int primary key auto_increment,
 status_Check tinyint default 0, -- Campo que receberá instância [1] quando a denúncia for resolvida no desktop 
@@ -172,22 +178,10 @@ idPostagem int,
 constraint fkPostagem_tblDenuncia foreign key (idPostagem) references tblPostagem (idPostagem),
 
 idResposta_Postagem int,
-constraint fkResposta_Postagem_tblDenuncia foreign key (idResposta_Postagem) references tblResposta_Postagem (idResposta_Postagem)
-);
-
-create table tblTipo_Denuncia(
-idTipo_Denuncia int primary key, -- Cada inteiro irá se referir a um dos tipos já definidos (ofensa, discriminação etc.)
-tipo varchar(40) not null
-);
-
-create table tblColecao_Tipo(
-idColecao_Tipo int primary key auto_increment,
-
-idDenuncia int not null,
-constraint fkDenuncia_tblColecao_Tipo foreign key (idDenuncia) references tblDenuncia (idDenuncia),
+constraint fkResposta_Postagem_tblDenuncia foreign key (idResposta_Postagem) references tblResposta_Postagem (idResposta_Postagem),
 
 idTipo_Denuncia int not null,
-constraint fkTipo_Denuncia_tblColecao_Tipo foreign key (idTipo_Denuncia) references tblTipo_Denuncia (idTipo_Denuncia)
+constraint fkTipo_Denuncia_tblDenuncia foreign key (idTipo_Denuncia) references tblTipo_Denuncia (idTipo_Denuncia)
 );
 
 
@@ -397,7 +391,7 @@ in p_idDenuncia int
 )
 
 begin
-	select a.descricao as 'Descrição da denúncia',
+	select a.descricao as 'Descrição da denúncia', a.idTipo_Denuncia,
 		   b.email as 'Quem denunciou',
 		   c.titulo as 'Título da postagem denunciada', c.subtitulo as 'Detalhes da postagem denunciada',
 		   d.email as 'Quem foi denunciado' from tblDenuncia a
@@ -424,7 +418,7 @@ in p_idDenuncia int
 )
 
 begin
-	select a.descricao as 'Descrição da denúncia',
+	select a.descricao as 'Descrição da denúncia', a.idTipo_Denuncia,
 		   b.email as 'Quem denunciou',
 		   c.mensagem as 'Mensagem denunciada',
 		   d.email as 'Quem foi denunciado' from tblDenuncia a
@@ -432,18 +426,6 @@ begin
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
 	inner join tblResposta_Postagem c on a.idResposta_Postagem = c.idResposta_Postagem
 	inner join tblTipo_Usuario d on c.idTipo_Usuario = d.idTipo_Usuario where idDenuncia = p_idDenuncia;
-end /
-delimiter ;
-
--- Esta última procedure exibirá o(s) tipo(s) da denúncia clicada
-
-delimiter /
-create procedure exibir_Tipo_Denuncia (
-in p_idDenuncia int
-)
-
-begin
-	select idTipo_Denuncia from tblColecao_Tipo where idDenuncia = p_idDenuncia;
 end /
 delimiter ;
 
@@ -512,7 +494,7 @@ in p_tipo_Usuario tinyint
 )
 
 begin
-	insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario) values (p_email, p_senha, p_nome, p_dataNasc, p_avatar, p_tipo_Usuario);
+	insert into tblTipo_Usuario (email, senha, nome, dataNasc, avatar, tipo_Usuario, data_Cadastro) values (p_email, p_senha, p_nome, p_dataNasc, p_avatar, p_tipo_Usuario, now());
 end /
 delimiter ;
 
@@ -562,7 +544,7 @@ in p_email varchar(120)
 )
 
 begin
-	select idTipo_Usuario, email, nome, senha, date_format(str_to_date(dataNasc, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de nascimento', avatar, tipo_Usuario from tblTipo_Usuario where email = p_email and status_Ban = 0;
+	select idTipo_Usuario, email, nome, senha, date_format(str_to_date(dataNasc, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de nascimento', avatar, tipo_Usuario, date_format(str_to_date(data_Cadastro, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de cadastro da conta' from tblTipo_Usuario where email = p_email and status_Ban = 0;
 end /
 delimiter ;
 
@@ -655,7 +637,58 @@ end /
 delimiter ;
 
 delimiter /
-create procedure exibir_Postagem (
+create procedure alterar_Postagem (
+in p_titulo varchar(300),
+in p_subtitulo varchar(4000),
+in p_imagem longtext,
+in p_idPostagem int
+)
+
+begin
+	update tblPostagem set titulo = p_titulo, subtitulo = p_subtitulo,  imagem = p_imagem,  hora = now(), data_Postagem = now() where idPostagem = p_idPostagem;
+end /
+delimiter ;
+
+delimiter /
+create procedure excluir_Postagem (
+in p_idPostagem int
+)
+
+begin
+	update tblPostagem set status_Ban = 1 where idPostagem = p_idPostagem;
+end /
+delimiter ;
+
+-- Diferentes exibições de postagem
+
+delimiter /
+create procedure exibir_Postagem_Especifica (
+in p_idPostagem int
+)
+
+begin
+	select a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	       b.avatar, b.nome from tblPostagem a
+           
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idPostagem = p_idPostagem;
+end /
+delimiter ;
+
+delimiter /
+create procedure exibir_Postagem_Popular ()
+
+begin
+	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	       b.avatar, b.nome from tblPostagem a
+           
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.status_Ban = 0 and b.status_Ban = 0 
+	
+	order by data_Postagem, reacoes desc limit 30;
+end /
+delimiter ;
+
+delimiter /
+create procedure exibir_Postagem_Forum (
 in p_idForum int
 )
 
@@ -665,7 +698,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0 
 	
-	order by data_Postagem, hora, reacoes desc;
+	order by data_Postagem, hora desc;
 end /
 delimiter ;
 
@@ -682,6 +715,48 @@ begin
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where titulo like concat('%', p_titulo, '%') and idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0
 	
 	order by titulo;
+end /
+delimiter ;
+
+-- Menu pessoal do usuário
+
+delimiter /
+create procedure exibir_Postagem_Geral ()
+
+begin
+	select a.idPostagem, a.titulo, a.subtitulo, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	       b.avatar, b.nome from tblPostagem a
+           
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0 
+	
+	order by data_Postagem, hora desc limit 10;
+end /
+delimiter ;
+
+delimiter /
+create procedure exibir_Postagem_Propria (
+in p_idTipo_Usuario int
+)
+
+begin
+	select a.idPostagem, a.titulo, a.subtitulo, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	       b.avatar, b.nome from tblPostagem a
+           
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = p_idTipo_Usuario
+	
+	order by data_Postagem, hora desc limit 5;
+end /
+delimiter ;
+
+-- Procedure para as informações pessoais
+
+delimiter /
+create procedure contagem_Postagem (
+in p_idTipo_Usuario int
+)
+
+begin
+	select count(idPostagem) from tblPostagem where idTipo_Usuario = p_idTipo_Usuario;
 end /
 delimiter ;
 
@@ -733,7 +808,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idPostagem = p_idPostagem and a.status_Ban = 0 and b.status_Ban = 0 
 	
-	order by data_Resposta, hora, reacoes desc;
+	order by data_Resposta, hora desc;
 end /
 delimiter ;
 
