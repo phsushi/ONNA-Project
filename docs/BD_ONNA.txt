@@ -835,7 +835,7 @@ end /
 delimiter ;
 
 
--- Procedures de denúncia
+-- Procedure de denúncia
 
 delimiter /
 create procedure criar_Denuncia (
