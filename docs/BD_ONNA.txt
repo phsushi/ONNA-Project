@@ -756,7 +756,7 @@ in p_idTipo_Usuario int
 )
 
 begin
-	select count(idPostagem) from tblPostagem where idTipo_Usuario = p_idTipo_Usuario;
+	select count(idPostagem) from tblPostagem where idTipo_Usuario = p_idTipo_Usuario and status_Ban = 0;
 end /
 delimiter ;
 
