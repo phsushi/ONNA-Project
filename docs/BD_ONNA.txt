@@ -87,7 +87,15 @@ constraint fkPerfil_Pessoal_tblCalendario_Personalizado foreign key (idUsuario) 
 
 create table tblRelatorio_Humor(
 idRelatorio_Humor int primary key auto_increment,
-media_Humor decimal not null,
+humor tinyint not null,
+sintoma tinyint not null,
+secrecao_Vaginal tinyint not null,
+remedio tinyint not null,
+intervalo_Hora tinyint not null,
+qntd_Agua tinyint not null,
+atividade_Fisica tinyint not null,
+atividade_Feita tinyint not null,
+apos_Atividade tinyint not null,
 data_Relatorio date not null, -- now()
 
 idUsuario int not null,
@@ -1181,22 +1189,29 @@ delimiter ;
 delimiter /
 create procedure criar_Relatorio_Humor (
 in p_idUsuario int,
-in p_media_Humor decimal
+in p_humor tinyint,
+in p_sintoma tinyint,
+in p_secrecao_Vaginal tinyint,
+in p_remedio tinyint,
+in p_intervalo_Hora tinyint,
+in p_qntd_Agua tinyint,
+in p_atividade_Fisica tinyint,
+in p_atividade_Feita tinyint,
+in p_apos_Atividade tinyint
 )
 
 begin
-	insert into tblRelatorio_Humor (media_Humor, data_Relatorio, idUsuario) values (p_media_Humor, now(), p_idUsuario);
+	insert into tblRelatorio_Humor (humor, sintoma, secrecao_Vaginal, remedio, intervalo_Hora, qntd_Agua, atividade_Fisica, atividade_Feita, apos_Atividade, data_Relatorio, idUsuario) values (p_humor, p_sintoma, p_secrecao_Vaginal, p_remedio, p_intervalo_Hora, p_qntd_Agua, p_atividade_Fisica, p_atividade_Feita, p_apos_Atividade, now(), p_idUsuario);
 end /
 delimiter ; 
 
 delimiter /
-create procedure exibir_Relatorios (
-in p_idUsuario int
+create procedure exibir_Relatorio (
+in p_idUsuario int,
+in p_data_Relatorio date
 )
 
 begin
-	select media_Humor, date_format(str_to_date(data_Relatorio, '%Y-%m-%d'), '%d/%m/%Y') as 'Data do relatório' from tblRelatorio_Humor where idUsuario = p_idUsuario
-    
-    order by data_Relatorio desc;
+	select humor, sintoma, secrecao_Vaginal, remedio, intervalo_Hora, qntd_Agua, atividade_Fisica, atividade_Feita, apos_Atividade from tblRelatorio_Humor where idUsuario = p_idUsuario and data_Relatorio = p_data_Relatorio;
 end /
 delimiter ; 
