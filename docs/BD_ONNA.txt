@@ -40,7 +40,7 @@ constraint fkTipo_Usuario_tblColecao_Contato foreign key (idTipo_Usuario) refere
 
 idContato int not null,
 constraint fkContato_tblColecao_Contato foreign key (idContato) references tblContato (idContato)   
-);
+); -- INSERT FEITO
 
 create table tblConversa_Privada(
 idConversa_Privada int primary key auto_increment,
@@ -286,7 +286,7 @@ end /
 delimiter ;
 
 delimiter /
-create procedure consultar_Artigo (
+create procedure consultar_Artigo_Titulo (
 in p_titulo varchar(255)
 )
 
@@ -295,33 +295,14 @@ begin
 end /
 delimiter ;
 
-delimiter /
-create procedure consulta_Superficial_Artigo ()
-
-begin
-	select idArtigo, titulo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') from tblArtigo 
-	
-	order by idArtigo;
-end /
-delimiter ;
 
 delimiter /
-create procedure consulta_Detalhada_Artigo (
+create procedure consulta_Artigo (
 in p_idArtigo int
 )
 
 begin
-	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', fonte from tblArtigo where idArtigo = p_idArtigo;
-end /
-delimiter ;
-
-delimiter /
-create procedure excluir_Titulo_Artigo (
-in p_titulo varchar(255)
-)
-
-begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', p_titulo, '%'); 
+	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idAdmin, idGenero from tblArtigo where idArtigo = p_idArtigo;
 end /
 delimiter ;
 
@@ -375,7 +356,7 @@ begin
        
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
 	inner join tblResposta_Postagem e on a.idResposta_Postagem = e.idResposta_Postagem
-	inner join tblPostagem f on e.idPostagem - f.idPostagem
+	inner join tblPostagem f on e.idPostagem = f.idPostagem
 	inner join tblForum c on f.idForum = c.idForum
 	inner join tblTipo_Usuario d on e.idTipo_Usuario = d.idTipo_Usuario where a.status_Check = 0 
 	
@@ -393,7 +374,7 @@ in p_idDenuncia int
 begin
 	select a.descricao as 'Descrição da denúncia', a.idTipo_Denuncia,
 		   b.email as 'Quem denunciou',
-		   c.titulo as 'Título da postagem denunciada', c.subtitulo as 'Detalhes da postagem denunciada',
+		   concat(c.titulo, '\n', '\n', '\n', c.subtitulo) as 'Mensagem denunciada',
 		   d.email as 'Quem foi denunciado' from tblDenuncia a
                
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario
@@ -900,32 +881,34 @@ delimiter /
 create procedure exibir_Artigo_Cuidados_Corpo ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 5
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação' from tblArtigo where idGenero = 5
     
 	order by data_Publicacao desc;
 end /
 delimiter ;
 
+/*
 delimiter /
 create procedure consulta_Titulo_Artigo (
 in p_titulo varchar(255)
 )
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', p_titulo, '%'); 
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', p_titulo, '%');
 end /
 delimiter ;
+
 
 delimiter /
 create procedure consulta_Artigo_Selecionado (
 in p_idArtigo int
-) 
+)
 
 begin
-	select titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA', fonte from tblArtigo where idArtigo = p_idArtigo;
+	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idAdmin, idGenero from tblArtigo where idArtigo = p_idArtigo;
 end /
 delimiter ;
-
+/*
 
 
 
