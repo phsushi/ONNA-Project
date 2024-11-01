@@ -112,7 +112,7 @@ crp int(5),
 uf char(2) not null,
 area_Formacao varchar(80) not null,
 
-idTipo_Usuario int unique not null,
+idTipo_Usuario int not null,
 constraint fkTipo_Usuario_tblPerfil_Profissional foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
 ); -- INSERT FEITO
 
@@ -1060,6 +1060,17 @@ end /
 delimiter ; 
 
 delimiter /
+create procedure exibir_Disponibilidade (
+in p_idProfissional int,
+in p_data_Disponibilidade date
+)
+
+begin
+	select data_Disponibilidade, hora_Inicial, hora_Final from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade = p_data_Disponibilidade;
+end /
+delimiter ;
+
+delimiter /
 create procedure alterar_Disponibilidade (
 in p_idProfissional int,
 in p_data_Disponibilidade date,
@@ -1068,7 +1079,18 @@ in p_hora_Final time
 )
 
 begin
-	update tblDisponibilidade set data_Disponibilidade = p_data_Disponibilidade, hora_Inicial = p_hora_Inicial, hora_Final = p_hora_Final where idProfissional = p_idProfissional;
+	update tblDisponibilidade set hora_Inicial = p_hora_Inicial, hora_Final = p_hora_Final where idProfissional = p_idProfissional and data_Disponibilidade = p_data_Disponibilidade;
+end /
+delimiter ; 
+
+delimiter /
+create procedure excluir_Disponibilidade (
+in p_idProfissional int,
+in p_data_Disponibilidade date
+)
+
+begin
+	delete from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade = p_data_Disponibilidade;
 end /
 delimiter ; 
 
