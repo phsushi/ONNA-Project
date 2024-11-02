@@ -183,7 +183,6 @@ E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\System.Memory.x
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\System.Numerics.Vectors.xml
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\bin\Debug\System.Threading.Tasks.Extensions.xml
-E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.csprojAssemblyReference.cache
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.Menu.resources
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Art_Alterar.resources
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.paginas.Art_Consulta.resources
@@ -198,3 +197,4 @@ E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.cs
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.csproj.CopyComplete
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.exe
 E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.pdb
+E:\ONNA-Project-main\desktop\prjDESK_ONNA\prjDESK_ONNA\obj\Debug\prjDESK_ONNA.csproj.AssemblyReference.cache
