@@ -37,7 +37,7 @@ namespace prjDESK_ONNA.paginas
             else
             {
                 con.Open();
-                MySqlCommand comando = new MySqlCommand("call login_Admin('" + TxtUsuario.Text + "')", con);
+                MySqlCommand comando = new MySqlCommand("call login_Admin('" + TxtUsuario.Text + "','" + TxtSenha.Text + "')", con);
                 try
                 {
 
@@ -56,11 +56,15 @@ namespace prjDESK_ONNA.paginas
 
 
 
-                    if (lista[0] == TxtUsuario.Text)
+                    if (leitor["username"].ToString() == TxtUsuario.Text && leitor["senha"].ToString() == TxtSenha.Text)
                     {
                         Menu car = new Menu(obja);
                         car.Show();
                         this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuário ou senha inválidos, tente novamente!", "Falha ao logar");
                     }
                 }
                 catch (Exception err)

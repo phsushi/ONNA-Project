@@ -295,6 +295,7 @@
             this.BtnBanir.Text = "banir";
             this.BtnBanir.TextColor = System.Drawing.Color.Black;
             this.BtnBanir.UseVisualStyleBackColor = false;
+            this.BtnBanir.Click += new System.EventHandler(this.BtnBanir_Click);
             // 
             // Mod_moderacao
             // 
@@ -310,6 +311,7 @@
             this.Controls.Add(this.BtnApagar);
             this.Controls.Add(this.BtnBanir);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "Mod_moderacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mod_moderacao";

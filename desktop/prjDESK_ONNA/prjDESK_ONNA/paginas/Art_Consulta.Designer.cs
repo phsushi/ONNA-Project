@@ -129,6 +129,7 @@
             this.Controls.Add(this.DtaConsulta);
             this.Controls.Add(this.TxtPesquisaCons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Art_Consulta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Art_Consulta";

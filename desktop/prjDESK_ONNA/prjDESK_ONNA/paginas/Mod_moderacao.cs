@@ -69,7 +69,7 @@ namespace prjDESK_ONNA.paginas
 
             PanelEstilizado card = new PanelEstilizado
             {
-                Size = new Size(410, 150),
+                Size = new Size(390, 150),
                 BorderStyle = BorderStyle.FixedSingle,
                 Margin = new Padding(10),
                 BackgroudColor = Color.WhiteSmoke,
@@ -292,7 +292,7 @@ namespace prjDESK_ONNA.paginas
 
         private void BtnApagar_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Tem certeza que quer Apagar este comentário?", "Aviso!", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que quer apagar este comentário/resposta?", "Aviso!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 try
@@ -342,7 +342,37 @@ namespace prjDESK_ONNA.paginas
             }
         }
 
-        
-       
+        private void BtnBanir_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que quer banir este usuário?", "Aviso!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    string conect = "server=localhost;database=ONNA;uid=root;pwd=U1de8JA87Rrb";
+                    MySqlConnection con = new MySqlConnection(conect);
+
+                    con.Open();
+
+                    string query = "call banir_Usuario('" + LblDenunciada.Text + "')";
+
+                    MySqlCommand command = new MySqlCommand(query, con);
+
+                    command.ExecuteNonQuery();
+
+                    con.Close();
+
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show(er.ToString(), "Erro: ");
+                }
+
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
     }
 }
