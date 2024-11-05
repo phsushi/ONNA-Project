@@ -59,7 +59,7 @@ constraint fkContato_tblConversa_Privada foreign key (idContato) references tblC
 -- Funcionalidades do mobile "Perfil Pessoal"
 
 create table tblPerfil_Pessoal(
-idUsuario int primary key auto_increment,
+idUsuario int primary key,
 
 idTipo_Usuario int unique not null,
 constraint fkTipo_Usuario_tblPerfil_Pessoal foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
@@ -123,7 +123,7 @@ constraint fkPerfil_Pessoal_tblRelatorio_Atividade foreign key (idUsuario) refer
 -- Funcionalidades do mobile "Perfil Profissional"
 
 create table tblPerfil_Profissional(
-idProfissional int primary key auto_increment,
+idProfissional int primary key,
 crm int(5),
 crp int(5),
 uf char(2) not null,
@@ -508,16 +508,18 @@ delimiter ;
 
 delimiter /
 create procedure cadastro_Perfil_Pessoal (
+in p_idUsuario int,
 in p_idTipo_Usuario int
 )
 
 begin
-	insert into tblPerfil_Pessoal (idTipo_Usuario) values (p_idTipo_Usuario);
+	insert into tblPerfil_Pessoal (idUsuario, idTipo_Usuario) values (p_idUsuario, p_idTipo_Usuario);
 end /
 delimiter ;
 
 delimiter /
 create procedure cadastro_Perfil_Profissional (
+in p_idProfissional int,
 in p_crm int(5),
 in p_crp int(5),
 in p_uf char(2),
@@ -526,7 +528,7 @@ in p_idTipo_Usuario int
 )
 
 begin
-	insert into tblPerfil_Profissional (crm, crp, uf, area_Formacao, idTipo_Usuario) values (p_crm, p_crp, p_uf, p_area_Formacao, p_idTipo_Usuario);
+	insert into tblPerfil_Profissional (idProfissional, crm, crp, uf, area_Formacao, idTipo_Usuario) values (p_idProfissional, p_crm, p_crp, p_uf, p_area_Formacao, p_idTipo_Usuario);
 end /
 delimiter ;
 
