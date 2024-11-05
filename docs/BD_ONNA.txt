@@ -1092,7 +1092,7 @@ in p_idProfissional int
 )
 
 begin
-	select idDisponibilidade, hora_Inicial, hora_Final from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade >= now();
+	select idDisponibilidade, data_Disponibilidade, hora_Inicial, hora_Final from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade >= now();
 end /
 delimiter ;
 
