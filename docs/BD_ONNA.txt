@@ -20,7 +20,7 @@ dataNasc date not null,
 avatar int not null, -- Serão imagens pré-selecionadas por nossa equipe, depositadas na pasta do aplicativo web/mobile
 tipo_Usuario tinyint not null, -- Valor [0] será perfil pessoal; valor [1] será perfil profissional
 data_Cadastro date not null -- Dia em que o usuário cadastrou sua conta
-); -- INSERT FEITO
+);
 
 
 -- Funcionalidade de chat privado
