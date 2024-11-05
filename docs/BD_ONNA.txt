@@ -573,14 +573,13 @@ delimiter ;
 -- Alterações de dados do perfil
 
 delimiter /
-create procedure modificar_Perfil (
+create procedure modificar_Avatar (
 in p_idTipo_Usuario int,
-in p_nome varchar(100),
 in p_avatar int
 )
 
 begin
-	update tblTipo_Usuario set nome = p_nome, avatar = p_avatar where idTipo_Usuario = p_idTipo_Usuario;
+	update tblTipo_Usuario set avatar = p_avatar where idTipo_Usuario = p_idTipo_Usuario;
 end /
 delimiter ;
 
