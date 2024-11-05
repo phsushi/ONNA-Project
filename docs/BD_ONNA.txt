@@ -1066,31 +1066,29 @@ in p_data_Disponibilidade date
 )
 
 begin
-	select data_Disponibilidade, hora_Inicial, hora_Final from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade = p_data_Disponibilidade;
+	select idDisponibilidade, hora_Inicial, hora_Final from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade = p_data_Disponibilidade;
 end /
 delimiter ;
 
 delimiter /
 create procedure alterar_Disponibilidade (
-in p_idProfissional int,
-in p_data_Disponibilidade date,
+in p_idDisponibilidade int,
 in p_hora_Inicial time,
 in p_hora_Final time
 )
 
 begin
-	update tblDisponibilidade set hora_Inicial = p_hora_Inicial, hora_Final = p_hora_Final where idProfissional = p_idProfissional and data_Disponibilidade = p_data_Disponibilidade;
+	update tblDisponibilidade set hora_Inicial = p_hora_Inicial, hora_Final = p_hora_Final where idDisponibilidade = p_idDisponibilidade
 end /
 delimiter ; 
 
 delimiter /
 create procedure excluir_Disponibilidade (
-in p_idProfissional int,
-in p_data_Disponibilidade date
+in p_idDisponibilidade int
 )
 
 begin
-	delete from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade = p_data_Disponibilidade;
+	delete from tblDisponibilidade where idProfissional = p_idProfissional and idDisponibilidade = p_idDisponibilidade;
 end /
 delimiter ; 
 
