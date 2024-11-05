@@ -575,14 +575,23 @@ delimiter ;
 delimiter /
 create procedure modificar_Perfil (
 in p_idTipo_Usuario int,
-in p_senha varchar(120),
 in p_nome varchar(100),
-in p_dataNasc date,
 in p_avatar int
 )
 
 begin
-	update tblTipo_Usuario set nome = p_nome, senha = p_senha, dataNasc = p_dataNasc, avatar = p_avatar where idTipo_Usuario = p_idTipo_Usuario;
+	update tblTipo_Usuario set nome = p_nome, avatar = p_avatar where idTipo_Usuario = p_idTipo_Usuario;
+end /
+delimiter ;
+
+delimiter /
+create procedure modificar_Senha (
+in p_idTipo_Usuario int,
+in p_senha varchar(120)
+)
+
+begin
+	update tblTipo_Usuario set senha = p_senha where idTipo_Usuario = p_idTipo_Usuario;
 end /
 delimiter ;
 
