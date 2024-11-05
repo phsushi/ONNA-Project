@@ -935,7 +935,7 @@ begin
 	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idAdmin, idGenero from tblArtigo where idArtigo = p_idArtigo;
 end /
 delimiter ;
-/*
+*/
 
 
 
@@ -1097,7 +1097,7 @@ in p_hora_Final time
 )
 
 begin
-	update tblDisponibilidade set hora_Inicial = p_hora_Inicial, hora_Final = p_hora_Final where idDisponibilidade = p_idDisponibilidade
+	update tblDisponibilidade set hora_Inicial = p_hora_Inicial, hora_Final = p_hora_Final where idDisponibilidade = p_idDisponibilidade;
 end /
 delimiter ; 
 
