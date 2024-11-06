@@ -9,7 +9,7 @@ relatorioRoutes.post("/relatorioHumor", criar_Relatorio_Remedio)
 relatorioRoutes.post("/relatorioHumor", criar_Relatorio_Atividade)
 
 relatorioRoutes.get("/relatorioHumor/:idUsuario/:data_Relatorio", exibir_Relatorio_Humor)
-relatorioRoutes.get("/relatorioHumor/:idUsuario/:data_Relatorio", exibir_Relatorio_Humorxibir_Relatorio_Remedio)
+relatorioRoutes.get("/relatorioHumor/:idUsuario/:data_Relatorio", exibir_Relatorio_Remedio)
 relatorioRoutes.get("/relatorioHumor/:idUsuario/:data_Relatorio", exibir_Relatorio_Atividade)
 
 export default relatorioRoutes
