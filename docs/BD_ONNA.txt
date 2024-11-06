@@ -4,6 +4,8 @@
 create database ONNA;
 use ONNA;
 
+-- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'U1de8JA87Rrb';
+
 -- use test;
 -- drop database ONNA;
 
