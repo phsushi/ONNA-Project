@@ -1061,7 +1061,7 @@ begin
 
     select mensagem, data_Mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = p_idContato and idContato = p_idTipo_Usuario
     
-    order by data_Mensagem, hora desc;
+    order by data_Mensagem, hora;
 end /
 delimiter ; 
 
@@ -1305,3 +1305,207 @@ begin
 	select atividade_Fisica, atividade_Feita, apos_Atividade from tblRelatorio_Atividade where idUsuario = p_idUsuario and data_Relatorio = p_data_Relatorio;
 end /
 delimiter ;
+
+
+
+
+
+
+
+
+
+-- Inserts para todas as tableas a seguir
+
+-- Dados gerais de cadastro dos usuários
+
+insert into tblTipo_Usuario (status_Ban, email, senha, nome, dataNasc, avatar, tipo_Usuario, data_Cadastro) values
+(0, 'Joana@gmail.com', 'S!@nm123543', 'Joana Silva', '1990-05-15', 1, 0, '2024-10-05'),
+(0, 'Clara@gmail.com', 'C!@nm123543', 'Clara Maria', '1990-10-15', 1, 0, '2022-10-05'),
+(0, 'Fabiana@gmail.com', 'F!@nm123543', 'Fabiana Lima', '1992-10-15', 2, 0, '2021-08-05'),
+(0, 'Gabriela@gmail.com', 'G!@nm123543', 'Gabriela Roberta', '1980-10-15', 2, 0, '2022-07-05'),
+(0, 'Maria@gmail.com', 'M!@nm123543', 'Maria Julia', '1975-10-15', 3, 0, '2023-06-05'),
+
+(0, 'Yasmim@gmail.com', 'C!@nm123543', 'Yasmim Gabriela', '1998-10-15', 3, 1, '2021-05-05'),
+(0, 'Tabata@gmail.com', 'C!@nm123543', 'Tabata Koff', '1997-10-15', 4, 1, '2020-04-05'),
+(0, 'Sergio@gmail.com', 'C!@nm123543', 'Sergio Théo', '1996-10-15', 4, 1, '2020-03-05'),
+(0, 'hugo@gmail.com', 'C!@nm123543', 'Hugo Mavi', '1995-10-15', 5, 1, '2024-02-05'),
+(0, 'lucas@gmail.com', 'C!@nm123543', 'Lucas Luh', '1994-10-15', 5, 1, '2022-01-05');
+
+insert into tblContato (idTipo_Usuario) values
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10);
+
+insert into tblColecao_Contato (idTipo_Usuario, idContato) values
+(1, 6),
+(1, 7),
+(1, 8),
+(6, 1),
+(7, 1),
+(8, 1),
+
+(2, 8),
+(2, 10),
+(8, 2),
+(10, 2);
+
+
+
+-- Dados do perfil pessoal
+
+insert into tblPerfil_Pessoal (idUsuario, idTipo_Usuario) values
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
+
+insert into tblCalendario_Personalizado (dia_Marcado, periodo, idUsuario) values
+('2024-11-06', 7, 1),
+('2024-11-07', 4, 2),
+('2024-11-08', 7, 3),
+('2024-11-09', 7, 4),
+('2024-11-12', 9, 5);
+
+insert into tblRelatorio_Humor (humor, sintoma, secrecao_Vaginal, data_Relatorio, idUsuario) values
+(5, 2, 3, '2024-11-06', 1),
+(3, 4, 2, '2024-11-07', 1),
+
+(2, 1, 1, '2024-11-05', 2),
+
+(1, 5, 5, '2024-11-08', 3),
+
+(4, 3, 3, '2024-11-07', 4),
+
+(3, 2, 4, '2024-11-11', 5);
+
+
+insert into tblRelatorio_Remedio (remedio, intervalo_Hora, qntd_Agua, data_Relatorio, idUsuario) values
+(5, 2, 3, '2024-11-06', 1),
+(3, 4, 2, '2024-11-07', 1),
+
+(2, 1, 1, '2024-11-05', 2),
+
+(1, 5, 5, '2024-11-08', 3),
+
+(4, 3, 3, '2024-11-07', 4),
+
+(3, 2, 4, '2024-11-11', 5);
+
+
+insert into tblRelatorio_Atividade (atividade_Fisica, atividade_Feita, apos_Atividade, data_Relatorio, idUsuario) values
+(5, 2, 3, '2024-11-06', 1),
+(3, 4, 2, '2024-11-07', 1),
+
+(2, 1, 1, '2024-11-05', 2),
+
+(1, 5, 5, '2024-11-08', 3),
+
+(4, 3, 3, '2024-11-07', 4),
+
+(3, 2, 4, '2024-11-11', 5);
+
+
+
+-- Dados do perfil profissional
+
+insert into tblPerfil_Profissional (idProfissional, crm, crp, uf, area_Formacao, idTipo_Usuario) values
+(6, 20021, 00000, 'SP', 'Cardiologia', 6),
+(7, 20022, 00000, 'SP', 'Infectologia',  7),
+(8, 20023, 00000, 'RO', 'Nutrologia',  8),
+(9, 00000, 20024, 'RR', 'Psicologia Hospitalar',  9),
+(10, 00000, 20024, 'PA', 'Psicologia em Saúde',  10);
+
+insert into tblDisponibilidade (data_Disponibilidade, hora_Inicial, hora_Final, idProfissional) values
+('2024-11-01', '11:00:00', '12:30:00', 6),
+('2024-11-01', '14:30:00', '15:30:00', 6),
+('2024-12-03', '14:30:00', '15:30:00', 6),
+('2025-01-01', '12:00:00', '14:00:00', 7),
+('2025-01-02', '12:00:00', '16:00:00', 7);
+
+
+
+-- Dados conversas privadas
+
+insert into tblConversa_Privada (mensagem, data_Mensagem, hora, idTipo_Usuario, idContato) values
+('Olá! Bom dia! Pode me ajudar com uma questão?', '2024-11-02', '12:03:00', 1, 6),
+('Claro! ficarei feliz em ajudá-la!', '2024-11-02', '12:05:00', 6, 1),
+('Como lido com arritmia cardíaca?', '2024-11-02', '12:07:00', 1, 6),
+('As arritmias podem ser evitadas e controladas com algumas medidas preventivas como reduzir o estresse, ter uma alimentação balanceada, rica em legumes, frutas e verduras, não exagerar no consumo de bebidas alcoólicas e de energéticos, não fumar e praticar atividades físicas regularmente', '2024-11-02', '12:13:00', 6, 1),
+('Muito obrigada!', '2024-11-02', '12:22:00', 1, 6),
+
+('Olá, doutora Tabata! Posso ir ao seu consultório amanhã?', '2024-11-03', '17:03:00', 1, 7),
+('Claro que sim! Amanhã tenho horário às 11h, pode ser?', '2024-11-03', '17:11:00', 7, 1),
+('Maravilha! Pode ser!', '2024-11-03', '17:23:49', 1, 7),
+
+('Doutor, minha compulsão alimentar está piorando... O que posso fazer?', '2024-11-04', '19:03:00', 1, 8),
+('Oi, Joana! O apoio psicológico é fundamental para tratar a compulsão alimentar! Não é minha área, mas posso te indicar uma conhecida minha se quiser.', '2024-11-04', '19:13:00', 8, 1),
+('Ajudaria muito!', '2024-11-04', '19:15:00', 1, 8),
+
+('Boa noite! Espero não estar incomodando!', '2024-11-05', '19:03:00', 2, 8),
+('Imagina! Em que posso ajudar?', '2024-11-05', '20:13:00', 8, 2),
+('Existe comida antiestresse? Preciso muito saber!', '2024-11-05', '20:15:00', 2, 8),
+('Existe sim! São exemplos aveia, batatas, aipim, inhame, frutas, pães integrais, arroz integral. Manter uma dieta com carboidratos de qualidade ajuda a reduzir os níveis do cortisol, que é um hormônio liberado em situações de estresse e jejum prolongado, por exemplo.', '2024-11-05', '20:23:00', 8, 2),
+
+('Boa tarde! O que seria Psicologia em Saúde?', '2024-11-06', '12:03:00', 2, 10),
+('Boa tarde! A Psicologia da Saúde é a área da Psicologia que estuda o comportamento humano no contexto da saúde e da doença, buscando compreender o papel das variáveis psicológicas sobre a manutenção da saúde, o desenvolvimento de doenças e comportamentos associados à doença. Essa é uma área maravilhosa!', '2024-11-06', '12:13:00', 10, 2);
+
+
+
+-- Dados comunidade web
+
+insert into tblPostagem (status_Ban, titulo, subtitulo, data_Postagem, hora, reacoes, idTipo_Usuario, idForum) values
+(0, 'Quanto tempo, em média, se leva para engravidar?', 'Oi, Gente! Estive paranóica com isso! Alguém consegue esclarecer isso para mim?', '2024-11-02', '12:03:00', 25, 1, 2),
+(0, 'Quanto tempo dura a gestação?', 'Ouvi diferentes informações de muitas pessoas da internet, não sei em quem acreditar!', '2024-11-02', '12:05:00', 15, 1, 2),
+(0, 'Quais são os sintomas da menstruação?', 'Tive dores de cabeça constantes, isso tem relação com a minha menstruação?', '2024-11-03', '22:11:00', 9, 1, 3),
+(0, 'Em geral, quantos quilos as gestantes ganham?', 'Isso me preocupa demais!', '2024-11-03', '22:30:00', 39, 1, 3),
+(0, 'Quais alimentos são recomendados e quais devem ser evitados?', '', '2024-11-03', '23:14:00', 14, 1, 3),
+
+(0, 'Tem algo que eu não posso fazer quando estou menstruada?', '', '2024-11-04', '09:14:00', 5, 3, 3),
+(0, 'Como ter uma boa noite de sono?', '', '2024-11-04', '10:22:00', 7, 3, 3),
+(0, 'Sou idiota por querer um filho?', 'Eu só sinto que sou tão idiota por querer um filho e que vou arruinar minha vida se tiver um e por que diabos eu faria isso quando é tão fácil não ter um. Mas ao mesmo tempo, eu quero ter um filho. Eu não sei, acho que estou apenas desabafando minha ansiedade/sentimentos. Obrigado por ler.', '2024-11-04', '10:34:00', 9, 3, 1),
+(0, 'Quais exames de rotina devo fazer?', '', '2024-11-04', '11:05:00', 8, 3, 3),
+
+(0, 'Existem remédios contraindicados para grávidas?', '', '2024-11-05', '07:14:40', 10, 4, 2),
+(0, 'Qual é a quantidade de sangue que se perde normalmente na menstruação?', 'Existe um número certo?', '2024-11-05', '08:14:00', 20, 4, 3),
+(0, 'Quanto tempo demora para menstruação ficar regular na adolescência?', 'Estou preocupada com minha filha!', '2024-11-05', '08:17:22', 9, 4, 3),
+
+(0, 'É possível atrasar a menstruação de forma proposital?', '', '2024-11-06', '10:14:00', 29, 5, 3),
+(0, 'Tomar anticoncepcionais de forma contínua, para não menstruar, faz mal?', '', '2024-11-06', '13:19:00', 12, 5, 3),
+(0, 'Qual a posição ideal para as gestantes dormirem?', 'Me sinto tão desconfortável durante a noite! Alguém para ajudar??!', '2024-11-06', '17:50:00', 7, 5, 2),
+
+(0, 'Tirem essa rede social do ar!', '', '2024-11-09', '17:50:00', 1, 9, 1),
+(0, 'Vocês são chatooooooooos!', '', '2024-11-09', '17:55:00', 1, 9, 1),
+(0, 'Sério, vão arrumar o que fazer. Todo mundo é muito dramático aqui!', '', '2024-11-09', '17:58:00', 1, 9, 1);
+
+insert into tblResposta_Postagem (status_Ban, mensagem, data_Resposta, hora, reacoes, idTipo_Usuario, idPostagem) values
+(0, 'Ainda que o período de seis meses seja mais comum, é normal esperar até 12 meses. Se o casal que mantém vida sexual ativa sem uso de contraceptivo não conseguir engravidar dentro de 1 ano, o recomendado é que busque ajuda médica.', '2024-11-07', '13:14:00', 4, 6, 1),
+
+(0, 'Segundo estatísticas, normalmente espera-se que 80% a 85% dos casais consigam engravidar espontaneamente num período de 6 a 12 meses.', '2024-11-07', '14:14:00', 4, 7, 1),
+(0, 'É esperado que uma gravidez dure 40 semanas — e é normal haver variações entre 37 e 42 semanas.', '2024-11-07', '14:18:00', 3, 7, 2),
+(0, 'Ter dor de cabeça é sim normal! Também se tem os sintomas emocionais: irritabilidade, ansiedade, insônia ou sonolência, dificuldade de concentração, fome exagerada ou falta de apetite e depressão.', '2024-11-07', '14:29:00', 6, 7, 3),
+(0, 'Para quem tem IMC abaixo de 18, o esperado é ganhar entre 12 e 18 kg. No caso das mulheres com IMC entre 19 e 25, o ganho de peso deve ser de 11 a 16 kg. Já para as que têm IMC acima de 26, a expectativa é que não se ultrapasse 11 kg.', '2024-11-07', '14:39:00', 4, 7, 4),
+
+(0, 'A menstruação não impede que você faça nada do que já está acostumada a fazer. Você pode ir à escola, ajudar em casa, sair com os amigos, praticar esportes e fazer tudo o que faria normalmente.', '2024-11-08', '08:14:00', 2, 8, 6),
+(0, 'Essa é uma pergunta que ninguém pode responder por você, a não ser você mesma. A decisão de trazer outro ser humano para este mundo não é fácil, você não pode fazer isso sobre o que você quer, mas você tem que olhar para isso com a mentalidade de "o que é melhor para meu filho.', '2024-11-08', '14:14:00', 5, 8, 8),
+
+(0, 'Acho que a terapia cognitivo-comportamental vai te ajudar muito. Você tem crenças distorcidas arruinando sua vida, essencialmente, é exatamente nisso que a TCC deve ajudar.', '2024-11-10', '14:14:00', 6, 10, 8),
+(0, 'Há medicações que conseguem ultrapassar a barreira placentária e fazer mal para o feto. Por isso, remédios devem ser tomados conforme orientação do obstetra.', '2024-11-10', '14:14:00', 5, 10, 11),
+
+(0, 'Se manca! Banam essa pessoa urgentemente!', '2024-11-11', '14:14:00', 9, 1, 18),
+(0, 'Vai cuidar da SUA vida ao invés de encher o saco!', '2024-11-11', '14:15:00', 13, 2, 18),
+(0, 'Concordo contigo! Essas pessoas não sabem o que é sofrer de verdade! São todos mentes fracas!', '2024-11-11', '15:08:00', 9, 2, 18);
+
+insert into tblDenuncia (status_Check, descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem, idTipo_Denuncia) values
+(0, 'Olha essa palhaçada!', '2024-11-11', '14:17:00', 1, 18, 1),
+(0, 'Isso não deveria estar aqui!', '2024-11-11', '14:20:00', 2, 18, 1);
+
+insert into tblDenuncia (status_Check, descricao, data_Denuncia, hora, idTipo_Usuario, idResposta_Postagem, idTipo_Denuncia) values
+(0, 'Não podemos ter uma pessoa que fala essas atrocidades no ONNA!', '2024-11-11', '14:24:00', 2, 12, 1);
