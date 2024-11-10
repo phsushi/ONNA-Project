@@ -11,7 +11,7 @@ postagemRoutes.get("/postagem", exibir_Postagem_Popular)
 postagemRoutes.get("/postagem/:idForum", exibir_Postagem_Forum)
 postagemRoutes.get("/postagem/:titulo/:idForum", consulta_Titulo_Postagem)
 postagemRoutes.get("/postagem", exibir_Postagem_Geral)
-postagemRoutes.get("/postagem", exibir_Postagem_Propria)
+postagemRoutes.get("/postagem/:idTipo_Usuario", exibir_Postagem_Propria)
 postagemRoutes.get("/postagem", contagem_Postagem)
 
 postagemRoutes.put("/postagem", alterar_Postagem)
