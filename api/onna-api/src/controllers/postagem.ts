@@ -147,7 +147,7 @@ export const contagem_Postagem = async (req:Request, res:Response) => {
     const q = "call contagem_Postagem(?)"
 
     const values = [
-        req.body.idTipo_Usuario
+        req.params.idTipo_Usuario
     ]
 
     db.query(q, [values], (err, data) => {
