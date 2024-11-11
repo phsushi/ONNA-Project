@@ -872,13 +872,25 @@ delimiter ;
 
 -- Procedures de artigo
 
+-- Exibição de todos os artigos
+
+delimiter /
+create procedure exibir_Artigo ()
+
+begin
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo
+    
+	order by data_Publicacao desc;
+end /
+delimiter ;
+
 -- A exibição dos artigos estará classificada em cinco gêneros:
 
 delimiter /
 create procedure exibir_Artigo_Menstruacao ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 1
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 1
     
 	order by data_Publicacao desc;
 end /
@@ -888,7 +900,7 @@ delimiter /
 create procedure exibir_Artigo_Engravidar ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 2
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 2
     
 	order by data_Publicacao desc;
 end /
@@ -898,7 +910,7 @@ delimiter /
 create procedure exibir_Artigo_Gestacao ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 3
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 3
     
 	order by data_Publicacao desc;
 end /
@@ -908,7 +920,7 @@ delimiter /
 create procedure exibir_Artigo_Maternidade ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação por ONNA' from tblArtigo where idGenero = 4
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 4
     
 	order by data_Publicacao desc;
 end /
@@ -918,7 +930,7 @@ delimiter /
 create procedure exibir_Artigo_Cuidados_Corpo ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação' from tblArtigo where idGenero = 5
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 5
     
 	order by data_Publicacao desc;
 end /
@@ -934,18 +946,8 @@ begin
 	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idGenero from tblArtigo where titulo like concat('%', p_titulo, '%');
 end /
 delimiter ;
-
-
-delimiter /
-create procedure consulta_Artigo_Selecionado (
-in p_idArtigo int
-)
-
-begin
-	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de publicação', idAdmin, idGenero from tblArtigo where idArtigo = p_idArtigo;
-end /
-delimiter ;
 */
+
 
 
 
