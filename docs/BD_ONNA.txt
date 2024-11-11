@@ -875,7 +875,7 @@ delimiter ;
 -- Exibição de todos os artigos
 
 delimiter /
-create procedure exibir_Artigo ()
+create procedure exibir_Artigos ()
 
 begin
 	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo
