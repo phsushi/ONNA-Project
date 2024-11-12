@@ -6,7 +6,7 @@ const tipoUsuarioRoutes:Router = Router()
 
 tipoUsuarioRoutes.post("/tipoUsuario", cadastro_Tipo_Usuario) 
 
-tipoUsuarioRoutes.put("/tipoUsuario", modificar_Avatar)
-tipoUsuarioRoutes.put("/tipoUsuario", modificar_Senha)
+tipoUsuarioRoutes.put("/tipoUsuarioA", modificar_Avatar)
+tipoUsuarioRoutes.put("/tipoUsuarioS", modificar_Senha)
 
 export default tipoUsuarioRoutes
