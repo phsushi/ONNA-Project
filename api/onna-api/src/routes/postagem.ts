@@ -10,7 +10,7 @@ postagemRoutes.get("/postagemE/:idPostagem", exibir_Postagem_Especifica)
 postagemRoutes.get("/postagemPOP", exibir_Postagem_Popular)
 postagemRoutes.get("/postagemF/:idForum", exibir_Postagem_Forum)
 postagemRoutes.get("/postagemT/:titulo/:idForum", consulta_Titulo_Postagem)
-postagemRoutes.get("/postagemPG", exibir_Postagem_Geral)
+postagemRoutes.get("/postagemG", exibir_Postagem_Geral)
 postagemRoutes.get("/postagemP/:idTipo_Usuario", exibir_Postagem_Propria)
 postagemRoutes.get("/postagemC/:idTipo_Usuario", contagem_Postagem)
 
