@@ -1096,7 +1096,8 @@ in p_idProfissional int
 )
 
 begin
-	select idDisponibilidade, data_Disponibilidade, hora_Inicial, hora_Final from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade >= now();
+    select idDisponibilidade, date_format(data_Disponibilidade, '%d/%m/%Y') as "data_Disponibilidade", date_format(hora_Inicial, '%H:%i') as "hora_Inicial", date_format(hora_Final, '%H:%i') as "hora_Final" from tblDisponibilidade where idProfissional = p_idProfissional and data_Disponibilidade >= now() 
+			order by data_Disponibilidade, hora_Inicial;
 end /
 delimiter ;
 
