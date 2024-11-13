@@ -554,7 +554,7 @@ in p_email varchar(120)
 )
 
 begin
-	select idTipo_Usuario, email, nome, senha, date_format(str_to_date(dataNasc, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de nascimento', avatar, tipo_Usuario, date_format(str_to_date(data_Cadastro, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de cadastro da conta' from tblTipo_Usuario where email = p_email and status_Ban = 0;
+	select idTipo_Usuario, email, nome, senha, date_format(str_to_date(dataNasc, '%Y-%m-%d'), '%d/%m/%Y') as 'Data de nascimento', avatar, tipo_Usuario, date_format(str_to_date(data_Cadastro, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Cadastro' from tblTipo_Usuario where email = p_email and status_Ban = 0;
 end /
 delimiter ;
 
@@ -685,7 +685,7 @@ in p_idPostagem int
 )
 
 begin
-	select a.idForum, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	select a.idForum, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Postagem', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idPostagem = p_idPostagem;
@@ -696,7 +696,7 @@ delimiter /
 create procedure exibir_Postagem_Popular ()
 
 begin
-	select a.idPostagem,a.idForum, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	select a.idPostagem,a.idForum, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Postagem', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.status_Ban = 0 and b.status_Ban = 0 
@@ -711,7 +711,7 @@ in p_idForum int
 )
 
 begin
-	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	select a.idPostagem, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Postagem', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0 
@@ -727,7 +727,7 @@ in p_idForum int
 )
 
 begin
-	select a.idPostagem,a.idForum, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	select a.idPostagem,a.idForum, a.titulo, a.subtitulo, a.imagem, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Postagem', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where titulo like concat('%', p_titulo, '%') and idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0
@@ -742,7 +742,7 @@ delimiter /
 create procedure exibir_Postagem_Geral ()
 
 begin
-	select a.idPostagem, a.idForum, a.titulo, a.subtitulo, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	select a.idPostagem, a.idForum, a.titulo, a.subtitulo, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Postagem', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0 
@@ -757,7 +757,7 @@ in p_idTipo_Usuario int
 )
 
 begin
-	select a.idPostagem, a.idForum, a.titulo, a.subtitulo, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da postagem', date_format(a.hora, '%H:%i') as 'Hora da postagem', a.reacoes,
+	select a.idPostagem, a.idForum, a.titulo, a.subtitulo, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Postagem', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblPostagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = p_idTipo_Usuario
@@ -821,7 +821,7 @@ in p_idPostagem int
 )
 
 begin
-	select a.idResposta_Postagem, a.mensagem, date_format(str_to_date(a.data_Resposta, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da resposta', date_format(a.hora, '%H:%i') as 'Hora da resposta', a.reacoes,
+	select a.idResposta_Postagem, a.mensagem, date_format(str_to_date(a.data_Resposta, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Resposta', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblResposta_Postagem a
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idPostagem = p_idPostagem and a.status_Ban = 0 and b.status_Ban = 0 
