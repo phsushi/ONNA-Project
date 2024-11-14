@@ -760,7 +760,7 @@ begin
 	select a.idPostagem, a.idForum, a.titulo, a.subtitulo, date_format(str_to_date(a.data_Postagem, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Postagem', date_format(a.hora, '%H:%i') as 'hora', a.reacoes,
 	       b.avatar, b.nome, b.tipo_Usuario from tblPostagem a
            
-	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = p_idTipo_Usuario
+	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = p_idTipo_Usuario and a.status_Ban = 0
 	
 	order by data_Postagem, hora desc limit 5;
 end /
