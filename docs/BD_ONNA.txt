@@ -987,7 +987,7 @@ in p_idUsuario int
 )
 
 begin
-	select periodo, dia_marcado as 'Data de início do fluxo menstrual', date_add(dia_Marcado, interval periodo day) as 'Data de término do fluxo menstrual' from tblCalendario_Personalizado where idUsuario = p_idUsuario;
+	select periodo, dia_marcado as 'data_Inicio', date_add(dia_Marcado, interval periodo day) as 'data_Termino' from tblCalendario_Personalizado where idUsuario = p_idUsuario;
 end /
 delimiter ;
 
@@ -1063,5 +1063,25 @@ in p_data_Relatorio date
 
 begin
 	select atividade_Fisica, atividade_Feita, apos_Atividade from tblRelatorio_Atividade where idUsuario = p_idUsuario and data_Relatorio = p_data_Relatorio;
+end /
+delimiter ;
+
+
+-- Função para exibir os profissionais disponíveis para conversa no dia atual
+
+delimiter /
+create procedure exibir_Pro_Disponivel (
+in p_data_Atual date
+)
+
+begin
+	select a.nome, a.avatar,
+	       b.area_Formacao, b.uf,
+	       date_format(c.hora_Inicial, '%H:%i') as 'hora_Inicial', date_format(c.hora_Final, '%H:%i') as 'hora_Final', date_format(c.data_Disponibilidade, '%d/%m/%Y') as 'data_Disponibilidade' from tblTipo_Usuario a
+           
+	inner join tblPerfil_Profissional b on a.idTipo_Usuario = b.idTipo_Usuario
+	inner join tblDisponibilidade c on b.idProfissional = c.idProfissional where data_Disponibilidade = p_data_Atual
+	
+	order by hora_Inicial;
 end /
 delimiter ;
