@@ -25,39 +25,6 @@ data_Cadastro date not null -- Dia em que o usuário cadastrou sua conta
 );
 
 
--- Funcionalidade de chat privado
-
-create table tblContato(
-idContato int primary key auto_increment,
-
-idTipo_Usuario int unique not null,
-constraint fkTipo_Usuario_tblContato foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
-);
-
-create table tblColecao_Contato(
-idColecao_Contato int primary key auto_increment,
-
-idTipo_Usuario int not null,
-constraint fkTipo_Usuario_tblColecao_Contato foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
-
-idContato int not null,
-constraint fkContato_tblColecao_Contato foreign key (idContato) references tblContato (idContato)   
-);
-
-create table tblConversa_Privada(
-idConversa_Privada int primary key auto_increment,
-mensagem varchar(4000) not null,
-data_Mensagem date not null, -- now()
-hora time not null, -- now()
-
-idTipo_Usuario int not null,
-constraint fkTipo_Usuario_tblConversa_Privada foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario),
-
-idContato int not null,
-constraint fkContato_tblConversa_Privada foreign key (idContato) references tblContato (idContato) 
-);
-
-
 -- Funcionalidades do mobile "Perfil Pessoal"
 
 create table tblPerfil_Pessoal(
@@ -65,17 +32,6 @@ idUsuario int primary key,
 
 idTipo_Usuario int unique not null,
 constraint fkTipo_Usuario_tblPerfil_Pessoal foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
-);
-
-create table tblNotificacao(
-idNotificacao int primary key auto_increment,
-titulo varchar(50) not null,
-mensagem varchar(255),
-data_Notificacao date not null,
-hora time not null,
-
-idUsuario int not null,
-constraint fkPerfil_Pessoal_tblNotificacao foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
 );
 
 create table tblCalendario_Personalizado(
@@ -119,7 +75,6 @@ data_Relatorio date not null, -- now()
 idUsuario int not null,
 constraint fkPerfil_Pessoal_tblRelatorio_Atividade foreign key (idUsuario) references tblPerfil_Pessoal (idUsuario)
 );
-
 
 
 -- Funcionalidades do mobile "Perfil Profissional"
@@ -534,18 +489,6 @@ begin
 end /
 delimiter ;
 
--- Para finalizar o cadastro em nossa plataforma, deve-se preencher a [tblContato] com os dados do novo usuário
-
-delimiter /
-create procedure cadastro_Contato (
-in p_idTipo_Usuario int
-)
-
-begin
-	insert into tblContato (idTipo_Usuario) values (p_idTipo_Usuario);
-end /
-delimiter ;
-
 -- login
 
 delimiter /
@@ -955,126 +898,6 @@ delimiter ;
 
 
 
-
--- Procedures de chat privado
-
--- As próximas duas procedures devem ser executadas em sequência caso a usuária deseja conversar com um profissioanal
-
--- Salvar o contato do profissional na própria agenda
-
-delimiter /
-create procedure salvar_Contato_1 (
-in p_idTipo_Usuario int,
-in p_idContato int
-)
-
-begin
-	insert into tblColecao_Contato (idTipo_Usuario, idContato) values (p_idTipo_Usuario, p_idContato);
-end /
-delimiter ; 
-
--- Salvar o próprio contato na agenda do profissional contatado
-
-delimiter /
-create procedure salvar_Contato_2 (
-in p_idTipo_Usuario int,
-in p_idContato int
-)
-
-begin
-	insert into tblColecao_Contato (idTipo_Usuario, idContato) values (p_idContato, p_idTipo_Usuario);
-end /
-delimiter ; 
-
--- As próximas duas procedures devem ser executadas em sequência caso o usuário deseja remover um contato
-
--- Excluir um contato da própria lista de contatos
-
-delimiter /
-create procedure excluir_Contato_1 (
-in p_idTipo_Usuario int,
-in p_idContato int
-)
-
-begin
-	delete from tblColecao_Contato where idTipo_Usuario = p_idTipo_Usuario and idContato = p_idContato;
-end /
-delimiter ; 
-
--- Excluir o próprio contato da lista do contato excluido
-
-delimiter /
-create procedure excluir_Contato_2 (
-in p_idTipo_Usuario int,
-in p_idContato int
-)
-
-begin
-	delete from tblColecao_Contato where idTipo_Usuario = p_idContato and idContato = p_idTipo_Usuario;
-end /
-delimiter ; 
-
-
--- tblContato
-
-delimiter /
-create procedure exibir_Lista_Contatos (
-in p_idTipo_Usuario int
-)
-
-begin
-	select a.idContato,
-	       b.avatar, b.nome,
-		   c.area_Formacao from tblColecao_Contato a
-
-           inner join tblContato d on a.idContato = d.idContato
-           inner join tblTipo_Usuario b on d.idTipo_Usuario = b.idTipo_Usuario 
-           left join tblPerfil_Profissional c on b.idTipo_Usuario = c.idTipo_Usuario where a.idTipo_Usuario = p_idTipo_Usuario and b.status_Ban = 0
-           
-           order by b.nome;
-end /
-delimiter ; 
-
-
--- tblConversa_Privada
-
-delimiter /
-create procedure enviar_Mensagem (
-in p_mensagem varchar(4000),
-in p_idTipo_Usuario int,
-in p_idContato int
-)
-
-begin
-	insert into tblConversa_Privada (mensagem, data_Mensagem, hora, idTipo_Usuario, idContato) values (p_mensagem, now(), now(), p_idTipo_Usuario, p_idContato);
-end /
-delimiter ; 
-
-delimiter /
-create procedure exibir_Mensagens (
-in p_idTipo_Usuario int,
-in p_idContato int
-)
-
-begin
-	select mensagem, data_Mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = p_idTipo_Usuario and idContato = p_idContato
-
-    union all
-
-    select mensagem, data_Mensagem, date_format(hora, '%H:%i') as 'Hora da mensagem' from tblConversa_Privada where idTipo_Usuario = p_idContato and idContato = p_idTipo_Usuario
-    
-    order by data_Mensagem, hora;
-end /
-delimiter ; 
-
-
-
-
-
-
-
-
-
 -- Mobile do profissional
 
 delimiter /
@@ -1132,72 +955,6 @@ delimiter ;
 
 
 -- Mobile da usuária comum
-
--- Função de assistência voluntária
-
-delimiter /
-create procedure procurar_Profissional_Fisiologico ()
-
-begin
-	select a.idProfissional from tblPerfil_Profissional a
-    
-    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crm != null and now() >= hora_Inicial and now() < hora_Final and now() = data_Disponibilidade
-    
-    order by rand() limit 1;
-end /
-delimiter ; 
-
-delimiter /
-create procedure procurar_Profissional_Psicologico ()
-
-begin
-	select a.idProfissional from tblPerfil_Profissional a
-    
-    inner join tblDisponibilidade b on a.idProfissional = b.idProfissional where a.crp != null and now() >= hora_Inicial and now() < hora_Final and now() = data_Disponibilidade
-    
-    order by rand() limit 1;
-end /
-delimiter ; 
-
-
--- Funções das notificações
-
-delimiter /
-create procedure criar_Notificacao (
-in p_titulo varchar(50),
-in p_mensagem varchar(255),
-in p_data_Notificacao date,
-in p_hora time,
-in p_idUsuario int
-)
-
-begin
-	insert into tblNotificacao (titulo, mensagem, data_Notificacao, hora, idUsuario) values (p_titulo, p_mensagem, p_data_Notificacao, p_hora, p_idUsuario);
-end /
-delimiter ; 
-
-delimiter /
-create procedure exibir_Lista_Notificacoes (
-in p_idUsuario int
-)
-
-begin
-	select idNotificacao, titulo, mensagem, date_format(str_to_date(data_Notificacao, '%Y-%m-%d'), '%d/%m/%Y') as 'Data da notificação', date_format(hora, '%H:%i') as 'Hora da notificação' from tblNotificacao where idUsuario = p_idUsuario
-    
-    order by data_Notificacao, hora;
-end /
-delimiter ; 
-
-delimiter /
-create procedure excluir_Notificacao (
-in p_idNotificacao int
-)
-
-begin
-	delete from tblNotificacao where idNotificacao = p_idNotificacao;
-end /
-delimiter ; 
-
 
 -- Funções do calendário menstrual
 
