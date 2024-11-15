@@ -65,7 +65,7 @@ idUsuario int primary key,
 
 idTipo_Usuario int unique not null,
 constraint fkTipo_Usuario_tblPerfil_Pessoal foreign key (idTipo_Usuario) references tblTipo_Usuario (idTipo_Usuario)
-); -- INSERT FEITO
+);
 
 create table tblNotificacao(
 idNotificacao int primary key auto_increment,
