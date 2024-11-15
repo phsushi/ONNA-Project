@@ -78,37 +78,3 @@ export const excluir_Disponibilidade = async (req:Request, res:Response) => {
         return res.status(200).json(data)
     })
 }
-
-// procurar_Profissional_Fisiologico
-export const procurar_Profissional_Fisiologico = async (req:Request, res:Response) => {
-    const q = "call procurar_Profissional_Fisiologico()"
-
-    db.query(q, (err, data) => {
-        if(err){
-            return res.status(500).json(err)
-        }
-        
-        if (data[0].length === 0) {
-            return res.status(404).json(err);
-        }
-
-        return res.status(200).json(data[0])
-    })
-}
-
-// procurar_Profissional_Fisiologico
-export const procurar_Profissional_Psicologico = async (req:Request, res:Response) => {
-    const q = "call procurar_Profissional_Psicologico()"
-
-    db.query(q, (err, data) => {
-        if(err){
-            return res.status(500).json(err)
-        }
-        
-        if (data[0].length === 0) {
-            return res.status(404).json(err);
-        }
-
-        return res.status(200).json(data[0])
-    })
-}
