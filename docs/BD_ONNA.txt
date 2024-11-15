@@ -879,6 +879,16 @@ begin
 end /
 delimiter ;
 
+delimiter /
+create procedure artigo_Selecionado (
+in p_idArtigo int
+)
+
+begin
+	select idArtigo, titulo, resumo, fonte, date_format(str_to_date(data_Publicacao, '%d/%m/%Y') as 'data_Publicacao', idGenero from tblArtigo where idArtigo = p_idArtigo;
+end /
+delimiter ;
+
 /*
 delimiter /
 create procedure consulta_Titulo_Artigo (
