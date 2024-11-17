@@ -827,53 +827,15 @@ begin
 end /
 delimiter ;
 
--- A exibição dos artigos estará classificada em cinco gêneros:
+-- A exibição dos artigos estará classificada em gêneros:
 
 delimiter /
-create procedure exibir_Artigo_Menstruacao ()
+create procedure exibir_Artigo_Genero (
+in p_idGenero int
+)
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 1
-    
-	order by data_Publicacao desc;
-end /
-delimiter ;
-
-delimiter /
-create procedure exibir_Artigo_Engravidar ()
-
-begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 2
-    
-	order by data_Publicacao desc;
-end /
-delimiter ;
-
-delimiter /
-create procedure exibir_Artigo_Gestacao ()
-
-begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 3
-    
-	order by data_Publicacao desc;
-end /
-delimiter ;
-
-delimiter /
-create procedure exibir_Artigo_Maternidade ()
-
-begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 4
-    
-	order by data_Publicacao desc;
-end /
-delimiter ;
-
-delimiter /
-create procedure exibir_Artigo_Cuidados_Corpo ()
-
-begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 5
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = p_idGenero
     
 	order by data_Publicacao desc;
 end /
