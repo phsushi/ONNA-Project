@@ -833,7 +833,7 @@ delimiter /
 create procedure exibir_Artigo_Menstruacao ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 1
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 1
     
 	order by data_Publicacao desc;
 end /
@@ -843,7 +843,7 @@ delimiter /
 create procedure exibir_Artigo_Engravidar ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 2
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 2
     
 	order by data_Publicacao desc;
 end /
@@ -853,7 +853,7 @@ delimiter /
 create procedure exibir_Artigo_Gestacao ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 3
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 3
     
 	order by data_Publicacao desc;
 end /
@@ -863,7 +863,7 @@ delimiter /
 create procedure exibir_Artigo_Maternidade ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 4
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 4
     
 	order by data_Publicacao desc;
 end /
@@ -873,7 +873,7 @@ delimiter /
 create procedure exibir_Artigo_Cuidados_Corpo ()
 
 begin
-	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte from tblArtigo where idGenero = 5
+	select idArtigo, titulo, resumo, date_format(str_to_date(data_Publicacao, '%Y-%m-%d'), '%d/%m/%Y') as 'data_Publicacao', fonte, idGenero from tblArtigo where idGenero = 5
     
 	order by data_Publicacao desc;
 end /
