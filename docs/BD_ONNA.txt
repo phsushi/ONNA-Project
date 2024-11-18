@@ -705,7 +705,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = p_idTipo_Usuario and a.status_Ban = 0
 	
-	order by data_Postagem, hora desc limit 5;
+	order by data_Postagem, hora desc;
 end /
 delimiter ;
 
