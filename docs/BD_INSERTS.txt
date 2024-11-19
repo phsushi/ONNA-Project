@@ -1,7 +1,7 @@
 
 -- Inserts para todas as tabelas a seguir
 
--- Dados gerais de cadastro dos usuários, os quais não são capazes de logar e somente estão sendo criados para dar corpo ao web
+-- Dados gerais de cadastro dos usuários, os quais não são capazes de logar (criação de usuários "logáveis" deve ser feita na API)
 
 insert into tblTipo_Usuario (status_Ban, email, senha, nome, dataNasc, avatar, tipo_Usuario, data_Cadastro) values
 (0, 'Joana@gmail.com', 'EssaContaNaoLoga', 'Joana Silva', '1990-05-15', 1, 0, '2024-10-05'),
