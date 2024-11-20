@@ -1,36 +1,114 @@
-import React, { useState } from "react"
-import { SafeAreaView, View, StatusBar, StyleSheet, Text } from "react-native"
+import React, { useState, useEffect } from "react"
+import { SafeAreaView, View, StatusBar, StyleSheet, Text, Modal, Pressable } from "react-native"
 
 import { colors } from "@/styles/colors"
 import { fontFamily } from "@/styles/fontFamily"
 
-import { MaterialIcons } from "@expo/vector-icons"
-
 import { Avatar } from "@/components/avatar"
 
-import { Calendar, DateData, LocaleConfig } from "react-native-calendars"
+import { ModalHome } from "@/components/modalHome"
 
+import { MaterialIcons } from "@expo/vector-icons"
+
+import { Calendar, DateData, LocaleConfig } from "react-native-calendars"
 import { ptBR } from "@/utils/localeCalendarConfig"
 
-import { Link } from "expo-router"
+import Toast from "react-native-toast-message"
+import { showToast } from "@/components/toast"
 
-LocaleConfig.locales["pt-br"] = ptBR
-LocaleConfig.defaultLocale = "pt-br"
+import { useAsyncStorage } from "@/hooks/useAsyncStorage" 
+
+import { router } from "expo-router"
+import { useAuth } from "@/context/authContext"
+
+import { avatarUrl } from "@/utils/avatar"
 
 export default function Home() {
-    const [day, setDay] = useState<DateData>()
+    // idioma do calendário
+    LocaleConfig.locales["pt-br"] = ptBR
+    LocaleConfig.defaultLocale = "pt-br"
+
+    // async storage
+    const { createData, readDataByID, deleteData } = useAsyncStorage()
+
+    // hooks
+    const { logout } = useAuth()
+    const [day, setDay] = useState<DateData>() // calendário
+    const [nome, setNome] = useState<string>("")
+    const [avatar, setAvatar] = useState<string>("")
+    const [modalVisible, setModalVisible] = useState<boolean>(false) // modal
+
+    // UseEffect sempre que a tela for carregada
+    useEffect(() => {
+        const Load = async () => {
+            // excluir @home
+            await deleteData("@home")
+
+            // nome do usuário
+            const nome = await readDataByID("@login", "nome")
+            setNome(nome)
+
+            // avatar
+            const avatar = await readDataByID("@login", "avatar")
+            setAvatar(avatar)
+        }
+
+        Load()
+
+        // Adicionando dependência vazia para garantir execução na montagem da página
+    }, []) 
+
+    // logout
+    const logoutHandle = async () => {
+        await logout()
+    }
+
+    // day
+    const Day = async (day: DateData) => {
+        try {
+            await createData("@home", day)
+            router.push("/(dashboard)/home/update")
+        }
+        catch (error) {
+            showToast("error", "ERRO", "" + error)
+            console.error(error)
+            return
+        }
+    }
+
+    // validação e inserção
+    const DayHandle = () => {
+        try {
+            if (day === undefined) {
+                showToast("error", "ERRO", "Selecione uma data")
+                console.error
+                return
+            }
+
+            Day(day)
+        }
+        catch (error) {
+            showToast("error", "ERRO", "" + error)
+            console.error(error)
+            return
+        }
+    }
+
+    const ModalVisibility = () => {
+        setModalVisible(true)
+    }
 
     return (
         <SafeAreaView className="flex-1 bg-gray" >   
-            <View className="w-full h-full justify-center items-center gap-[75px]" >
+            <View className="w-full h-full justify-center items-center gap-[21.875px]" >
                 <StatusBar barStyle={"dark-content"} />
 
-                <View className="w-[90%] h-[50px] bg-white rounded-full flex-row justify-between items-center p-4 shadow-xl shadow-black" >
-                    <Text className="text-[18.75px] color-green-800 font-Imedium" >Olá, Dr.
-                        <Text className="text-[18.75px] color-green-600 font-Imedium" > Caio Ferreira</Text>
+                <View className="w-[90%] h-[55px] bg-white rounded-full flex-row justify-between items-center p-4 shadow-xl shadow-black" >
+                    <Text className="text-[18.75px] color-green-800 font-Imedium" >Olá,
+                        <Text className="text-[18.75px] color-green-600 font-Imedium" > {nome}</Text>
                     </Text>
 
-                    <Avatar source={{ uri: "https://github.com/Ik4r0z.png" }} size={"small"} />
+                    <Avatar source={{ uri: avatarUrl[String(avatar)] }} size={"small"} />
                 </View>
 
                 <View className="w-[90%] max-h-[50%] bg-white rounded-[25px] gap-[12.5px] shadow-black shadow-2xl" >
@@ -71,21 +149,33 @@ export default function Home() {
                     />
                 </View>
 
-                <View className="w-[90%] h-[18.75%] bg-white flex-column justify-center items-center rounded-[25px] gap-4 shadow-black shadow-2xl" >
+                <View className="w-[90%] h-[25%] bg-white flex-column justify-center items-center rounded-[25px] gap-4 shadow-black shadow-2xl" >  
                     <View className="w-[90%] h-[50px] text-[18.75px] bg-green-800 justify-center items-center rounded-[12.5px]" >
                         <Text className="text-[18.75px] text-center color-white font-Imedium" >{day?.dateString}</Text>
                     </View>
-                    <Link href={"/(dashboard)/home/update"} >
-                        <Text className="w-[90%] h-[37.5px] text-[18.75px] text-center color-green-600 font-Ibold" >Salvar</Text>
-                    </Link>
+ 
+                    <Text className="w-[90%] h-[37.5px] text-[18.75px] text-center color-green-600 font-Ibold" onPress={ModalVisibility} >Consultar Agenda</Text>
+                    <Text className="w-[90%] h-[37.5px] text-[18.75px] text-center color-green-600 font-Ibold" onPress={DayHandle} >Novo Agendamento</Text>
                 </View>
+
+                <Pressable onPress={logoutHandle} >
+                    <Text className="w-[90%] h-[37.5px] text-[18.75px] text-center color-green-800 font-Ibold" >Sair</Text>
+                </Pressable>
+                
+                <Modal visible={modalVisible} animationType="fade" transparent={true} > 
+                    <ModalHome handleClose={() => setModalVisible(false)} />
+                </Modal>
             </View>
+            <Toast />
         </SafeAreaView>
     )
 }
 
+// estilos
 const styles = StyleSheet.create({
     calendar: {
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        width: "100%",  
+        alignSelf: "center"  
     }
 })

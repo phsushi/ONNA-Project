@@ -14,13 +14,13 @@ export default function RecoveryPassword() {
                     />
                 </View>
 
-                <View className="justify-center items-center gap-[12.5px]" >
-                    <Text className="text-[50px] color-green-800 font-Ibold mt-[10px]" >Atenção</Text>
-                    <Text className="w-[75%] text-[25px] text-center color-black font-Iregular" >Enviamos um código para seu email, verifique sua caixa de entrada</Text>
+                <View className="justify-center items-center gap-[18.75px]" >
+                    <Text className="text-[50px] color-green-800 font-Ibold" >Atenção</Text>
+                    <Text className="w-[87.5%] text-[25px] text-center color-black font-Iregular" >Enviamos um código para seu email, verifique sua caixa de entrada</Text>
 
                     <Text className="text-[18.75px] color-black font-Obold mb-[10px]" >01:00</Text>
 
-                    <Pressable className="w-[37.5%] h-[50px] bg-white border-solid border-green-800 border-[2px] justify-center items-center rounded-[12.5px] shadow-xl shadow-black" >
+                    <Pressable className="w-[62.5%] h-[50px] bg-white border-solid border-green-800 border-[2px] justify-center items-center rounded-[12.5px] mb-5" >
                         <Link href={"/login"} >
                             <Text className="text-[18.75px] color-green-800 font-Imedium" >Login</Text>
                         </Link>

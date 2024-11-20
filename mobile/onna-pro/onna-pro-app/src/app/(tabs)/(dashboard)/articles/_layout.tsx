@@ -2,7 +2,7 @@ import { Stack } from "expo-router"
 
 import { colors } from "@/styles/colors"
 
-export default function HomeLayout() {
+export default function ArticlesLayout() {
     return (
         <Stack
             screenOptions={{
@@ -11,7 +11,7 @@ export default function HomeLayout() {
             }}
         >
             <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="update" options={{ title: "", headerStyle: { backgroundColor: colors.gray } }} />
+            <Stack.Screen name="content" options={{ title: "", headerStyle: { backgroundColor: colors.gray } }} />
         </Stack>
     )
 }
