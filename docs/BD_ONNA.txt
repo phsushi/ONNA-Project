@@ -644,7 +644,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.status_Ban = 0 and b.status_Ban = 0 
 	
-	order by data_Postagem, reacoes desc limit 30;
+	order by data_Postagem desc, reacoes desc limit 30;
 end /
 delimiter ;
 
@@ -659,7 +659,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0 
 	
-	order by data_Postagem, hora desc;
+	order by data_Postagem desc, hora desc;
 end /
 delimiter ;
 
@@ -690,7 +690,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idForum = p_idForum and a.status_Ban = 0 and b.status_Ban = 0 
 	
-	order by data_Postagem, hora desc limit 10;
+	order by data_Postagem desc, hora desc limit 10;
 end /
 delimiter ;
 
@@ -705,7 +705,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where a.idTipo_Usuario = p_idTipo_Usuario and a.status_Ban = 0
 	
-	order by data_Postagem, hora desc;
+	order by data_Postagem desc, hora desc;
 end /
 delimiter ;
 
@@ -769,7 +769,7 @@ begin
            
 	inner join tblTipo_Usuario b on a.idTipo_Usuario = b.idTipo_Usuario where idPostagem = p_idPostagem and a.status_Ban = 0 and b.status_Ban = 0 
 	
-	order by data_Resposta, hora desc;
+	order by data_Resposta desc, hora desc;
 end /
 delimiter ;
 
