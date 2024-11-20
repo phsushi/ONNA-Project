@@ -7,14 +7,14 @@ insert into tblTipo_Usuario (status_Ban, email, senha, nome, dataNasc, avatar, t
 (0, 'Joana@gmail.com', 'EssaContaNaoLoga', 'Joana Silva', '1990-05-15', 1, 0, '2024-10-05'),
 (0, 'Clara@gmail.com', 'EssaContaNaoLoga', 'Clara Maria', '1990-10-15', 1, 0, '2022-10-05'),
 (0, 'Fabiana@gmail.com', 'EssaContaNaoLoga', 'Fabiana Lima', '1992-10-15', 2, 0, '2021-08-05'),
-(0, 'Gabriela@gmail.com', 'EssaContaNaoLoga', 'Gabriela Roberta', '1980-10-15', 2, 0, '2022-07-05'),
-(0, 'Maria@gmail.com', 'EssaContaNaoLoga', 'Maria Julia', '1975-10-15', 3, 0, '2023-06-05'),
+(0, 'Gabriela@gmail.com', 'EssaContaNaoLoga', 'Gabriela Roberta', '1980-10-15', 3, 0, '2022-07-05'),
+(0, 'Maria@gmail.com', 'EssaContaNaoLoga', 'Maria Julia', '1975-10-15', 4, 0, '2023-06-05'),
 
-(0, 'Yasmim@gmail.com', 'EssaContaNaoLoga', 'Yasmim Gabriela', '1998-10-15', 3, 1, '2021-05-05'),
-(0, 'Tabata@gmail.com', 'EssaContaNaoLoga', 'Tabata Koff', '1997-10-15', 4, 1, '2020-04-05'),
-(0, 'Sergio@gmail.com', 'EssaContaNaoLoga', 'Sergio Théo', '1996-10-15', 4, 1, '2020-03-05'),
+(0, 'Yasmim@gmail.com', 'EssaContaNaoLoga', 'Yasmim Gabriela', '1998-10-15', 5, 1, '2021-05-05'),
+(0, 'Tabata@gmail.com', 'EssaContaNaoLoga', 'Tabata Koff', '1997-10-15', 6, 1, '2020-04-05'),
+(0, 'Sergio@gmail.com', 'EssaContaNaoLoga', 'Sergio Théo', '1996-10-15', 7, 1, '2020-03-05'),
 (0, 'hugo@gmail.com', 'EssaContaNaoLoga', 'Hugo Mavi', '1995-10-15', 5, 1, '2024-02-05'),
-(0, 'lucas@gmail.com', 'EssaContaNaoLoga', 'Lucas Luh', '1994-10-15', 5, 1, '2022-01-05');
+(0, 'lucas@gmail.com', 'EssaContaNaoLoga', 'Lucas Luh', '1994-10-15', 8, 1, '2022-01-05');
 
 
 
