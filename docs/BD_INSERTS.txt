@@ -157,7 +157,7 @@ insert into tblDenuncia (status_Check, descricao, data_Denuncia, hora, idTipo_Us
 (0, 'Isso não deveria estar aqui!', '2024-11-11', '14:20:00', 2, 18, 1);
 
 insert into tblDenuncia (status_Check, descricao, data_Denuncia, hora, idTipo_Usuario, idResposta_Postagem, idTipo_Denuncia) values
-(0, 'Não podemos ter uma pessoa que fala essas atrocidades no ONNA!', '2024-11-11', '14:24:00', 2, 12, 1);
+(0, 'Não podemos ter uma pessoa que fala essas atrocidades no ONNA!', '2024-11-11', '14:24:00', 2, 20, 1);
 
 
 
