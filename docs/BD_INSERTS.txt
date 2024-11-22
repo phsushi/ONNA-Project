@@ -150,7 +150,7 @@ insert into tblResposta_Postagem (status_Ban, mensagem, data_Resposta, hora, rea
 
 (0, 'Se manca! Banam essa pessoa urgentemente!', '2024-11-11', '14:14:00', 9, 1, 18),
 (0, 'Vai cuidar da SUA vida ao invés de encher o saco!', '2024-11-11', '14:15:00', 13, 2, 18),
-(0, 'Concordo contigo! Essas pessoas não sabem o que é sofrer de verdade! São todos mentes fracas!', '2024-11-11', '15:08:00', 9, 2, 18);
+(0, 'Concordo contigo! Essas pessoas não sabem o que é sofrer de verdade! São todos mentes fracas!', '2024-11-11', '15:08:00', 2, 2, 18);
 
 insert into tblDenuncia (status_Check, descricao, data_Denuncia, hora, idTipo_Usuario, idPostagem, idTipo_Denuncia) values
 (0, 'Olha essa palhaçada!', '2024-11-11', '14:17:00', 1, 18, 1),
